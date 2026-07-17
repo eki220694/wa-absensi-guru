@@ -1,16 +1,16 @@
 {
   "name": "wa-absensi-guru",
-  "version": "0.1.0",
   "private": true,
-  "type": "module",
+  "workspaces": ["shared", "bot", "web"],
   "scripts": {
-    "start": "node src/index.js",
-    "db:setup": "node src/db/setup.js",
-    "seed": "node src/db/seed.js"
+    "bot:dev": "npm -w bot run dev",
+    "bot:start": "npm -w bot run start",
+    "web:dev": "npm -w web run dev",
+    "web:build": "npm -w web run build",
+    "db:migrate": "npm -w bot run migrate",
+    "db:seed": "npm -w bot run seed"
   },
-  "dependencies": {
-    "@whiskeysockets/baileys": "^6.7.0",
-    "better-sqlite3": "^11.0.0",
-    "qrcode-terminal": "^0.12.0"
+  "devDependencies": {
+    "typescript": "^5.5.0"
   }
 }
