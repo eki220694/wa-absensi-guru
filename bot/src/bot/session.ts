@@ -1,5 +1,5 @@
 interface Session {
-  step: 'idle' | 'absen_pilih_jadwal' | 'absen_kirim_gps' | 'absen_kirim_foto';
+  step: 'idle' | 'absen_pilih_jadwal' | 'absen_kirim_gps' | 'absen_kirim_foto' | 'izin_pilih_jenis' | 'izin_tanggal_mulai' | 'izin_tanggal_selesai' | 'izin_alasan' | 'izin_bukti';
   data: Record<string, any>;
 }
 
