@@ -1,6 +1,6 @@
 interface Session {
-  step: 'idle' | string;
-  data: Record<string, unknown>;
+  step: 'idle' | 'absen_pilih_jadwal' | 'absen_kirim_gps' | 'absen_kirim_foto';
+  data: Record<string, any>;
 }
 
 const sessions = new Map<string, Session>();
