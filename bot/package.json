@@ -1,0 +1,22 @@
+{
+  "name": "@wa-absensi/bot",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "tsx watch src/index.ts",
+    "start": "node --loader tsx src/index.ts",
+    "migrate": "node --loader tsx src/db/migrate.ts",
+    "seed": "node --loader tsx src/db/seed.ts"
+  },
+  "dependencies": {
+    "@wa-absensi/shared": "*",
+    "@whiskeysockets/baileys": "^6.7.0",
+    "qrcode-terminal": "^0.12.0",
+    "@neondatabase/serverless": "^0.9.0",
+    "tesseract.js": "^5.0.0"
+  },
+  "devDependencies": {
+    "tsx": "^4.16.0"
+  }
+}
