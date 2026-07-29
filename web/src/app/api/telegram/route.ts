@@ -3,13 +3,13 @@ import { getBot, setup } from '@/lib/telegram';
 
 export const dynamic = 'force-dynamic';
 
-// Init bot on first call
 let initialized = false;
 
 export async function POST(req: NextRequest) {
   try {
     if (!initialized) {
       setup();
+      await getBot().init();
       initialized = true;
     }
     const update = await req.json();
@@ -23,9 +23,5 @@ export async function POST(req: NextRequest) {
 }
 
 export async function GET() {
-  if (!initialized) {
-    setup();
-    initialized = true;
-  }
   return NextResponse.json({ status: 'ok', bot: 'Absensi SMAN 6 SIGI' });
 }
