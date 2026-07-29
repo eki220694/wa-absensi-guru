@@ -1,0 +1,465 @@
+{
+  "communities": {
+    "0": [
+      "bcryptjs",
+      "bot_package_dependencies",
+      "bot_package_dependencies_neondatabase_serverless",
+      "bot_package_dependencies_qrcode_terminal",
+      "bot_package_dependencies_tesseract_js",
+      "bot_package_dependencies_wa_absensi_shared",
+      "bot_package_dependencies_whiskeysockets_baileys",
+      "bot_package_json_neondatabase_serverless",
+      "bot_package_json_wa_absensi_shared",
+      "exceljs",
+      "next",
+      "next_auth",
+      "pdfkit",
+      "qrcode_terminal",
+      "react",
+      "react_dom",
+      "recharts",
+      "tesseract_js",
+      "web_package_dependencies",
+      "web_package_dependencies_bcryptjs",
+      "web_package_dependencies_exceljs",
+      "web_package_dependencies_neondatabase_serverless",
+      "web_package_dependencies_next",
+      "web_package_dependencies_next_auth",
+      "web_package_dependencies_pdfkit",
+      "web_package_dependencies_react",
+      "web_package_dependencies_react_dom",
+      "web_package_dependencies_recharts",
+      "web_package_dependencies_wa_absensi_shared",
+      "whiskeysockets_baileys"
+    ],
+    "1": [
+      "bot_src_bot_handlers_absen",
+      "bot_src_bot_handlers_absen_handleabsen",
+      "bot_src_bot_handlers_izin",
+      "bot_src_bot_handlers_izin_handleizin",
+      "bot_src_bot_handlers_message",
+      "bot_src_bot_handlers_message_messagehandler",
+      "bot_src_bot_middleware_ratelimit",
+      "bot_src_bot_middleware_ratelimit_checkratelimit",
+      "bot_src_bot_middleware_ratelimit_store",
+      "bot_src_bot_session",
+      "bot_src_bot_session_clearsession",
+      "bot_src_bot_session_getsession",
+      "bot_src_bot_session_session",
+      "bot_src_bot_session_sessions",
+      "bot_src_bot_session_setsession",
+      "bot_src_services_gps",
+      "bot_src_services_gps_verifylocation",
+      "bot_src_services_ocr",
+      "bot_src_services_ocr_verifyphoto",
+      "bot_src_services_photo",
+      "bot_src_services_photo_dirname",
+      "bot_src_services_photo_photo_dir",
+      "bot_src_services_photo_savephoto",
+      "shared_src_constants_sekolah",
+      "shared_src_index",
+      "shared_src_utils",
+      "shared_src_utils_formattanggal",
+      "shared_src_utils_hariini",
+      "shared_src_utils_hitungjarak",
+      "shared_src_utils_sekarang"
+    ],
+    "2": [
+      "web_src_app_absen_page",
+      "web_src_app_absen_page_absenpage",
+      "web_src_app_api_auth_nextauth_route",
+      "web_src_app_api_auth_nextauth_route_handler",
+      "web_src_app_api_export_excel_route",
+      "web_src_app_api_export_excel_route_get",
+      "web_src_app_api_export_pdf_route",
+      "web_src_app_api_export_pdf_route_get",
+      "web_src_app_api_izin_id_route",
+      "web_src_app_api_izin_id_route_patch",
+      "web_src_app_api_pengaturan_route",
+      "web_src_app_api_pengaturan_route_post",
+      "web_src_app_guru_id_page",
+      "web_src_app_guru_id_page_gurudetailpage",
+      "web_src_app_guru_page",
+      "web_src_app_guru_page_gurupage",
+      "web_src_app_izin_page",
+      "web_src_app_izin_page_izinpage",
+      "web_src_app_jadwal_page",
+      "web_src_app_jadwal_page_jadwalpage",
+      "web_src_app_page",
+      "web_src_app_page_dashboardpage",
+      "web_src_app_page_statcard",
+      "web_src_app_pengaturan_page",
+      "web_src_app_pengaturan_page_pengaturanpage",
+      "web_src_lib_auth",
+      "web_src_lib_auth_authoptions",
+      "web_src_lib_db",
+      "web_src_lib_db_sql"
+    ],
+    "3": [
+      "autoprefixer",
+      "postcss",
+      "tailwindcss",
+      "types_node",
+      "types_react",
+      "types_react_dom",
+      "web_package",
+      "web_package_devdependencies",
+      "web_package_devdependencies_autoprefixer",
+      "web_package_devdependencies_postcss",
+      "web_package_devdependencies_tailwindcss",
+      "web_package_devdependencies_types_node",
+      "web_package_devdependencies_types_react",
+      "web_package_devdependencies_types_react_dom",
+      "web_package_name",
+      "web_package_private",
+      "web_package_scripts",
+      "web_package_scripts_build",
+      "web_package_scripts_dev",
+      "web_package_scripts_start",
+      "web_package_version"
+    ],
+    "4": [
+      "ref_next_env_d_ts",
+      "ref_next_types_ts",
+      "ref_node_modules",
+      "ref_ts",
+      "ref_tsx",
+      "web_tsconfig",
+      "web_tsconfig_compileroptions",
+      "web_tsconfig_compileroptions_allowjs",
+      "web_tsconfig_compileroptions_incremental",
+      "web_tsconfig_compileroptions_isolatedmodules",
+      "web_tsconfig_compileroptions_jsx",
+      "web_tsconfig_compileroptions_module",
+      "web_tsconfig_compileroptions_moduleresolution",
+      "web_tsconfig_compileroptions_noemit",
+      "web_tsconfig_compileroptions_paths",
+      "web_tsconfig_compileroptions_plugins",
+      "web_tsconfig_exclude",
+      "web_tsconfig_extends",
+      "web_tsconfig_include"
+    ],
+    "5": [
+      "package",
+      "package_devdependencies",
+      "package_devdependencies_typescript",
+      "package_name",
+      "package_private",
+      "package_scripts",
+      "package_scripts_bot_dev",
+      "package_scripts_bot_start",
+      "package_scripts_db_migrate",
+      "package_scripts_db_seed",
+      "package_scripts_web_build",
+      "package_scripts_web_dev",
+      "package_workspaces",
+      "ref_bot",
+      "ref_shared",
+      "ref_web",
+      "typescript"
+    ],
+    "6": [
+      "src_db_seed",
+      "src_db_seed_db",
+      "src_db_seed_getkelasid",
+      "src_db_seed_getmapelid",
+      "src_db_seed_guru",
+      "src_db_seed_insertguru",
+      "src_db_seed_insertjadwal",
+      "src_db_seed_insertkelas",
+      "src_db_seed_insertmapel",
+      "src_db_seed_kelas",
+      "src_db_seed_mapel",
+      "src_db_seed_runall",
+      "src_db_setup",
+      "src_db_setup_db_path",
+      "src_db_setup_dirname",
+      "src_db_setup_getdb",
+      "src_db_setup_setupdb"
+    ],
+    "7": [
+      "bot_src_bot_connection",
+      "bot_src_bot_connection_auth_dir",
+      "bot_src_bot_connection_dirname",
+      "bot_src_bot_connection_startbot",
+      "bot_src_bot_middleware_auth",
+      "bot_src_bot_middleware_auth_checkguru",
+      "bot_src_bot_middleware_auth_gurucache",
+      "bot_src_bot_middleware_auth_isadmin",
+      "bot_src_db_connection",
+      "bot_src_db_connection_sql",
+      "bot_src_db_migrate",
+      "bot_src_db_migrate_up",
+      "bot_src_db_seed",
+      "bot_src_db_seed_seed",
+      "bot_src_index",
+      "bot_src_index_main"
+    ],
+    "8": [
+      "tsconfig_base",
+      "tsconfig_base_compileroptions",
+      "tsconfig_base_compileroptions_declaration",
+      "tsconfig_base_compileroptions_declarationmap",
+      "tsconfig_base_compileroptions_esmoduleinterop",
+      "tsconfig_base_compileroptions_forceconsistentcasinginfilenames",
+      "tsconfig_base_compileroptions_module",
+      "tsconfig_base_compileroptions_moduleresolution",
+      "tsconfig_base_compileroptions_nouncheckedindexedaccess",
+      "tsconfig_base_compileroptions_resolvejsonmodule",
+      "tsconfig_base_compileroptions_skiplibcheck",
+      "tsconfig_base_compileroptions_sourcemap",
+      "tsconfig_base_compileroptions_strict",
+      "tsconfig_base_compileroptions_target"
+    ],
+    "9": [
+      "bot_package",
+      "bot_package_devdependencies",
+      "bot_package_devdependencies_tsx",
+      "bot_package_name",
+      "bot_package_private",
+      "bot_package_scripts",
+      "bot_package_scripts_dev",
+      "bot_package_scripts_migrate",
+      "bot_package_scripts_seed",
+      "bot_package_scripts_start",
+      "bot_package_type",
+      "bot_package_version",
+      "tsx"
+    ],
+    "10": [
+      "bot_tsconfig",
+      "bot_tsconfig_compileroptions",
+      "bot_tsconfig_compileroptions_outdir",
+      "bot_tsconfig_extends",
+      "bot_tsconfig_include",
+      "bot_tsconfig_json_ref_src",
+      "bot_tsconfig_json_ref_tsconfig_base_json",
+      "shared_tsconfig",
+      "shared_tsconfig_compileroptions",
+      "shared_tsconfig_compileroptions_outdir",
+      "shared_tsconfig_extends",
+      "shared_tsconfig_include",
+      "shared_tsconfig_json_ref_src"
+    ],
+    "11": [
+      "shared_package",
+      "shared_package_dependencies",
+      "shared_package_main",
+      "shared_package_name",
+      "shared_package_private",
+      "shared_package_type",
+      "shared_package_types",
+      "shared_package_version"
+    ],
+    "12": [
+      "shared_src_constants",
+      "shared_src_constants_hari",
+      "shared_src_constants_jam_jumat",
+      "shared_src_constants_jam_senin_kamis",
+      "shared_src_constants_jenis_izin",
+      "shared_src_constants_rationale_3",
+      "shared_src_constants_status_absen",
+      "shared_src_constants_status_izin"
+    ],
+    "13": [
+      "shared_src_types",
+      "shared_src_types_absen",
+      "shared_src_types_guru",
+      "shared_src_types_izin",
+      "shared_src_types_jadwal"
+    ],
+    "14": [
+      "web_src_app_layout",
+      "web_src_app_layout_metadata",
+      "web_src_app_layout_navlinks",
+      "web_src_app_layout_rootlayout"
+    ],
+    "15": [
+      "web_next_config",
+      "web_next_config_nextconfig"
+    ],
+    "16": [
+      "web_src_app_absen_export_page",
+      "web_src_app_absen_export_page_exportpage"
+    ],
+    "17": [
+      "web_src_app_login_page",
+      "web_src_app_login_page_loginpage"
+    ],
+    "18": [
+      "web_tailwind_config",
+      "web_tailwind_config_config"
+    ],
+    "19": [
+      "web_postcss_config"
+    ]
+  },
+  "cohesion": {
+    "0": 0.06896551724137931,
+    "1": 0.1632183908045977,
+    "2": 0.18226600985221675,
+    "3": 0.09523809523809523,
+    "4": 0.10526315789473684,
+    "5": 0.11764705882352941,
+    "6": 0.1323529411764706,
+    "7": 0.21666666666666667,
+    "8": 0.14285714285714285,
+    "9": 0.15384615384615385,
+    "10": 0.15384615384615385,
+    "11": 0.25,
+    "12": 0.25,
+    "13": 0.4,
+    "14": 0.5,
+    "15": 1.0,
+    "16": 1.0,
+    "17": 1.0,
+    "18": 1.0,
+    "19": 1.0
+  },
+  "gods": [
+    {
+      "id": "web_src_lib_db_sql",
+      "label": "sql",
+      "degree": 24
+    },
+    {
+      "id": "bot_src_bot_handlers_absen_handleabsen",
+      "label": "handleAbsen()",
+      "degree": 13
+    },
+    {
+      "id": "bot_src_db_connection_sql",
+      "label": "sql",
+      "degree": 13
+    },
+    {
+      "id": "tsconfig_base_compileroptions",
+      "label": "compilerOptions",
+      "degree": 13
+    },
+    {
+      "id": "web_src_lib_auth_authoptions",
+      "label": "authOptions",
+      "degree": 13
+    },
+    {
+      "id": "web_tsconfig_compileroptions",
+      "label": "compilerOptions",
+      "degree": 10
+    },
+    {
+      "id": "bot_src_bot_handlers_izin_handleizin",
+      "label": "handleIzin()",
+      "degree": 9
+    },
+    {
+      "id": "bot_src_bot_handlers_message_messagehandler",
+      "label": "messageHandler()",
+      "degree": 7
+    },
+    {
+      "id": "bot_src_bot_session_getsession",
+      "label": "getSession()",
+      "degree": 7
+    },
+    {
+      "id": "package_scripts",
+      "label": "scripts",
+      "degree": 7
+    }
+  ],
+  "surprises": [
+    {
+      "source": "handleAbsen()",
+      "target": "formatTanggal()",
+      "source_files": [
+        "bot/src/bot/handlers/absen.ts",
+        "shared/src/utils.ts"
+      ],
+      "confidence": "EXTRACTED",
+      "relation": "calls",
+      "why": "connects across different repos/directories"
+    },
+    {
+      "source": "handleAbsen()",
+      "target": "sekarang()",
+      "source_files": [
+        "bot/src/bot/handlers/absen.ts",
+        "shared/src/utils.ts"
+      ],
+      "confidence": "EXTRACTED",
+      "relation": "calls",
+      "why": "connects across different repos/directories"
+    },
+    {
+      "source": "handleIzin()",
+      "target": "formatTanggal()",
+      "source_files": [
+        "bot/src/bot/handlers/izin.ts",
+        "shared/src/utils.ts"
+      ],
+      "confidence": "EXTRACTED",
+      "relation": "calls",
+      "why": "connects across different repos/directories"
+    },
+    {
+      "source": "verifyLocation()",
+      "target": "hitungJarak()",
+      "source_files": [
+        "bot/src/services/gps.ts",
+        "shared/src/utils.ts"
+      ],
+      "confidence": "EXTRACTED",
+      "relation": "calls",
+      "why": "connects across different repos/directories"
+    },
+    {
+      "source": "startBot()",
+      "target": "messageHandler()",
+      "source_files": [
+        "bot/src/bot/connection.ts",
+        "bot/src/bot/handlers/message.ts"
+      ],
+      "confidence": "EXTRACTED",
+      "relation": "calls",
+      "why": "bridges separate communities"
+    }
+  ],
+  "questions": [
+    {
+      "type": "bridge_node",
+      "question": "Why does `dependencies` connect `dependencies` to `devDependencies`?",
+      "why": "High betweenness centrality (0.045) - this node is a cross-community bridge."
+    },
+    {
+      "type": "bridge_node",
+      "question": "Why does `dependencies` connect `dependencies` to `bot/package.json`?",
+      "why": "High betweenness centrality (0.029) - this node is a cross-community bridge."
+    },
+    {
+      "type": "isolated_nodes",
+      "question": "What connects `name`, `version`, `private` to the rest of the system?",
+      "why": "118 weakly-connected nodes found - possible documentation gaps or missing edges."
+    },
+    {
+      "type": "low_cohesion",
+      "question": "Should `dependencies` be split into smaller, more focused modules?",
+      "why": "Cohesion score 0.06896551724137931 - nodes in this community are weakly interconnected."
+    },
+    {
+      "type": "low_cohesion",
+      "question": "Should `devDependencies` be split into smaller, more focused modules?",
+      "why": "Cohesion score 0.09523809523809523 - nodes in this community are weakly interconnected."
+    },
+    {
+      "type": "low_cohesion",
+      "question": "Should `compilerOptions` be split into smaller, more focused modules?",
+      "why": "Cohesion score 0.10526315789473684 - nodes in this community are weakly interconnected."
+    },
+    {
+      "type": "low_cohesion",
+      "question": "Should `scripts` be split into smaller, more focused modules?",
+      "why": "Cohesion score 0.11764705882352941 - nodes in this community are weakly interconnected."
+    }
+  ]
+}

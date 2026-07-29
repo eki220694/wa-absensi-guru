@@ -20,9 +20,9 @@ export default async function DashboardPage() {
       <p className="text-gray-500 mb-8">Selamat datang, {session.user?.name}</p>
 
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
-        <StatCard title="Total Guru" value={counts.total_guru ?? 0} color="bg-blue-500" />
-        <StatCard title="Absen Hari Ini" value={counts.absen_hari_ini ?? 0} color="bg-green-500" />
-        <StatCard title="Izin Pending" value={counts.izin_pending ?? 0} color="bg-yellow-500" />
+        <StatCard title="Total Guru" value={Number(counts?.total_guru ?? 0)} color="bg-blue-500" />
+        <StatCard title="Absen Hari Ini" value={Number(counts?.absen_hari_ini ?? 0)} color="bg-green-500" />
+        <StatCard title="Izin Pending" value={Number(counts?.izin_pending ?? 0)} color="bg-yellow-500" />
       </div>
     </div>
   );

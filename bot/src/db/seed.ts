@@ -1,10 +1,10 @@
 import { sql } from './connection.js';
 
 const seed = async () => {
-  // Admin default
+  // Admin default (password: admin123)
   await sql`
     INSERT INTO guru (nip, nama, no_wa, jabatan, password_hash)
-    VALUES ('ADMIN001', 'Admin SMAN 6', '6281234567890', 'admin', '$2b$10$...')
+    VALUES ('ADMIN001', 'Admin SMAN 6', '6281234567890', 'admin', '$2a$10$UT6urtKrjqT4vt.k/HK2ve6BgVw85qX/ldfqNzSkPZbcR7x/.V4Eu')
     ON CONFLICT (nip) DO NOTHING
   `;
 

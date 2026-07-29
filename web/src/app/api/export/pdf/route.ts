@@ -17,8 +17,8 @@ export async function GET(req: Request) {
   }
 
   const start = `${tahun}-${String(bulan).padStart(2, '0')}-01`;
-  const endDate = new Date(Number(tahun), Number(bulan), 0);
-  const end = endDate.toISOString().slice(0, 10);
+  const endDate = new Date(Number(tahun!), Number(bulan!), 0);
+  const end = endDate?.toISOString().slice(0, 10) ?? '';
 
   const rows = await sql`
     SELECT a.tanggal, a.jam_ke, a.status, a.jarak_meter, a.foto_valid,
@@ -46,9 +46,10 @@ export async function GET(req: Request) {
     doc.font('Helvetica-Bold').fontSize(9);
     let x = startX;
     headers.forEach((h, i) => {
-      doc.rect(x, y, colWidths[i], 20).stroke();
-      doc.text(h, x + 2, y + 5, { width: colWidths[i] - 4, align: 'left' });
-      x += colWidths[i];
+      const w = colWidths[i] ?? 60;
+      doc.rect(x, y, w, 20).stroke();
+      doc.text(h, x + 2, y + 5, { width: w - 4, align: 'left' });
+      x += w;
     });
     y += 20;
   };
@@ -75,22 +76,23 @@ export async function GET(req: Request) {
       r.foto_valid ? 'Ya' : 'Tidak',
     ];
     cells.forEach((c, i) => {
-      doc.rect(x, y, colWidths[i], 18).stroke();
-      doc.text(c, x + 2, y + 4, { width: colWidths[i] - 4 });
-      x += colWidths[i];
+      const w = colWidths[i] ?? 60;
+      doc.rect(x, y, w, 18).stroke();
+      doc.text(c, x + 2, y + 4, { width: w - 4 });
+      x += w;
     });
     y += 18;
   }
 
-  const buffer = await new Promise<Buffer>((resolve, reject) => {
-    const chunks: Buffer[] = [];
-    doc.on('data', (chunk: Buffer) => chunks.push(chunk));
-    doc.on('end', () => resolve(Buffer.concat(chunks)));
+  const buffer = await new Promise<Uint8Array>((resolve, reject) => {
+    const chunks: Uint8Array[] = [];
+    doc.on('data', (chunk: Uint8Array) => chunks.push(chunk));
+    doc.on('end', () => resolve(Buffer.concat(chunks as unknown as Uint8Array[])));
     doc.on('error', reject);
     doc.end();
   });
 
-  return new NextResponse(buffer, {
+  return new Response(buffer as unknown as BodyInit, {
     headers: {
       'Content-Type': 'application/pdf',
       'Content-Disposition': `attachment; filename="rekap-absensi-${tahun}-${String(bulan).padStart(2, '0')}.pdf"`,
