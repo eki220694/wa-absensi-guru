@@ -25,9 +25,9 @@
     "semantic_hash": "16033b804cdcf5e3de9e93ed0b966c49"
   },
   "bot/src/bot/middleware/auth.ts": {
-    "mtime": 1784269069.6722677,
-    "ast_hash": "19c1941e27a3848cd58d58ccd36f3e65",
-    "semantic_hash": "19c1941e27a3848cd58d58ccd36f3e65"
+    "mtime": 1785283044.1195722,
+    "ast_hash": "aee62c6fae85ec93d236376df752ddb6",
+    "semantic_hash": ""
   },
   "bot/src/bot/middleware/rateLimit.ts": {
     "mtime": 1784269069.6742678,
@@ -40,9 +40,9 @@
     "semantic_hash": "697b9993871c56c9cb4f33fed4eeeaaf"
   },
   "bot/src/db/connection.ts": {
-    "mtime": 1784269069.6642675,
-    "ast_hash": "86bdf19c973a4b61337f23bf9845f0d4",
-    "semantic_hash": "86bdf19c973a4b61337f23bf9845f0d4"
+    "mtime": 1785283044.1275723,
+    "ast_hash": "96fe61e2914d47068bce990e0bbb4907",
+    "semantic_hash": ""
   },
   "bot/src/db/migrate.ts": {
     "mtime": 1784269254.324833,
@@ -50,9 +50,9 @@
     "semantic_hash": "3f0b6e5cfe6a0486a4523df80f4a5dab"
   },
   "bot/src/db/seed.ts": {
-    "mtime": 1784269254.336833,
-    "ast_hash": "ecaa798dcde7cc65902b82f8cfa7c855",
-    "semantic_hash": "ecaa798dcde7cc65902b82f8cfa7c855"
+    "mtime": 1785282891.1400793,
+    "ast_hash": "0025135de50a2a8778e85c8ef7e06ce2",
+    "semantic_hash": ""
   },
   "bot/src/index.ts": {
     "mtime": 1784269069.6742678,
@@ -135,9 +135,9 @@
     "semantic_hash": "76a390e5d7c9dc6ddb8eb339f95e603b"
   },
   "web/package.json": {
-    "mtime": 1784270765.6127615,
-    "ast_hash": "9cad2370ae3d78a4ec7694fbfa7a13e9",
-    "semantic_hash": "9cad2370ae3d78a4ec7694fbfa7a13e9"
+    "mtime": 1785283082.2561758,
+    "ast_hash": "5e4689536b9de0702e55f917bf249cbb",
+    "semantic_hash": ""
   },
   "web/postcss.config.js": {
     "mtime": 1784270765.6137323,
@@ -160,14 +160,14 @@
     "semantic_hash": "948ae85ddb6c6296d322b46e19b022e8"
   },
   "web/src/app/api/export/excel/route.ts": {
-    "mtime": 1784271078.0528767,
-    "ast_hash": "ae6d8a567a23005081876d64b00c46c5",
-    "semantic_hash": "ae6d8a567a23005081876d64b00c46c5"
+    "mtime": 1785283073.9970455,
+    "ast_hash": "317ee0701001b51b266b0812cc886cdf",
+    "semantic_hash": ""
   },
   "web/src/app/api/export/pdf/route.ts": {
-    "mtime": 1784271088.0831838,
-    "ast_hash": "90fc88e1f10f69383d2ebfda63e6328d",
-    "semantic_hash": "90fc88e1f10f69383d2ebfda63e6328d"
+    "mtime": 1785283164.402455,
+    "ast_hash": "3d90801d9a0dc1e3c461c3b365d43eb3",
+    "semantic_hash": ""
   },
   "web/src/app/api/izin/[id]/route.ts": {
     "mtime": 1784270990.6481593,
@@ -200,19 +200,19 @@
     "semantic_hash": "1cbe4449ad411c924e5287924a8788f1"
   },
   "web/src/app/layout.tsx": {
-    "mtime": 1784270818.3365378,
-    "ast_hash": "098875fa68589a5da3ed036816c82f50",
-    "semantic_hash": "098875fa68589a5da3ed036816c82f50"
+    "mtime": 1785283011.9320576,
+    "ast_hash": "35eef257a0e94321ac37b142034ee577",
+    "semantic_hash": ""
   },
   "web/src/app/login/page.tsx": {
-    "mtime": 1784270818.337538,
-    "ast_hash": "5f5ef8d4b759ee8bc76fa61b4f21139c",
-    "semantic_hash": "5f5ef8d4b759ee8bc76fa61b4f21139c"
+    "mtime": 1785282917.2195134,
+    "ast_hash": "72bf59a83e6b5b575a81235e51eada71",
+    "semantic_hash": ""
   },
   "web/src/app/page.tsx": {
-    "mtime": 1784270818.3365378,
-    "ast_hash": "e673b328ffd376be729d135623abbd84",
-    "semantic_hash": "e673b328ffd376be729d135623abbd84"
+    "mtime": 1785283073.9970455,
+    "ast_hash": "c8c4d133433c615c53fd500cababae6b",
+    "semantic_hash": ""
   },
   "web/src/app/pengaturan/page.tsx": {
     "mtime": 1784270853.6277223,
@@ -220,9 +220,9 @@
     "semantic_hash": "4e75ba24dc6d886c1353f6a3bd3aec72"
   },
   "web/src/lib/auth.ts": {
-    "mtime": 1784270771.9431665,
-    "ast_hash": "4248b3d9134d2db0c25e14e403ea087a",
-    "semantic_hash": "4248b3d9134d2db0c25e14e403ea087a"
+    "mtime": 1785283101.5584788,
+    "ast_hash": "0c3c21b58fe5a091f34d0fc8611cc307",
+    "semantic_hash": ""
   },
   "web/src/lib/db.ts": {
     "mtime": 1784270771.943005,
@@ -238,5 +238,25 @@
     "mtime": 1784270765.6130753,
     "ast_hash": "2b48b16a68a55fe06da4624581632ad3",
     "semantic_hash": "2b48b16a68a55fe06da4624581632ad3"
+  },
+  "web/src/components/AuthProvider.tsx": {
+    "mtime": 1785282922.3685985,
+    "ast_hash": "686682efbb97879b6fd9199ad19b3ff1",
+    "semantic_hash": ""
+  },
+  "web/src/types/next-auth.d.ts": {
+    "mtime": 1785283160.9064012,
+    "ast_hash": "10b59040b742de06c0b230d81a0207f3",
+    "semantic_hash": ""
+  },
+  "docs/superpowers/plans/2026-07-17-wa-absensi-guru-plan.md": {
+    "mtime": 1784266624.4912124,
+    "ast_hash": "12cf0247669333e2c928c177f4cfdcb2",
+    "semantic_hash": ""
+  },
+  "docs/superpowers/specs/2026-07-17-wa-absensi-guru-design.md": {
+    "mtime": 1784266334.5240836,
+    "ast_hash": "692c1eeefe0024bef802ed94ee4a9802",
+    "semantic_hash": ""
   }
 }

@@ -1,7 +1,7 @@
 import { NextAuthOptions } from 'next-auth';
 import Credentials from 'next-auth/providers/credentials';
 import bcrypt from 'bcryptjs';
-import { sql } from './db.js';
+import { sql } from './db';
 
 export const authOptions: NextAuthOptions = {
   providers: [
@@ -20,10 +20,10 @@ export const authOptions: NextAuthOptions = {
 
         if (!guru || !guru.password_hash) return null;
 
-        const valid = await bcrypt.compare(credentials.password, guru.password_hash);
+        const valid = await bcrypt.compare(credentials.password, guru.password_hash as string);
         if (!valid) return null;
 
-        return { id: String(guru.id), name: guru.nama, email: guru.nip, role: guru.jabatan };
+        return { id: String(guru.id), name: guru.nama as string, email: guru.nip as string, role: guru.jabatan as string };
       },
     }),
   ],

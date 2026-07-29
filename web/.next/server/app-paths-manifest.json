@@ -1,0 +1,17 @@
+{
+  "/_not-found/page": "app/_not-found/page.js",
+  "/absen/export/page": "app/absen/export/page.js",
+  "/absen/page": "app/absen/page.js",
+  "/api/auth/[...nextauth]/route": "app/api/auth/[...nextauth]/route.js",
+  "/api/export/excel/route": "app/api/export/excel/route.js",
+  "/api/export/pdf/route": "app/api/export/pdf/route.js",
+  "/api/izin/[id]/route": "app/api/izin/[id]/route.js",
+  "/api/pengaturan/route": "app/api/pengaturan/route.js",
+  "/guru/[id]/page": "app/guru/[id]/page.js",
+  "/guru/page": "app/guru/page.js",
+  "/izin/page": "app/izin/page.js",
+  "/jadwal/page": "app/jadwal/page.js",
+  "/login/page": "app/login/page.js",
+  "/page": "app/page.js",
+  "/pengaturan/page": "app/pengaturan/page.js"
+}
