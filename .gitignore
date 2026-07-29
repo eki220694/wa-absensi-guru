@@ -4,3 +4,5 @@ dist/
 *.db
 data/photos/
 graphify-out/
+.next/
+web/.next/

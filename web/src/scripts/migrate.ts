@@ -1,11 +1,12 @@
-import { pool } from './connection.js';
+import { pool } from '../lib/db-pool.js';
 
 const statements = [
   `CREATE TABLE IF NOT EXISTS guru (
     id SERIAL PRIMARY KEY,
     nip TEXT UNIQUE NOT NULL,
     nama TEXT NOT NULL,
-    no_wa TEXT UNIQUE NOT NULL,
+    no_wa TEXT UNIQUE,
+    telegram_id TEXT UNIQUE,
     jabatan TEXT NOT NULL DEFAULT 'guru',
     password_hash TEXT,
     created_at TIMESTAMPTZ DEFAULT NOW()
@@ -36,7 +37,7 @@ const statements = [
     jarak_meter REAL,
     latitude REAL,
     longitude REAL,
-    foto_path TEXT,
+    foto_url TEXT,
     foto_valid BOOLEAN DEFAULT FALSE,
     keterangan TEXT,
     created_at TIMESTAMPTZ DEFAULT NOW(),
@@ -51,7 +52,7 @@ const statements = [
     jam_ke_awal SMALLINT,
     jam_ke_akhir SMALLINT,
     alasan TEXT,
-    bukti_path TEXT,
+    bukti_url TEXT,
     status TEXT DEFAULT 'pending' CHECK(status IN ('pending','disetujui','ditolak')),
     approved_by INT REFERENCES guru(id),
     approved_at TIMESTAMPTZ,
@@ -60,6 +61,11 @@ const statements = [
   `CREATE TABLE IF NOT EXISTS config (
     key TEXT PRIMARY KEY,
     value TEXT NOT NULL
+  )`,
+  `CREATE TABLE IF NOT EXISTS bot_session (
+    chat_id TEXT PRIMARY KEY,
+    data JSONB NOT NULL DEFAULT '{}',
+    updated_at TIMESTAMPTZ DEFAULT NOW()
   )`,
   `CREATE INDEX IF NOT EXISTS idx_absen_tanggal ON absen(tanggal)`,
   `CREATE INDEX IF NOT EXISTS idx_absen_guru_tanggal ON absen(guru_id, tanggal)`,
@@ -73,6 +79,7 @@ const up = async () => {
     console.log('OK:', stmt.slice(0, 60) + '...');
   }
   console.log('Migrasi selesai');
+  await pool.end();
   process.exit(0);
 };
 

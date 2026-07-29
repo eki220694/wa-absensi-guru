@@ -1,14 +1,12 @@
 {
   "name": "wa-absensi-guru",
   "private": true,
-  "workspaces": ["shared", "bot", "web"],
+  "workspaces": ["shared", "web"],
   "scripts": {
-    "bot:dev": "npm -w bot run dev",
-    "bot:start": "npm -w bot run start",
     "web:dev": "npm -w web run dev",
     "web:build": "npm -w web run build",
-    "db:migrate": "npm -w bot run migrate",
-    "db:seed": "npm -w bot run seed"
+    "db:migrate": "npm -w web run db:migrate",
+    "db:seed": "npm -w web run db:seed"
   },
   "devDependencies": {
     "typescript": "^5.5.0"
