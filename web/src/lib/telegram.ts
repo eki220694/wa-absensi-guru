@@ -25,10 +25,11 @@ interface Session {
   izinTglMulai: string;
   izinTglSelesai: string;
   izinAlasan: string;
+  tanggal?: string;
 }
 
 function emptySession(): Session {
-  return { step: null, guruId: 0, jadwalId: 0, izinJenis: '', izinTglMulai: '', izinTglSelesai: '', izinAlasan: '' };
+  return { step: null, guruId: 0, jadwalId: 0, izinJenis: '', izinTglMulai: '', izinTglSelesai: '', izinAlasan: '', tanggal: '' };
 }
 
 async function loadSession(chatId: string): Promise<Session> {
@@ -177,6 +178,10 @@ function setup() {
   b.command('skip', async (ctx) => {
     const chatId = String(ctx.chat!.id);
     const s = await loadSession(chatId);
+    if (s.step === 'await_foto') {
+      await dropSession(chatId);
+      return ctx.reply('⏭️ Foto dilewati. Absen selesai!');
+    }
     if (s.step === 'await_izin_bukti') await simpanIzin(chatId, s, null);
   });
 
@@ -220,17 +225,25 @@ function setup() {
     await sql`INSERT INTO absen (guru_id,jadwal_id,tanggal,jam_ke,status,di_luar_radius,jarak_meter,latitude,longitude)
       VALUES (${s.guruId},${s.jadwalId},${tgl},${jw.jam_ke},'hadir',${jarak > rad},${Math.round(jarak)},${loc.latitude},${loc.longitude})
       ON CONFLICT(guru_id,jadwal_id,tanggal) DO UPDATE SET status='hadir',di_luar_radius=${jarak > rad},jarak_meter=${Math.round(jarak)},latitude=${loc.latitude},longitude=${loc.longitude}`;
-    await dropSession(chatId);
-    await ctx.reply(`✅ *Absen*\n👨‍🏫 ${jw.gn}\n📚 ${jw.mapel}\n🏫 ${jw.kelas} ${jw.ruangan ?? ''}\n📍 ${Math.round(jarak)}m (${jarak > rad ? '⚠️' : '✅'})`, { parse_mode: 'Markdown' });
+    s.step = 'await_foto';
+    s.tanggal = tgl;
+    await saveSession(chatId, s);
+    await ctx.reply('📸 *Kirim foto kelas/selfie*\n atau /skip untuk lewati.', { parse_mode: 'Markdown' });
   });
 
   b.on(':photo', async (ctx) => {
     const chatId = String(ctx.chat!.id);
     const s = await loadSession(chatId);
-    if (s.step !== 'await_izin_bukti') return;
     const file = await ctx.getFile();
     const url = `https://api.telegram.org/file/bot${process.env.TELEGRAM_BOT_TOKEN!}/${file.file_path}`;
-    await simpanIzin(chatId, s, url);
+    if (s.step === 'await_foto') {
+      await sql`UPDATE absen SET foto_path = ${url}, foto_valid = true WHERE guru_id = ${s.guruId} AND jadwal_id = ${s.jadwalId} AND tanggal = ${s.tanggal}`;
+      await dropSession(chatId);
+      return ctx.reply('✅ Foto tersimpan. Absen selesai!');
+    }
+    if (s.step === 'await_izin_bukti') {
+      return simpanIzin(chatId, s, url);
+    }
   });
 
   // Keyboard button handlers — use hears() for proper middleware chain

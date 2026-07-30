@@ -3,12 +3,17 @@ import { NextResponse } from 'next/server';
 import { authOptions } from '@/lib/auth';
 import { sql } from '@/lib/db';
 
+function getWitaDate(): string {
+  const d = new Date();
+  return new Date(d.getTime() + 8 * 60 * 60 * 1000).toISOString().slice(0, 10);
+}
+
 export async function GET(req: Request) {
   const session = await getServerSession(authOptions);
   if (!session) return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
 
   const url = new URL(req.url);
-  const tanggal = url.searchParams.get('tanggal') || new Date().toISOString().slice(0, 10);
+  const tanggal = url.searchParams.get('tanggal') || getWitaDate();
   const guruId = url.searchParams.get('guru_id');
 
   let rows;
