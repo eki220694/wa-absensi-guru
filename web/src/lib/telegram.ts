@@ -224,14 +224,14 @@ function setup() {
 
   // Keyboard button handler — intercept before :text, no loadSession needed
   b.filter(async (ctx) => {
-    if (!ctx.message?.text) return false;
+    if (!ctx.message?.text) return true;
     const t = ctx.message.text;
     if (t === '✅ Absen') { await cmdAbsen(ctx); return true; }
     if (t === '📋 Jadwal') { await cmdJadwal(ctx); return true; }
     if (t === '🏖 Izin') { await cmdIzin(ctx); return true; }
     if (t === '📊 Cek Absen') { await cmdCek(ctx); return true; }
     if (t === '❓ Bantuan') { await cmdHelp(ctx); return true; }
-    return false;
+    return true;
   });
 
   b.on(':text', async (ctx) => {
