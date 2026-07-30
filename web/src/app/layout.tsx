@@ -17,7 +17,7 @@ export default async function RootLayout({ children }: { children: React.ReactNo
     <html lang="id">
       <body>
         <AuthProvider>
-          <Layout>
+          <Layout session={session}>
             {children}
           </Layout>
         </AuthProvider>
