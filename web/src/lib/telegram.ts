@@ -3,6 +3,7 @@ import { sql } from './db';
 import { hitungJarak } from '@wa-absensi/shared';
 import { SEKOLAH, RADIUS_METER } from '@wa-absensi/shared';
 import type { Guru } from '@wa-absensi/shared';
+import { compare } from 'bcryptjs';
 
 let _bot: Bot | null = null;
 
@@ -89,8 +90,7 @@ async function cmdDaftar(ctx: Context) {
   if (!rows.length) return ctx.reply('❌ NIP tidak ditemukan.');
   const guru = rows[0] as unknown as Guru;
   if (!guru.password_hash) return ctx.reply('❌ Belum punya password. Hubungi admin.');
-  const { compare } = await import('bcryptjs');
-  if (!await compare(pass, guru.password_hash)) return ctx.reply('❌ Password salah.');
+  if (!compare(pass, guru.password_hash)) return ctx.reply('❌ Password salah.');
   await sql`UPDATE guru SET telegram_id = ${chatId} WHERE nip = ${nip}`;
   return ctx.reply('✅ Berhasil terdaftar! /start');
 }
