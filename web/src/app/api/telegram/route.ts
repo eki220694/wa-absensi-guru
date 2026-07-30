@@ -17,8 +17,9 @@ export async function POST(req: NextRequest) {
     return NextResponse.json({ ok: true });
   } catch (e) {
     console.error('Telegram webhook error:', e);
-    const msg = e instanceof Error ? e.message : String(e);
-    return NextResponse.json({ ok: false, error: msg }, { status: 500 });
+    console.error('Error stack:', e instanceof Error ? e.stack : 'no stack');
+    // Always return 200 to Telegram — otherwise it retries endlessly
+    return NextResponse.json({ ok: true, debug: e instanceof Error ? e.message : String(e) });
   }
 }
 
