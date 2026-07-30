@@ -55,13 +55,20 @@ function tglId(iso: string): string {
   return d.toLocaleDateString('id-ID', { day: 'numeric', month: 'long', year: 'numeric' });
 }
 
+function wita(): Date {
+  const d = new Date();
+  return new Date(d.getTime() + 8 * 60 * 60 * 1000);
+}
+
 function hariNama(): string {
-  return ['Minggu', 'Senin', 'Selasa', 'Rabu', 'Kamis', 'Jumat', 'Sabtu'][new Date().getDay()] ?? 'Minggu';
+  return ['Minggu', 'Senin', 'Selasa', 'Rabu', 'Kamis', 'Jumat', 'Sabtu'][wita().getUTCDay()] ?? 'Minggu';
 }
 
 function jamKeSekarang(): number {
-  const m = new Date().getHours() * 60 + new Date().getMinutes();
-  return Math.max(1, Math.min(10, Math.floor((m - 420) / 40) + 1));
+  const m = wita().getUTCHours() * 60 + wita().getUTCMinutes();
+  if (m < 420) return 1;
+  if (m >= 930) return 10;
+  return Math.floor((m - 420) / 40) + 1;
 }
 
 async function getVal(key: string): Promise<string | null> {
@@ -77,7 +84,7 @@ async function cmdStart(ctx: Context) {
     return ctx.reply('👋 *Absensi SMAN 6 SIGI*\n\nBelum terdaftar.\nKetik `/daftar NIP password`\nContoh: `/daftar ADMIN001 admin123`', { parse_mode: 'Markdown' });
   }
   const kb = new Keyboard().text('✅ Absen').text('📋 Jadwal').row().text('🏖 Izin').text('📊 Cek Absen').row().text('❓ Bantuan').resized();
-  return ctx.reply(`👋 Halo *${guru.nama}*\n📅 ${hariNama()}, ${tglId(new Date().toISOString().slice(0, 10))}`, { parse_mode: 'Markdown', reply_markup: kb });
+  return ctx.reply(`👋 Halo *${guru.nama}*\n📅 ${hariNama()}, ${tglId(wita().toISOString().slice(0, 10))}`, { parse_mode: 'Markdown', reply_markup: kb });
 }
 
 async function cmdDaftar(ctx: Context) {
@@ -99,7 +106,7 @@ async function cmdAbsen(ctx: Context) {
   const chatId = String(ctx.chat!.id);
   const guru = await guruByTelegram(chatId);
   if (!guru) return ctx.reply('❌ Belum terdaftar.');
-  const hari = new Date().getDay() === 0 ? 7 : new Date().getDay();
+  const hari = wita().getUTCDay() === 0 ? 7 : wita().getUTCDay();
   if (hari === 7) return ctx.reply('📅 Minggu — libur.');
   const rows = await sql`SELECT j.* FROM jadwal j WHERE j.guru_id = ${guru.id} AND j.hari = ${hari} ORDER BY j.jam_ke`;
   if (!rows.length) return ctx.reply('📭 Tidak ada jadwal hari ini.');
@@ -107,7 +114,7 @@ async function cmdAbsen(ctx: Context) {
   if (!nearby.length) {
     let m = '⏰ *Jadwal hari ini*\n';
     for (const r of rows as any[]) {
-      const sdh = await sql`SELECT id FROM absen WHERE guru_id=${guru.id} AND jadwal_id=${r.id} AND tanggal=${new Date().toISOString().slice(0, 10)}`;
+      const sdh = await sql`SELECT id FROM absen WHERE guru_id=${guru.id} AND jadwal_id=${r.id} AND tanggal=${wita().toISOString().slice(0, 10)}`;
       m += `\n${r.jam_ke}. ${r.mapel} — ${r.kelas}${sdh.length ? ' ✅' : ''}`;
     }
     return ctx.reply(m + '\n\nBelum waktunya absen.', { parse_mode: 'Markdown' });
@@ -121,7 +128,7 @@ async function cmdJadwal(ctx: Context) {
   const chatId = String(ctx.chat!.id);
   const guru = await guruByTelegram(chatId);
   if (!guru) return ctx.reply('❌ Belum terdaftar.');
-  const hari = new Date().getDay() === 0 ? 7 : new Date().getDay();
+  const hari = wita().getUTCDay() === 0 ? 7 : wita().getUTCDay();
   const rows = await sql`SELECT j.* FROM jadwal j WHERE j.guru_id=${guru.id} AND j.hari=${hari} ORDER BY j.jam_ke`;
   if (!rows.length) return ctx.reply(`📭 Tidak ada jadwal ${hariNama()}.`);
   let m = `📋 *Jadwal ${hariNama()}*\n\n`;
@@ -133,7 +140,7 @@ async function cmdCek(ctx: Context) {
   const chatId = String(ctx.chat!.id);
   const guru = await guruByTelegram(chatId);
   if (!guru) return ctx.reply('❌ Belum terdaftar.');
-  const tgl = new Date().toISOString().slice(0, 10);
+  const tgl = wita().toISOString().slice(0, 10);
   const rows = await sql`SELECT a.*, j.mapel, j.kelas, j.jam_mulai, j.jam_selesai FROM absen a JOIN jadwal j ON a.jadwal_id=j.id WHERE a.guru_id=${guru.id} AND a.tanggal=${tgl} ORDER BY j.jam_ke`;
   if (!rows.length) return ctx.reply('📭 Belum ada absen hari ini.');
   let m = `📊 *Absen ${tglId(tgl)}*\n\n`;
@@ -174,7 +181,7 @@ function setup() {
     const id = Number(ctx.match![1]);
     const guru = await guruByTelegram(chatId);
     if (!guru) return ctx.answerCallbackQuery('❌');
-    const tgl = new Date().toISOString().slice(0, 10);
+    const tgl = wita().toISOString().slice(0, 10);
     if ((await sql`SELECT id FROM absen WHERE guru_id=${guru.id} AND jadwal_id=${id} AND tanggal=${tgl}`).length) {
       return ctx.answerCallbackQuery('✅ Sudah absen.');
     }
@@ -203,7 +210,7 @@ function setup() {
     const lng = Number(await getVal('longitude_sekolah') || SEKOLAH.longitude);
     const rad = Number(await getVal('radius_absen') || RADIUS_METER);
     const jarak = hitungJarak(loc.latitude, loc.longitude, lat, lng);
-    const tgl = new Date().toISOString().slice(0, 10);
+    const tgl = wita().toISOString().slice(0, 10);
     const jw = (await sql`SELECT j.*, g.nama as gn FROM jadwal j JOIN guru g ON j.guru_id=g.id WHERE j.id=${s.jadwalId}`)[0] as any;
     if (!jw) return ctx.reply('❌ Jadwal tidak ditemukan.');
     await sql`INSERT INTO absen (guru_id,jadwal_id,tanggal,jam_ke,status,di_luar_radius,jarak_meter,latitude,longitude)
