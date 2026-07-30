@@ -1,0 +1,17 @@
+name: Reminder Absen
+
+on:
+  schedule:
+    # Every 30 min, 08:00-15:30 WITA (00:00-07:30 UTC), Mon-Sat
+    - cron: '*/30 0-7 * * 1-6'
+  workflow_dispatch: # manual trigger
+
+jobs:
+  reminder:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Send reminder
+        run: |
+          curl -s -X GET \
+            "https://wa-absensi-guru-web-hm2g-seven.vercel.app/api/cron/reminder" \
+            -H "Authorization: Bearer ${{ secrets.CRON_SECRET }}"
