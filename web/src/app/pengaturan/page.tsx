@@ -1,51 +1,62 @@
-import { getServerSession } from 'next-auth';
-import { redirect } from 'next/navigation';
-import { authOptions } from '@/lib/auth';
-import { sql } from '@/lib/db';
+'use client';
+import { useState, useEffect } from 'react';
 
-export default async function PengaturanPage() {
-  const session = await getServerSession(authOptions);
-  if (!session) redirect('/login');
+export default function PengaturanPage() {
+  const [config, setConfig] = useState<Record<string, string>>({});
+  const [edit, setEdit] = useState<string | null>(null);
+  const [value, setValue] = useState('');
 
-  const rows = await sql`SELECT key, value FROM config ORDER BY key`;
+  useEffect(() => {
+    fetch('/api/pengaturan?raw=1').then(r => r.json()).then((rows: any[]) => {
+      const obj: Record<string, string> = {};
+      rows.forEach((r: any) => { obj[r.key] = r.value; });
+      setConfig(obj);
+    });
+  }, []);
+
+  const simpan = async (key: string) => {
+    const res = await fetch('/api/pengaturan', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ key, value }),
+    });
+    if (res.ok) { setConfig({ ...config, [key]: value }); setEdit(null); }
+    else alert((await res.json()).error);
+  };
+
+  const labelMap: Record<string, string> = {
+    latitude_sekolah: 'Latitude Sekolah',
+    longitude_sekolah: 'Longitude Sekolah',
+    radius_absen: 'Radius Absen (meter)',
+    jam_mulai: 'Jam Mulai Sekolah',
+    jam_selesai: 'Jam Selesai Sekolah',
+  };
 
   return (
-    <div className="p-8">
+    <div className="p-4 lg:p-8">
       <h1 className="text-2xl font-bold mb-6">Pengaturan</h1>
-      <div className="bg-white rounded-lg shadow overflow-x-auto max-w-2xl">
-        <table className="w-full">
-          <thead>
-            <tr className="bg-slate-100 text-left">
-              <th className="p-3 font-semibold text-slate-700">Key</th>
-              <th className="p-3 font-semibold text-slate-700">Value</th>
-            </tr>
-          </thead>
-          <tbody>
-            {rows.map((c: Record<string, unknown>) => (
-              <tr key={String(c.key)} className="border-t">
-                <td className="p-3 font-mono text-sm text-slate-700">{String(c.key)}</td>
-                <td className="p-3">
-                  <form method="POST" action="/api/pengaturan" className="flex gap-2">
-                    <input
-                      type="hidden"
-                      name="key"
-                      value={String(c.key)}
-                    />
-                    <input
-                      type="text"
-                      name="value"
-                      value={String(c.value)}
-                      className="flex-1 px-3 py-1 border rounded text-sm"
-                    />
-                    <button type="submit" className="px-3 py-1 bg-blue-600 text-white text-sm rounded hover:bg-blue-700">
-                      Simpan
-                    </button>
-                  </form>
-                </td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
+      <div className="bg-white rounded-lg shadow max-w-xl">
+        {Object.entries(config).map(([key, val]) => (
+          <div key={key} className="border-t first:border-t-0 p-4 flex items-center justify-between">
+            <div className="flex-1">
+              <p className="font-medium">{labelMap[key] || key}</p>
+              {edit === key ? (
+                <div className="flex gap-2 mt-1">
+                  <input type="text" value={value} onChange={e => setValue(e.target.value)}
+                    className="flex-1 px-3 py-1 border rounded-lg text-sm" autoFocus />
+                  <button onClick={() => simpan(key)} className="px-3 py-1 bg-blue-600 text-white text-sm rounded-lg hover:bg-blue-700">Simpan</button>
+                  <button onClick={() => setEdit(null)} className="px-3 py-1 border rounded-lg text-sm text-gray-700 hover:bg-gray-50">Batal</button>
+                </div>
+              ) : (
+                <p className="text-sm text-gray-500 mt-0.5">{val}</p>
+              )}
+            </div>
+            {edit !== key && (
+              <button onClick={() => { setEdit(key); setValue(val); }}
+                className="text-blue-600 hover:underline text-sm whitespace-nowrap ml-4">Ubah</button>
+            )}
+          </div>
+        ))}
       </div>
     </div>
   );
