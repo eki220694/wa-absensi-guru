@@ -8,7 +8,11 @@ import { compare } from 'bcryptjs';
 let _bot: Bot | null = null;
 
 function getBot(): Bot {
-  if (!_bot) _bot = new Bot(process.env.TELEGRAM_BOT_TOKEN!);
+  if (!_bot) {
+    const token = process.env.TELEGRAM_BOT_TOKEN;
+    if (!token) throw new Error('TELEGRAM_BOT_TOKEN not set');
+    _bot = new Bot(token);
+  }
   return _bot;
 }
 
@@ -229,18 +233,14 @@ function setup() {
     await simpanIzin(chatId, s, url);
   });
 
-  // Keyboard button handler — intercept before :text, no loadSession needed
-  b.filter(async (ctx) => {
-    if (!ctx.message?.text) return true;
-    const t = ctx.message.text;
-    if (t === '✅ Absen') { await cmdAbsen(ctx); return true; }
-    if (t === '📋 Jadwal') { await cmdJadwal(ctx); return true; }
-    if (t === '🏖 Izin') { await cmdIzin(ctx); return true; }
-    if (t === '📊 Cek Absen') { await cmdCek(ctx); return true; }
-    if (t === '❓ Bantuan') { await cmdHelp(ctx); return true; }
-    return true;
-  });
+  // Keyboard button handlers — use hears() for proper middleware chain
+  b.hears('✅ Absen', cmdAbsen);
+  b.hears('📋 Jadwal', cmdJadwal);
+  b.hears('🏖 Izin', cmdIzin);
+  b.hears('📊 Cek Absen', cmdCek);
+  b.hears('❓ Bantuan', cmdHelp);
 
+  // Text session handler
   b.on(':text', async (ctx) => {
     const chatId = String(ctx.chat!.id);
     const t = ctx.message!.text!.trim();
@@ -277,6 +277,11 @@ function setup() {
     if (s.step === 'await_izin_bukti') {
       await simpanIzin(chatId, s, null);
     }
+  });
+
+  // Catch all middleware errors — prevent unhandled rejections
+  b.catch((err) => {
+    console.error('Bot middleware error:', err);
   });
 }
 

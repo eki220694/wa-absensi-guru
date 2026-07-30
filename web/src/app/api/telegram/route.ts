@@ -8,11 +8,14 @@ let initialized = false;
 export async function POST(req: NextRequest) {
   try {
     if (!initialized) {
+      console.log('Bot initializing...');
       setup();
       await getBot().init();
+      console.log('Bot initialized OK, bot info:', getBot().botInfo?.username);
       initialized = true;
     }
     const update = await req.json();
+    console.log('Webhook update:', JSON.stringify({ id: update.update_id, type: update.callback_query ? 'callback' : update.message?.text ? 'text:' + update.message.text.substring(0, 30) : 'other' }));
     await getBot().handleUpdate(update);
     return NextResponse.json({ ok: true });
   } catch (e) {
