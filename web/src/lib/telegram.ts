@@ -222,15 +222,27 @@ function setup() {
     await simpanIzin(chatId, s, url);
   });
 
+  // Keyboard button handler — intercept before :text, no loadSession needed
+  b.filter(async (ctx) => {
+    if (!ctx.message?.text) return false;
+    const t = ctx.message.text;
+    if (t === '✅ Absen') { await cmdAbsen(ctx); return true; }
+    if (t === '📋 Jadwal') { await cmdJadwal(ctx); return true; }
+    if (t === '🏖 Izin') { await cmdIzin(ctx); return true; }
+    if (t === '📊 Cek Absen') { await cmdCek(ctx); return true; }
+    if (t === '❓ Bantuan') { await cmdHelp(ctx); return true; }
+    return false;
+  });
+
   b.on(':text', async (ctx) => {
     const chatId = String(ctx.chat!.id);
     const t = ctx.message!.text!.trim();
-    const s = await loadSession(chatId);
-    if (t === '✅ Absen') return cmdAbsen(ctx);
-    if (t === '📋 Jadwal') return cmdJadwal(ctx);
-    if (t === '🏖 Izin') return cmdIzin(ctx);
-    if (t === '📊 Cek Absen') return cmdCek(ctx);
-    if (t === '❓ Bantuan') return cmdHelp(ctx);
+    let s: Session;
+    try {
+      s = await loadSession(chatId);
+    } catch {
+      s = emptySession();
+    }
     if (!s.step) return;
 
     if (s.step === 'await_izin_tgl_mulai') {
