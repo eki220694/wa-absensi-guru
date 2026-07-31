@@ -1,8 +1,13 @@
 {
+  "buildCommand": "npm run web:build",
+  "outputDirectory": "web/.next",
+  "devCommand": "npm run web:dev",
+  "installCommand": "npm install",
+  "framework": "nextjs",
   "crons": [
     {
       "path": "/api/cron/reminder",
-      "schedule": "*/30 0-7 * * 1-6"
+      "schedule": "0 6 * * 1-6"
     }
   ]
 }
