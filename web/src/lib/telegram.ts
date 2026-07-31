@@ -35,14 +35,16 @@ function emptySession(): Session {
 async function loadSession(chatId: string): Promise<Session> {
   const rows = await sql`SELECT data FROM bot_session WHERE chat_id = ${chatId}`;
   if (!rows.length) return emptySession();
-  const raw = (rows[0] as Record<string, unknown>).data;
+  let raw = (rows[0] as Record<string, unknown>).data;
   if (!raw) return emptySession();
-  return JSON.parse(raw as string);
+  // neon/postgres auto-parses JSONB — only JSON.parse if it's a string
+  return typeof raw === 'string' ? JSON.parse(raw) : raw as Session;
 }
 
 async function saveSession(chatId: string, s: Session) {
-  await sql`INSERT INTO bot_session (chat_id, data, updated_at) VALUES (${chatId}, ${JSON.stringify(s)}, NOW())
-            ON CONFLICT (chat_id) DO UPDATE SET data = ${JSON.stringify(s)}, updated_at = NOW()`;
+  // postgres.js handles JSONB params natively — send object, not stringified
+  await sql`INSERT INTO bot_session (chat_id, data, updated_at) VALUES (${chatId}, ${s as any}, NOW())
+            ON CONFLICT (chat_id) DO UPDATE SET data = ${s as any}, updated_at = NOW()`;
 }
 
 async function dropSession(chatId: string) {
@@ -102,7 +104,7 @@ async function cmdDaftar(ctx: Context) {
   if (!rows.length) return ctx.reply('❌ NIP tidak ditemukan.');
   const guru = rows[0] as unknown as Guru;
   if (!guru.password_hash) return ctx.reply('❌ Belum punya password. Hubungi admin.');
-  if (!compare(pass, guru.password_hash)) return ctx.reply('❌ Password salah.');
+  if (!await compare(pass, guru.password_hash)) return ctx.reply('❌ Password salah.');
   await sql`UPDATE guru SET telegram_id = ${chatId} WHERE nip = ${nip}`;
   return ctx.reply('✅ Berhasil terdaftar! /start');
 }
