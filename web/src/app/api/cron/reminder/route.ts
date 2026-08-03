@@ -12,14 +12,15 @@ export async function GET(req: Request) {
   const menit = wita.getUTCHours() * 60 + wita.getUTCMinutes();
   const hari = wita.getUTCDay() === 0 ? 7 : wita.getUTCDay();
   const tgl = wita.toISOString().slice(0, 10);
-  const jamKe =
-    menit < 420 ? 1 : menit >= 930 ? 10 : Math.floor((menit - 420) / 40) + 1;
 
+  // Filter jadwal yang waktunya sudah dekat (15 menit sebelum mulai sampai 30 menit setelah selesai)
   const rows = await sql`
-    SELECT g.*, j.id as jadwal_id, j.mapel, j.kelas, j.jam_ke
+    SELECT g.*, j.id as jadwal_id, j.mapel, j.kelas, j.jam_ke,
+      CAST(SPLIT_PART(j.jam_mulai, ':', 1) AS INT) * 60 + CAST(SPLIT_PART(j.jam_mulai, ':', 2) AS INT) as mulai_menit,
+      CAST(SPLIT_PART(j.jam_selesai, ':', 1) AS INT) * 60 + CAST(SPLIT_PART(j.jam_selesai, ':', 2) AS INT) as selesai_menit
     FROM guru g
     JOIN jadwal j ON j.guru_id = g.id
-    WHERE j.hari = ${hari} AND j.jam_ke = ${jamKe}
+    WHERE j.hari = ${hari}
       AND g.telegram_id IS NOT NULL
       AND NOT EXISTS (
         SELECT 1 FROM absen a
@@ -27,11 +28,17 @@ export async function GET(req: Request) {
       )
   `;
 
+  const nearby = rows.filter((r: any) => {
+    const mulai = r.mulai_menit - 15;
+    const selesai = r.selesai_menit + 30;
+    return menit >= mulai && menit <= selesai;
+  });
+
   const token = process.env.TELEGRAM_BOT_TOKEN;
   if (!token) return NextResponse.json({ error: 'No bot token' }, { status: 500 });
 
   let sent = 0;
-  for (const r of rows as any[]) {
+  for (const r of nearby as any[]) {
     try {
       await fetch(`https://api.telegram.org/bot${token}/sendMessage`, {
         method: 'POST',
@@ -48,5 +55,5 @@ export async function GET(req: Request) {
     }
   }
 
-  return NextResponse.json({ sent, total: rows.length });
+  return NextResponse.json({ sent, total: nearby.length });
 }

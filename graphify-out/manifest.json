@@ -185,8 +185,8 @@
     "semantic_hash": ""
   },
   "web/src/app/api/absen/route.ts": {
-    "mtime": 1785371195.8329537,
-    "ast_hash": "883a8de411c157bc7910993482816f35",
+    "mtime": 1785453907.6926792,
+    "ast_hash": "f02d978ae09adf32573bd0f5beb94248",
     "semantic_hash": ""
   },
   "web/src/app/api/guru/[id]/route.ts": {
@@ -210,8 +210,8 @@
     "semantic_hash": ""
   },
   "web/src/app/api/telegram/route.ts": {
-    "mtime": 1785296567.3350184,
-    "ast_hash": "ae724199926db00526e45b915c631860",
+    "mtime": 1785453498.7166185,
+    "ast_hash": "2f7106a1463b2ef53686ef924826e71d",
     "semantic_hash": ""
   },
   "web/src/components/Layout.tsx": {
@@ -225,8 +225,8 @@
     "semantic_hash": ""
   },
   "web/src/lib/telegram.ts": {
-    "mtime": 1785292152.4203238,
-    "ast_hash": "0af1cda2a65443e21dca288585735121",
+    "mtime": 1785459510.705618,
+    "ast_hash": "d35a9927b41bdde8de4a85dc928bb5b9",
     "semantic_hash": ""
   },
   "web/src/scripts/migrate.ts": {
@@ -247,6 +247,46 @@
   ".superpowers/report-agent2.md": {
     "mtime": 1785371550.1549323,
     "ast_hash": "5b7b9008175c1d70d529cfc932984ca9",
+    "semantic_hash": ""
+  },
+  "vercel.json": {
+    "mtime": 1785460446.450637,
+    "ast_hash": "e5a8916727f2187f22f5d389a1104adc",
+    "semantic_hash": ""
+  },
+  "web/src/app/api/cron/reminder/route.ts": {
+    "mtime": 1785454105.844124,
+    "ast_hash": "d2e75d657e92c01b78ff956f9c3fa7c3",
+    "semantic_hash": ""
+  },
+  "web/src/scripts/add-absen-unique.sql": {
+    "mtime": 1785453928.3688085,
+    "ast_hash": "ba72a3b9d8d362f14b4430588c5a7768",
+    "semantic_hash": ""
+  },
+  ".github/workflows/reminder-absen.yml": {
+    "mtime": 1785454413.9982748,
+    "ast_hash": "0bb836aa0a4462cad0e767e50812752e",
+    "semantic_hash": ""
+  },
+  ".superpowers/bot-500-debug.md": {
+    "mtime": 1785453573.4148374,
+    "ast_hash": "b6a243310d1bd9a24ab119e446e7e01b",
+    "semantic_hash": ""
+  },
+  ".superpowers/bot-fix-report.md": {
+    "mtime": 1785376275.3765066,
+    "ast_hash": "a0b9bb6530c717449b9603fbd872413c",
+    "semantic_hash": ""
+  },
+  ".superpowers/db-check-report.md": {
+    "mtime": 1785376238.6645994,
+    "ast_hash": "12c72ae5938f6342881c8626edc619dd",
+    "semantic_hash": ""
+  },
+  ".superpowers/report-agent3.md": {
+    "mtime": 1785372690.2383308,
+    "ast_hash": "4a86032dee12505d26790534c0695b2f",
     "semantic_hash": ""
   }
 }

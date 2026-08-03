@@ -71,11 +71,14 @@ function hariNama(): string {
   return ['Minggu', 'Senin', 'Selasa', 'Rabu', 'Kamis', 'Jumat', 'Sabtu'][wita().getUTCDay()] ?? 'Minggu';
 }
 
-function jamKeSekarang(): number {
-  const m = wita().getUTCHours() * 60 + wita().getUTCMinutes();
-  if (m < 420) return 1;
-  if (m >= 930) return 10;
-  return Math.floor((m - 420) / 40) + 1;
+function isNearby(jamMulai: string, jamSelesai: string): boolean {
+  const now = wita();
+  const hm = now.getUTCHours() * 60 + now.getUTCMinutes();
+  const [startH, startM] = jamMulai.split(':').map(Number) as [number, number];
+  const [endH, endM] = jamSelesai.split(':').map(Number) as [number, number];
+  const start = startH * 60 + startM - 15; // buffer 15 menit sebelum
+  const end = endH * 60 + endM + 30;        // buffer 30 menit sesudah
+  return hm >= start && hm <= end;
 }
 
 async function getVal(key: string): Promise<string | null> {
@@ -117,7 +120,7 @@ async function cmdAbsen(ctx: Context) {
   if (hari === 7) return ctx.reply('📅 Minggu — libur.');
   const rows = await sql`SELECT j.* FROM jadwal j WHERE j.guru_id = ${guru.id} AND j.hari = ${hari} ORDER BY j.jam_ke`;
   if (!rows.length) return ctx.reply('📭 Tidak ada jadwal hari ini.');
-  const nearby = rows.filter((r: any) => Math.abs(r.jam_ke - jamKeSekarang()) <= 1);
+  const nearby = rows.filter((r: any) => isNearby(r.jam_mulai, r.jam_selesai));
   if (!nearby.length) {
     let m = '⏰ *Jadwal hari ini*\n';
     for (const r of rows as any[]) {

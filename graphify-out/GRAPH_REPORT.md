@@ -1,16 +1,16 @@
-# Graph Report - wa-absensi-guru  (2026-07-30)
+# Graph Report - wa-absensi-guru  (2026-07-31)
 
 ## Corpus Check
-- 50 files · ~16,820 words
+- 57 files · ~19,079 words
 - Verdict: corpus is large enough that graph structure adds value.
 
 ## Summary
-- 322 nodes · 407 edges · 28 communities (21 shown, 7 thin omitted)
+- 370 nodes · 461 edges · 33 communities (25 shown, 8 thin omitted)
 - Extraction: 98% EXTRACTED · 2% INFERRED · 0% AMBIGUOUS · INFERRED: 7 edges (avg confidence: 0.5)
 - Token cost: 0 input · 0 output
 
 ## Graph Freshness
-- Built from commit: `1c13deda`
+- Built from commit: `391e917b`
 - Run `git rev-parse HEAD` and compare to check if the graph is stale.
 - Run `graphify update .` after code changes (no API cost).
 
@@ -39,24 +39,29 @@
 - jadwal/page.tsx
 - guru/page.tsx
 - next-env.d.ts
+- DB Schema + Seed Check Report
+- Agent 3 Report — Build Check + TypeScript Validation
+- Bot Fix Report
+- Telegram Webhook 500 Debug Report
+- vercel.json
 
 ## God Nodes (most connected - your core abstractions)
-1. `sql()` - 42 edges
-2. `setup()` - 19 edges
+1. `sql()` - 44 edges
+2. `setup()` - 21 edges
 3. `authOptions` - 15 edges
 4. `compilerOptions` - 13 edges
 5. `Global Constraints` - 12 edges
 6. `compilerOptions` - 11 edges
 7. `WA Absensi Guru — Design Spec` - 11 edges
-8. `guruByTelegram()` - 8 edges
-9. `scripts` - 6 edges
-10. `simpanIzin()` - 6 edges
+8. `Agent 3 Report — Build Check + TypeScript Validation` - 9 edges
+9. `guruByTelegram()` - 8 edges
+10. `wita()` - 8 edges
 
 ## Surprising Connections (you probably didn't know these)
 - `setup()` --calls--> `hitungJarak()`  [EXTRACTED]
   web/src/lib/telegram.ts → shared/src/utils.ts
 - `GET()` --calls--> `sql()`  [EXTRACTED]
-  web/src/app/api/absen/route.ts → web/src/lib/db.ts
+  web/src/app/api/cron/reminder/route.ts → web/src/lib/db.ts
 - `GET()` --calls--> `sql()`  [EXTRACTED]
   web/src/app/api/export/excel/route.ts → web/src/lib/db.ts
 - `GET()` --calls--> `sql()`  [EXTRACTED]
@@ -67,19 +72,19 @@
 ## Import Cycles
 - None detected.
 
-## Communities (28 total, 7 thin omitted)
+## Communities (33 total, 8 thin omitted)
 
 ### Community 0 - "dependencies"
 Cohesion: 0.05
 Nodes (43): autoprefixer, bcryptjs, exceljs, grammy, iconv-lite, @neondatabase/serverless, next, next-auth (+35 more)
 
 ### Community 1 - "telegram.ts"
-Cohesion: 0.19
-Nodes (22): hitungJarak(), POST(), cmdAbsen(), cmdCek(), cmdDaftar(), cmdHelp(), cmdIzin(), cmdJadwal() (+14 more)
+Cohesion: 0.20
+Nodes (23): hitungJarak(), POST(), cmdAbsen(), cmdCek(), cmdDaftar(), cmdHelp(), cmdIzin(), cmdJadwal() (+15 more)
 
 ### Community 2 - "sql"
-Cohesion: 0.15
-Nodes (19): GET(), handler, GET(), GET(), DELETE(), PATCH(), GET(), POST() (+11 more)
+Cohesion: 0.13
+Nodes (21): GET(), getWitaDate(), handler, GET(), GET(), GET(), DELETE(), PATCH() (+13 more)
 
 ### Community 3 - "scripts"
 Cohesion: 0.20
@@ -137,25 +142,41 @@ Nodes (5): JWT, next-auth, next-auth/jwt, Session, User
 Cohesion: 0.40
 Nodes (4): File-by-File Analysis, Report Agent 1 — Fix Absen Page + Guru Page, Summary, TypeScript Check Result
 
+### Community 28 - "DB Schema + Seed Check Report"
+Cohesion: 0.17
+Nodes (11): 1. `guru` Table Schema, 2. `guru` Seed Data, 3. `bot_session` Table, 4. `config` Table, 5. Other Tables (schema only), 6. Summary & Action Items, `absen`, DB Schema + Seed Check Report (+3 more)
+
+### Community 29 - "Agent 3 Report — Build Check + TypeScript Validation"
+Cohesion: 0.17
+Nodes (11): Agent 3 Report — Build Check + TypeScript Validation, API Routes Verified, Build Check (`npm run build`), Bundle Size (First Load JS), Fix Applied, `iconv-lite` missing dari monorepo root, Kesimpulan, Pages Verified (+3 more)
+
+### Community 30 - "Bot Fix Report"
+Cohesion: 0.20
+Nodes (9): 1. Added `b.filter()` handler (line ~197), 2. Removed keyboard button checks from `b.on(':text')`, 3. Wrapped `loadSession` in try/catch, Bot Fix Report, Changes Made, Deployment Note, Results, Root Cause (+1 more)
+
+### Community 31 - "Telegram Webhook 500 Debug Report"
+Cohesion: 0.25
+Nodes (7): 1. `web/src/lib/telegram.ts`, 2. `web/src/app/api/telegram/route.ts`, Fixes Applied, Key Learnings, Root Cause, Telegram Webhook 500 Debug Report, Test Results
+
 ## Knowledge Gaps
-- **164 isolated node(s):** `name`, `private`, `shared`, `web`, `web:dev` (+159 more)
+- **194 isolated node(s):** `name`, `private`, `shared`, `web`, `web:dev` (+189 more)
   These have ≤1 connection - possible missing edges or undocumented components.
-- **7 thin communities (<3 nodes) omitted from report** — run `graphify query` to explore isolated nodes.
+- **8 thin communities (<3 nodes) omitted from report** — run `graphify query` to explore isolated nodes.
 
 ## Suggested Questions
 _Questions this graph is uniquely positioned to answer:_
 
 - **Why does `sql()` connect `sql` to `telegram.ts`?**
-  _High betweenness centrality (0.037) - this node is a cross-community bridge._
+  _High betweenness centrality (0.031) - this node is a cross-community bridge._
 - **Why does `dependencies` connect `dependencies` to `scripts`?**
-  _High betweenness centrality (0.025) - this node is a cross-community bridge._
+  _High betweenness centrality (0.019) - this node is a cross-community bridge._
 - **Are the 7 inferred relationships involving `setup()` (e.g. with `cmdAbsen()` and `cmdCek()`) actually correct?**
   _`setup()` has 7 INFERRED edges - model-reasoned connections that need verification._
 - **What connects `name`, `private`, `shared` to the rest of the system?**
-  _164 weakly-connected nodes found - possible documentation gaps or missing edges._
+  _194 weakly-connected nodes found - possible documentation gaps or missing edges._
 - **Should `dependencies` be split into smaller, more focused modules?**
   _Cohesion score 0.046511627906976744 - nodes in this community are weakly interconnected._
 - **Should `sql` be split into smaller, more focused modules?**
-  _Cohesion score 0.14789915966386555 - nodes in this community are weakly interconnected._
+  _Cohesion score 0.1337126600284495 - nodes in this community are weakly interconnected._
 - **Should `compilerOptions` be split into smaller, more focused modules?**
   _Cohesion score 0.08333333333333333 - nodes in this community are weakly interconnected._

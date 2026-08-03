@@ -26,5 +26,10 @@
   "24": "jadwal/page.tsx",
   "25": "guru/page.tsx",
   "26": "next-env.d.ts",
-  "27": "pengaturan/page.tsx"
+  "27": "pengaturan/page.tsx",
+  "28": "DB Schema + Seed Check Report",
+  "29": "Agent 3 Report — Build Check + TypeScript Validation",
+  "30": "Bot Fix Report",
+  "31": "Telegram Webhook 500 Debug Report",
+  "32": "vercel.json"
 }
