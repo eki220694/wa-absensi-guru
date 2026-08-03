@@ -1,5 +1,5 @@
 'use client';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 
 interface Jadwal {
   id: number; guru_id: number; guru_nama: string; hari: number; jam_ke: number;
@@ -17,6 +17,8 @@ export default function JadwalPage() {
   const [jamKe, setJamKe] = useState(1); const [jamMulai, setJamMulai] = useState('07:00');
   const [jamSelesai, setJamSelesai] = useState('07:40'); const [kelas, setKelas] = useState('');
   const [mapel, setMapel] = useState(''); const [ruangan, setRuangan] = useState('');
+  const fileRef = useRef<HTMLInputElement>(null);
+  const [importResult, setImportResult] = useState<{ inserted: number; updated: number; errors: any[] } | null>(null);
 
   useEffect(() => {
     fetch('/api/jadwal').then(r => r.json()).then(setData);
@@ -50,12 +52,46 @@ export default function JadwalPage() {
     setData(await fetch('/api/jadwal').then(r => r.json()));
   };
 
+  const handleImportJadwal = async (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    if (!file) return;
+    const fd = new FormData();
+    fd.append('file', file);
+    const res = await fetch('/api/import/jadwal', { method: 'POST', body: fd });
+    const data = await res.json();
+    setImportResult(data);
+    setData(await fetch('/api/jadwal').then(r => r.json()));
+    e.target.value = '';
+  };
+
   return (
     <div className="p-4 lg:p-8">
       <div className="flex justify-between items-center mb-6">
         <h1 className="text-2xl font-bold">Jadwal Mengajar</h1>
-        <button onClick={openAdd} className="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700">+ Tambah</button>
+        <div className="flex gap-2 items-center">
+          <a href="/api/export/jadwal-template" className="bg-green-600 text-white px-3 py-2 rounded-lg hover:bg-green-700 text-sm">Download Template</a>
+          <input type="file" accept=".xlsx" onChange={handleImportJadwal} className="hidden" ref={fileRef} />
+          <button onClick={() => fileRef.current?.click()} className="bg-orange-600 text-white px-3 py-2 rounded-lg hover:bg-orange-700 text-sm">Import Excel</button>
+          <button onClick={openAdd} className="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700">+ Tambah</button>
+        </div>
       </div>
+      {importResult && (
+        <div className="mb-4 p-3 rounded-lg bg-slate-100 text-sm">
+          <p>✅ Tambah: {importResult.inserted} | Update: {importResult.updated}</p>
+          {importResult.errors.length > 0 && (
+            <details>
+              <summary className="cursor-pointer text-red-600 font-medium">
+                ❌ {importResult.errors.length} error(s)
+              </summary>
+              <ul className="mt-1 text-red-500">
+                {importResult.errors.map((err: any, idx: number) => (
+                  <li key={idx}>Row {err.row}: {err.error}</li>
+                ))}
+              </ul>
+            </details>
+          )}
+        </div>
+      )}
       <div className="bg-white rounded-lg shadow overflow-x-auto">
         <table className="w-full">
           <thead><tr className="bg-slate-100 text-left">
