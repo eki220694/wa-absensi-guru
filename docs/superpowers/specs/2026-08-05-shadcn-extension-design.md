@@ -13,20 +13,21 @@ generate, and install shadcn/ui components into any project from within Pi.
 ```
 Extension entry (~/.pi/agent/extensions/shadcn.ts)
   │
-  ├── Registry fetcher (shadcn-registry.json from GitHub API)
-  │     URL: https://api.github.com/repos/shadcn/ui/contents registry?ref=main
-  │     (or: https://ui.shadcn.com/api/registry/[component])
+  ├── Registry fetcher (GET raw.githubusercontent.com/shadcn-ui/ui/main/apps/v4/registry.json)
+  │     Returns { name, items: [{ name, type, description, files[], registryDependencies, dependencies }] }
+  │     54 UI components, 411 total items
   │
   ├── Cache layer (TTL 24h, stored at ~/.pi/cache/shadcn-registry.json)
   │
   ├── Component installer
-  │     - Fetches component file list + source from registry
-  │     - Writes files to target project
-  │     - Merges new dependencies into package.json
+  │     - Fetch files from raw.githubusercontent.com/shadcn-ui/ui/main/{path}
+  │     - Write to <target>/components/ui/<name>.tsx
+  │     - Resolve registryDependencies recursively (e.g. utils → lib/utils.ts)
+  │     - Merge npm dependencies into package.json
   │
   └── Pi API integration
-        - pi.registerTool("shadcn_add", ...)
-        - pi.registerCommand("shadcn", ...)
+        - pi.registerTool("shadcn_add", "shadcn_list", "shadcn_show")
+        - pi.registerCommand("shadcn", sub-commands: list/show/add)
 ```
 
 ## Capabilities (v1)
@@ -45,15 +46,26 @@ Extension entry (~/.pi/agent/extensions/shadcn.ts)
 
 ## Registry Source
 
-Two possible sources:
-1. GitHub API: `https://raw.githubusercontent.com/shadcn/ui/main/registry.json`
-   - Contains component metadata including file paths.
-2. Component files: fetched from
-   `https://raw.githubusercontent.com/shadcn/ui/main/registry/<component>/<file>`
-3. Fallback: use `https://ui.shadcn.com/api/registry/<component>` API if GitHub
-   raw URLs fail.
+Verified structure from `https://raw.githubusercontent.com/shadcn-ui/ui/main/apps/v4/registry.json`:
 
-Cache stored at `~/.pi/cache/shadcn-registry.json` with 24h TTL.
+```json
+{ "name": "shadcn/ui", "items": [
+  { "name": "accordion", "type": "registry:ui",
+    "files": [{ "path": "registry/new-york-v4/ui/accordion.tsx", "type": "registry:ui" }],
+    "registryDependencies": null,
+    "dependencies": ["@radix-ui/react-accordion"] },
+  { "name": "utils", "type": "registry:lib",
+    "files": [{ "path": "registry/new-york-v4/lib/utils.ts", "type": "registry:lib" }],
+    "dependencies": ["clsx", "tailwind-merge"] }
+]}
+```
+
+- `type` values: `registry:ui` (components), `registry:style`, `registry:hook`, `registry:lib`
+- 54 `registry:ui` components, 411 total items
+- File content fetched from `https://raw.githubusercontent.com/shadcn-ui/ui/main/{file.path}`
+- `registryDependencies` are other registry item names (resolve recursively)
+- `dependencies` are npm packages (add to package.json)
+- Cache stored at `~/.pi/cache/shadcn-registry.json` with 24h TTL
 
 ## Component Installer
 
@@ -61,9 +73,7 @@ Cache stored at `~/.pi/cache/shadcn-registry.json` with 24h TTL.
 2. Fetch each file's source content (registry deps included if `--all` flag or
    by default for required deps).
 3. Write files to `<project>/components/ui/<component>.tsx` (default).
-4. Read target `package.json`, add any new dependencies:
-   - `clsx`, `tailwind-merge` (always present, but ensure).
-   - `@radix-ui/react-*` deps as listed in registry.
+4. Read target `package.json`, add any new npm `dependencies` from the component and its `registryDependencies` (resolved recursively). This includes `@radix-ui/react-*`, `clsx`, `tailwind-merge`, `lucide-react`, `class-variance-authority`, etc.
 5. Use `ctx.ui.select()` / `ctx.ui.notify()` for user feedback.
 6. Print summary of installed files + required npm packages.
 
@@ -82,17 +92,16 @@ Cache stored at `~/.pi/cache/shadcn-registry.json` with 24h TTL.
 
 ## Dependencies
 
-- `node-fetch` or native `fetch` (Node 20+ has fetch). Use native fetch — zero deps.
-- No external npm packages required beyond what Pi provides.
+- Native `fetch` (Node 20+ bundled with Pi). Zero npm deps required.
+- No external packages beyond what Pi environment provides.
 
 ## Error Handling
 
-- Network failure: fall back to cached registry if available, else error.
-- Component not found: return clear error + suggestion.
+- Network failure: fall back to cached registry if available, else error with message.
+- Component not found: suggest `shadcn list` to see valid names.
 - Write failure (permissions): report via `ctx.ui.notify("error", ...)`.
 - Duplicate install: warn, offer to overwrite.
 
 ## Testing
 
-- One self-check in the extension file: assert `getRegistry()` returns expected
-  shape `{ name, components: Array<{ name, files, deps }> }`.
+- One self-check in the extension: assert `getRegistry()` returns array items with shape `{ name: string, type: string, files: Array<{ path: string }> }`.
