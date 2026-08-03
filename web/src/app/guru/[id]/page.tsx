@@ -2,6 +2,13 @@ import { getServerSession } from 'next-auth';
 import { redirect } from 'next/navigation';
 import { authOptions } from '@/lib/auth';
 import { sql } from '@/lib/db';
+import { Badge } from '@/components/ui/badge';
+import { Button } from '@/components/ui/button';
+import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
+import {
+  Table, TableBody, TableCell, TableHead, TableHeader, TableRow,
+} from '@/components/ui/table';
+import Link from 'next/link';
 
 export default async function GuruDetailPage({ params }: { params: { id: string } }) {
   const session = await getServerSession(authOptions);
@@ -34,56 +41,64 @@ export default async function GuruDetailPage({ params }: { params: { id: string 
   };
 
   return (
-    <div className="p-8">
-      <a href="/guru" className="text-blue-600 hover:underline text-sm mb-4 inline-block">&larr; Kembali</a>
-      <h1 className="text-2xl font-bold mb-4">{String(guru.nama)}</h1>
+    <div className="p-4 lg:p-8 space-y-6">
+      <Link href="/guru" className="inline-flex items-center justify-center rounded-lg text-sm font-medium transition-all hover:bg-accent hover:text-accent-foreground h-7 gap-1 px-2.5 py-1">
+        ← Kembali
+      </Link>
 
-      <div className="bg-white rounded-lg shadow p-6 mb-8 grid grid-cols-2 gap-4 max-w-lg">
-        <div>
-          <p className="text-sm text-gray-500">NIP</p>
-          <p className="font-medium">{String(guru.nip)}</p>
-        </div>
-        <div>
-          <p className="text-sm text-gray-500">No. WA</p>
-          <p className="font-medium">{String(guru.no_wa)}</p>
-        </div>
-        <div>
-          <p className="text-sm text-gray-500">Jabatan</p>
-          <p className="font-medium capitalize">{String(guru.jabatan)}</p>
-        </div>
-      </div>
+      <h1 className="text-2xl font-bold">{String(guru.nama)}</h1>
 
-      <h2 className="text-xl font-bold mb-4">Riwayat Absen (50 terakhir)</h2>
-      <div className="bg-white rounded-lg shadow overflow-x-auto">
-        <table className="w-full">
-          <thead>
-            <tr className="bg-slate-100 text-left">
-              <th className="p-3 font-semibold text-slate-700">Tanggal</th>
-              <th className="p-3 font-semibold text-slate-700">Jam Ke</th>
-              <th className="p-3 font-semibold text-slate-700">Kelas</th>
-              <th className="p-3 font-semibold text-slate-700">Mapel</th>
-              <th className="p-3 font-semibold text-slate-700">Status</th>
-            </tr>
-          </thead>
-          <tbody>
+      <Card className="max-w-lg">
+        <CardHeader>
+          <CardTitle>Data Guru</CardTitle>
+        </CardHeader>
+        <CardContent className="grid grid-cols-2 gap-4">
+          <div>
+            <p className="text-sm text-muted-foreground">NIP</p>
+            <p className="font-medium">{String(guru.nip)}</p>
+          </div>
+          <div>
+            <p className="text-sm text-muted-foreground">No. WA</p>
+            <p className="font-medium">{String(guru.no_wa)}</p>
+          </div>
+          <div>
+            <p className="text-sm text-muted-foreground">Jabatan</p>
+            <p className="font-medium capitalize">{String(guru.jabatan)}</p>
+          </div>
+        </CardContent>
+      </Card>
+
+      <h2 className="text-xl font-bold">Riwayat Absen (50 terakhir)</h2>
+      <div className="rounded-lg border overflow-x-auto">
+        <Table>
+          <TableHeader>
+            <TableRow>
+              <TableHead>Tanggal</TableHead>
+              <TableHead>Jam Ke</TableHead>
+              <TableHead>Kelas</TableHead>
+              <TableHead>Mapel</TableHead>
+              <TableHead>Status</TableHead>
+            </TableRow>
+          </TableHeader>
+          <TableBody>
             {rekap.length === 0 && (
-              <tr><td colSpan={5} className="p-6 text-center text-gray-400">Belum ada riwayat absen</td></tr>
+              <TableRow><TableCell colSpan={5} className="h-24 text-center text-muted-foreground">Belum ada riwayat absen</TableCell></TableRow>
             )}
             {rekap.map((a: Record<string, unknown>) => (
-              <tr key={`${String(a.tanggal)}-${String(a.jam_ke)}`} className="border-t hover:bg-slate-50">
-                <td className="p-3">{String(a.tanggal)}</td>
-                <td className="p-3">{String(a.jam_ke)}</td>
-                <td className="p-3">{String(a.kelas)}</td>
-                <td className="p-3">{String(a.mapel)}</td>
-                <td className="p-3">
-                  <span className={`px-2 py-1 rounded text-xs ${statusColor[String(a.status)] || 'bg-gray-100 text-gray-800'}`}>
+              <TableRow key={`${String(a.tanggal)}-${String(a.jam_ke)}`}>
+                <TableCell>{String(a.tanggal)}</TableCell>
+                <TableCell>{String(a.jam_ke)}</TableCell>
+                <TableCell>{String(a.kelas)}</TableCell>
+                <TableCell>{String(a.mapel)}</TableCell>
+                <TableCell>
+                  <Badge className={statusColor[String(a.status)] || 'bg-gray-100 text-gray-800'}>
                     {String(a.status)}
-                  </span>
-                </td>
-              </tr>
+                  </Badge>
+                </TableCell>
+              </TableRow>
             ))}
-          </tbody>
-        </table>
+          </TableBody>
+        </Table>
       </div>
     </div>
   );

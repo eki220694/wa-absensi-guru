@@ -4,6 +4,12 @@ import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { useSession, signOut } from 'next-auth/react';
+import { Button } from '@/components/ui/button';
+import {
+  DropdownMenu, DropdownMenuContent, DropdownMenuGroup, DropdownMenuItem,
+  DropdownMenuLabel, DropdownMenuSeparator, DropdownMenuTrigger,
+} from '@/components/ui/dropdown-menu';
+import { Menu, Sun, Moon } from 'lucide-react';
 
 const navLinks = [
   { href: '/', label: 'Dashboard' },
@@ -20,58 +26,112 @@ export default function Layout({ children, session: serverSession }: { children:
   const { data: clientSession } = useSession();
   const [mounted, setMounted] = useState(false);
   const [sidebarOpen, setSidebarOpen] = useState(false);
+  const [dark, setDark] = useState(false);
 
   useEffect(() => setMounted(true), []);
+  useEffect(() => {
+    const saved = localStorage.getItem('theme') === 'dark';
+    setDark(saved);
+    document.documentElement.classList.toggle('dark', saved);
+  }, []);
+
+  const toggleDark = () => {
+    const next = !dark;
+    setDark(next);
+    localStorage.setItem('theme', next ? 'dark' : 'light');
+    document.documentElement.classList.toggle('dark', next);
+  };
 
   const session = mounted && clientSession ? clientSession : serverSession;
 
-  if (!mounted) {
-    // Server render: match what client will show
-    return <div className="min-h-screen bg-gray-50">{children}</div>;
-  }
+  const NavContent = () => (
+    <nav className="space-y-1 flex-1">
+      {navLinks.map((l) => (
+        <Link key={l.href} href={l.href}
+          className={`flex items-center gap-3 px-3 py-2 rounded-lg text-sm font-medium transition ${
+            pathname === l.href
+              ? 'bg-primary text-primary-foreground'
+              : 'text-sidebar-foreground hover:bg-sidebar-accent hover:text-sidebar-accent-foreground'
+          }`}
+          onClick={() => setSidebarOpen(false)}>{l.label}</Link>
+      ))}
+    </nav>
+  );
 
-  if (!session) return <div className="min-h-screen bg-gray-50">{children}</div>;
+  const SidebarInner = () => (
+    <>
+      <div className="flex items-center justify-between mb-8">
+        <div>
+          <h1 className="text-xl font-bold">SMAN 6 SIGI</h1>
+          <p className="text-sm text-sidebar-foreground/70">Absensi Guru</p>
+        </div>
+        <Button variant="ghost" size="sm" className="lg:hidden text-sidebar-foreground hover:bg-sidebar-accent"
+          onClick={() => setSidebarOpen(false)} aria-label="Close menu">
+          <Menu className="w-5 h-5 rotate-180" />
+        </Button>
+      </div>
+      <NavContent />
+      <div className="pt-4 border-t border-sidebar-border">
+        <div className="flex items-center justify-between p-2 text-sm text-sidebar-foreground/70">
+          <span className="truncate max-w-[180px]">{session.user?.name}</span>
+          <Button variant="ghost" size="sm" onClick={toggleDark} aria-label="Toggle dark mode">
+            {dark ? <Moon className="w-4 h-4" /> : <Sun className="w-4 h-4" />}
+          </Button>
+        </div>
+        <Button variant="ghost" size="sm" className="w-full justify-start text-destructive hover:text-destructive hover:bg-destructive/10"
+          onClick={() => signOut({ callbackUrl: '/login' })}>
+          Keluar
+        </Button>
+      </div>
+    </>
+  );
+
+  if (!mounted) return <div className="min-h-screen bg-background">{children}</div>;
+  if (!session) return <div className="min-h-screen bg-background">{children}</div>;
 
   return (
-    <div className="min-h-screen bg-gray-50 flex flex-col">
-      <header className="lg:hidden bg-white border-b shadow-sm sticky top-0 z-40">
+    <div className="min-h-screen bg-background flex flex-col">
+      {/* Mobile header (logged-in) */}
+      <header className="lg:hidden bg-card border-b sticky top-0 z-40">
         <div className="flex items-center justify-between h-16 px-4">
-          <button onClick={() => setSidebarOpen(true)} className="p-2 rounded-lg hover:bg-gray-100" aria-label="Menu">
-            <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
-            </svg>
-          </button>
-          <h1 className="text-lg font-bold text-slate-800">SMAN 6 SIGI</h1>
+          <Button variant="ghost" size="sm" onClick={() => setSidebarOpen(true)} aria-label="Menu">
+            <Menu className="w-6 h-6" />
+          </Button>
+          <h1 className="text-lg font-bold">SMAN 6 SIGI</h1>
           <div className="w-10" />
         </div>
       </header>
 
+      {/* Mobile overlay */}
       {sidebarOpen && <div className="fixed inset-0 bg-black/50 z-40 lg:hidden" onClick={() => setSidebarOpen(false)} />}
 
-      <aside className={`fixed lg:static inset-y-0 left-0 z-50 w-64 bg-slate-800 text-white p-6 flex flex-col transform transition-transform duration-300 ease-in-out ${sidebarOpen ? 'translate-x-0' : '-translate-x-full lg:translate-x-0'}`}>
-        <div className="flex flex-col h-full">
-          <div className="flex items-center justify-between mb-8">
-            <div>
-              <h1 className="text-xl font-bold">SMAN 6 SIGI</h1>
-              <p className="text-sm text-slate-400">Absensi Guru</p>
-            </div>
-            <button onClick={() => setSidebarOpen(false)} className="lg:hidden p-2 rounded-lg hover:bg-slate-700">
-              <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" /></svg>
-            </button>
-          </div>
-          <nav className="space-y-1 flex-1">
-            {navLinks.map((l) => (
-              <Link key={l.href} href={l.href}
-                className={`block px-3 py-2 rounded-lg transition ${pathname === l.href ? 'bg-blue-600 text-white' : 'text-slate-200 hover:bg-slate-700 hover:text-white'}`}
-                onClick={() => setSidebarOpen(false)}>{l.label}</Link>
-            ))}
-          </nav>
-          <div className="pt-4 border-t border-slate-600">
-            <p className="text-sm text-slate-300 mb-2 truncate">{session.user?.name}</p>
-            <button onClick={() => signOut({ callbackUrl: '/login' })} className="w-full text-left px-3 py-2 rounded-lg hover:bg-red-700 transition text-sm cursor-pointer">Keluar</button>
-          </div>
-        </div>
+      {/* Sidebar */}
+      <aside className={`fixed lg:static inset-y-0 left-0 z-50 w-64 bg-sidebar text-sidebar-foreground p-6 flex flex-col transform transition-transform duration-300 ease-in-out ${sidebarOpen ? 'translate-x-0' : '-translate-x-full lg:translate-x-0'}`}>
+        {SidebarInner()}
       </aside>
+
+      {/* Desktop floating user-menu (top-right) */}
+      <div className="fixed top-4 right-4 z-40 lg:block hidden">
+        <DropdownMenu>
+          <DropdownMenuTrigger className="inline-flex items-center justify-center rounded-lg border border-border bg-background px-2.5 py-1.5 text-sm font-medium transition hover:bg-muted hover:text-foreground h-8 gap-1.5">
+            {session.user?.name?.split(' ').slice(0, 1).join('') || 'U'}
+          </DropdownMenuTrigger>
+          <DropdownMenuContent className="w-48" align="end">
+            <DropdownMenuLabel>{session.user?.name}</DropdownMenuLabel>
+            <DropdownMenuSeparator />
+            <DropdownMenuGroup>
+              <DropdownMenuItem onSelect={toggleDark}>
+                {dark ? <Moon className="w-4 h-4 mr-2" /> : <Sun className="w-4 h-4 mr-2" />}
+                {dark ? 'Light' : 'Dark'} Mode
+              </DropdownMenuItem>
+            </DropdownMenuGroup>
+            <DropdownMenuSeparator />
+            <DropdownMenuItem onSelect={() => signOut({ callbackUrl: '/login' })} className="text-destructive">
+              Keluar
+            </DropdownMenuItem>
+          </DropdownMenuContent>
+        </DropdownMenu>
+      </div>
 
       <main className="lg:ml-0 flex-1 p-4 lg:p-6">{children}</main>
     </div>
