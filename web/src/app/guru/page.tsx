@@ -1,5 +1,18 @@
 'use client';
 import { useState, useEffect, useRef } from 'react';
+import { Button } from '@/components/ui/button';
+import { Input } from '@/components/ui/input';
+import { Label } from '@/components/ui/label';
+import {
+  Select, SelectContent, SelectItem, SelectTrigger, SelectValue,
+} from '@/components/ui/select';
+import {
+  Dialog, DialogContent, DialogDescription, DialogFooter, DialogHeader, DialogTitle,
+} from '@/components/ui/dialog';
+import {
+  Table, TableBody, TableCell, TableHead, TableHeader, TableRow,
+} from '@/components/ui/table';
+import { Badge } from '@/components/ui/badge';
 
 interface Guru {
   id: number; nip: string; nama: string; no_wa: string; jabatan: string;
@@ -15,7 +28,8 @@ export default function GuruPage() {
   const fileRef = useRef<HTMLInputElement>(null);
   const [importResult, setImportResult] = useState<{ inserted: number; updated: number; errors: any[] } | null>(null);
 
-  useEffect(() => { fetch('/api/guru').then(r => r.json()).then(setGuru); }, []);
+  const reload = async () => setGuru(await fetch('/api/guru').then(r => r.json()));
+  useEffect(() => { reload(); }, []);
 
   const openAdd = () => { setEdit(null); setNip(''); setNama(''); setNoHp(''); setJabatan('guru'); setPass(''); setModal(true); };
   const openEdit = (g: Guru) => { setEdit(g); setNip(g.nip); setNama(g.nama); setNoHp(g.no_wa); setJabatan(g.jabatan); setPass(''); setModal(true); };
@@ -25,14 +39,14 @@ export default function GuruPage() {
     const url = edit ? `/api/guru/${edit.id}` : '/api/guru';
     const method = edit ? 'PATCH' : 'POST';
     const res = await fetch(url, { method, headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(body) });
-    if (res.ok) { setModal(false); setGuru(await fetch('/api/guru').then(r => r.json())); }
+    if (res.ok) { setModal(false); reload(); }
     else alert((await res.json()).error);
   };
 
   const hapus = async (id: number) => {
     if (!confirm('Hapus guru ini?')) return;
     await fetch(`/api/guru/${id}`, { method: 'DELETE' });
-    setGuru(await fetch('/api/guru').then(r => r.json()));
+    reload();
   };
 
   const handleImportGuru = async (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -43,30 +57,30 @@ export default function GuruPage() {
     const res = await fetch('/api/import/guru', { method: 'POST', body: fd });
     const data = await res.json();
     setImportResult(data);
-    setGuru(await fetch('/api/guru').then(r => r.json()));
+    reload();
     e.target.value = '';
   };
 
   return (
-    <div className="p-4 lg:p-8">
-      <div className="flex justify-between items-center mb-6">
+    <div className="p-4 lg:p-8 space-y-6">
+      <div className="flex justify-between items-center">
         <h1 className="text-2xl font-bold">Daftar Guru</h1>
         <div className="flex gap-2 items-center">
-          <a href="/api/export/guru-template" className="bg-green-600 text-white px-3 py-2 rounded-lg hover:bg-green-700 text-sm">Download Template</a>
+          <a href="/api/export/guru-template" className="inline-flex items-center justify-center rounded-lg border border-border bg-background px-2.5 py-1 text-sm font-medium hover:bg-muted hover:text-foreground transition-all h-7 gap-1">Download Template</a>
           <input type="file" accept=".xlsx" onChange={handleImportGuru} className="hidden" ref={fileRef} />
-          <button onClick={() => fileRef.current?.click()} className="bg-orange-600 text-white px-3 py-2 rounded-lg hover:bg-orange-700 text-sm">Import Excel</button>
-          <button onClick={openAdd} className="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700">+ Tambah</button>
+          <Button variant="secondary" size="sm" onClick={() => fileRef.current?.click()}>Import Excel</Button>
+          <Button size="sm" onClick={openAdd}>+ Tambah</Button>
         </div>
       </div>
       {importResult && (
-        <div className="mb-4 p-3 rounded-lg bg-slate-100 text-sm">
+        <div className="p-4 rounded-lg bg-muted text-sm">
           <p>✅ Tambah: {importResult.inserted} | Update: {importResult.updated}</p>
           {importResult.errors.length > 0 && (
             <details>
-              <summary className="cursor-pointer text-red-600 font-medium">
+              <summary className="cursor-pointer text-destructive font-medium">
                 ❌ {importResult.errors.length} error(s)
               </summary>
-              <ul className="mt-1 text-red-500">
+              <ul className="mt-1 text-destructive">
                 {importResult.errors.map((err: any, idx: number) => (
                   <li key={idx}>Row {err.row}: {err.error}{err.nip ? ` (NIP: ${err.nip})` : ''}</li>
                 ))}
@@ -75,54 +89,78 @@ export default function GuruPage() {
           )}
         </div>
       )}
-      <div className="bg-white rounded-lg shadow overflow-x-auto">
-        <table className="w-full">
-          <thead><tr className="bg-slate-100 text-left">
-            <th className="p-3">NIP</th><th className="p-3">Nama</th><th className="p-3">No. HP/Telegram</th>
-            <th className="p-3">Jabatan</th><th className="p-3">Aksi</th>
-          </tr></thead>
-          <tbody>
-            {guru.length === 0 && <tr><td colSpan={5} className="p-6 text-center text-gray-400">Belum ada data guru</td></tr>}
+      <div className="rounded-lg border overflow-x-auto">
+        <Table>
+          <TableHeader>
+            <TableRow>
+              <TableHead>NIP</TableHead><TableHead>Nama</TableHead><TableHead>No. HP/Telegram</TableHead>
+              <TableHead>Jabatan</TableHead><TableHead>Aksi</TableHead>
+            </TableRow>
+          </TableHeader>
+          <TableBody>
+            {guru.length === 0 && (
+              <TableRow><TableCell colSpan={5} className="h-24 text-center text-muted-foreground">Belum ada data guru</TableCell></TableRow>
+            )}
             {guru.map((g) => (
-              <tr key={g.id} className="border-t hover:bg-slate-50">
-                <td className="p-3">{g.nip}</td>
-                <td className="p-3 font-medium">{g.nama}</td>
-                <td className="p-3">{g.no_wa || '-'}</td>
-                <td className="p-3"><span className="px-2 py-1 rounded text-xs bg-slate-100">{g.jabatan}</span></td>
-                <td className="p-3 flex gap-2">
-                  <button onClick={() => openEdit(g)} className="text-blue-600 hover:underline text-sm">Edit</button>
-                  <button onClick={() => hapus(g.id)} className="text-red-600 hover:underline text-sm">Hapus</button>
-                </td>
-              </tr>
+              <TableRow key={g.id}>
+                <TableCell>{g.nip}</TableCell>
+                <TableCell className="font-medium">{g.nama}</TableCell>
+                <TableCell>{g.no_wa || '-'}</TableCell>
+                <TableCell><Badge variant="secondary">{g.jabatan}</Badge></TableCell>
+                <TableCell className="flex gap-2">
+                  <Button variant="link" size="sm" onClick={() => openEdit(g)}>Edit</Button>
+                  <Button variant="link" size="sm" className="text-destructive" onClick={() => hapus(g.id)}>Hapus</Button>
+                </TableCell>
+              </TableRow>
             ))}
-          </tbody>
-        </table>
+          </TableBody>
+        </Table>
       </div>
 
-      {modal && <div className="fixed inset-0 bg-black/40 z-50 flex items-center justify-center p-4" onClick={() => setModal(false)}>
-        <div className="bg-white rounded-xl shadow-xl p-6 w-full max-w-md" onClick={e => e.stopPropagation()}>
-          <h2 className="text-xl font-bold mb-4">{edit ? 'Edit Guru' : 'Tambah Guru'}</h2>
+      <Dialog open={modal} onOpenChange={setModal}>
+        <DialogContent className="sm:max-w-md">
+          <DialogHeader>
+            <DialogTitle>{edit ? 'Edit Guru' : 'Tambah Guru'}</DialogTitle>
+            <DialogDescription>
+              {edit ? 'Ubah data guru. Kosongkan password jika tidak diganti.' : 'Tambahkan guru baru ke sistem.'}
+            </DialogDescription>
+          </DialogHeader>
           <div className="space-y-3">
-            <div><label className="block text-sm font-medium mb-1">NIP</label>
-              <input type="text" value={nip} onChange={e => setNip(e.target.value)} className="w-full px-3 py-2 border rounded-lg" /></div>
-            <div><label className="block text-sm font-medium mb-1">Nama</label>
-              <input type="text" value={nama} onChange={e => setNama(e.target.value)} className="w-full px-3 py-2 border rounded-lg" /></div>
-            <div><label className="block text-sm font-medium mb-1">No. HP / Telegram ID</label>
-              <input type="text" value={noHp} onChange={e => setNoHp(e.target.value)} className="w-full px-3 py-2 border rounded-lg" /></div>
-            <div><label className="block text-sm font-medium mb-1">Jabatan</label>
-              <select value={jabatan} onChange={e => setJabatan(e.target.value)} className="w-full px-3 py-2 border rounded-lg">
-                <option value="guru">Guru</option><option value="wali_kelas">Wali Kelas</option><option value="admin">Admin</option>
-              </select></div>
-            <div><label className="block text-sm font-medium mb-1">{edit ? 'Password baru (kosongkan biarkan)' : 'Password'}</label>
-              <input type="password" value={pass} onChange={e => setPass(e.target.value)} className="w-full px-3 py-2 border rounded-lg"
-                placeholder={edit ? 'Biarkan kosong jika tidak diganti' : 'Password login'} /></div>
+            <div className="space-y-1">
+              <Label>NIP</Label>
+              <Input type="text" value={nip} onChange={e => setNip(e.target.value)} />
+            </div>
+            <div className="space-y-1">
+              <Label>Nama</Label>
+              <Input type="text" value={nama} onChange={e => setNama(e.target.value)} />
+            </div>
+            <div className="space-y-1">
+              <Label>No. HP / Telegram ID</Label>
+              <Input type="text" value={noHp} onChange={e => setNoHp(e.target.value)} />
+            </div>
+            <div className="space-y-1">
+              <Label>Jabatan</Label>
+              <Select value={jabatan} onValueChange={(v) => setJabatan(v ?? '')}>
+                <SelectTrigger className="w-full"><SelectValue /></SelectTrigger>
+                <SelectContent>
+                  <SelectItem value="guru">Guru</SelectItem>
+                  <SelectItem value="wali_kelas">Wali Kelas</SelectItem>
+                  <SelectItem value="admin">Admin</SelectItem>
+                </SelectContent>
+              </Select>
+            </div>
+            <div className="space-y-1">
+              <Label>{edit ? 'Password baru' : 'Password'}</Label>
+              <Input type="password" value={pass} onChange={e => setPass(e.target.value)}
+                placeholder={edit ? 'Biarkan kosong jika tidak diganti' : 'Password login'} />
+            </div>
           </div>
-          <div className="flex gap-3 mt-6">
-            <button onClick={() => setModal(false)} className="flex-1 px-4 py-2 border rounded-lg text-gray-700 hover:bg-gray-50">Batal</button>
-            <button onClick={save} className="flex-1 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700">Simpan</button>
-          </div>
-        </div>
-      </div>}
+          <DialogFooter>
+            <Button variant="outline" onClick={() => setModal(false)}>Batal</Button>
+            <Button onClick={save}>Simpan</Button>
+          </DialogFooter>
+        </DialogContent>
+      </Dialog>
     </div>
   );
 }

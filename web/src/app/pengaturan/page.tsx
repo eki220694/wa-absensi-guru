@@ -1,5 +1,9 @@
 'use client';
 import { useState, useEffect } from 'react';
+import { Button } from '@/components/ui/button';
+import { Input } from '@/components/ui/input';
+import { Label } from '@/components/ui/label';
+import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 
 export default function PengaturanPage() {
   const [config, setConfig] = useState<Record<string, string>>({});
@@ -33,31 +37,33 @@ export default function PengaturanPage() {
   };
 
   return (
-    <div className="p-4 lg:p-8">
-      <h1 className="text-2xl font-bold mb-6">Pengaturan</h1>
-      <div className="bg-white rounded-lg shadow max-w-xl">
-        {Object.entries(config).map(([key, val]) => (
-          <div key={key} className="border-t first:border-t-0 p-4 flex items-center justify-between">
-            <div className="flex-1">
-              <p className="font-medium">{labelMap[key] || key}</p>
-              {edit === key ? (
-                <div className="flex gap-2 mt-1">
-                  <input type="text" value={value} onChange={e => setValue(e.target.value)}
-                    className="flex-1 px-3 py-1 border rounded-lg text-sm" autoFocus />
-                  <button onClick={() => simpan(key)} className="px-3 py-1 bg-blue-600 text-white text-sm rounded-lg hover:bg-blue-700">Simpan</button>
-                  <button onClick={() => setEdit(null)} className="px-3 py-1 border rounded-lg text-sm text-gray-700 hover:bg-gray-50">Batal</button>
-                </div>
-              ) : (
-                <p className="text-sm text-gray-500 mt-0.5">{val}</p>
+    <div className="p-4 lg:p-8 space-y-4">
+      <h1 className="text-2xl font-bold">Pengaturan</h1>
+      <Card className="max-w-xl">
+        <CardContent className="p-0">
+          {Object.entries(config).map(([key, val]) => (
+            <div key={key} className="border-t first:border-t-0 p-4 flex items-center justify-between">
+              <div className="flex-1">
+                <p className="font-medium">{labelMap[key] || key}</p>
+                {edit === key ? (
+                  <div className="flex gap-2 mt-1">
+                    <Input type="text" value={value} onChange={e => setValue(e.target.value)} className="flex-1" autoFocus />
+                    <Button size="sm" onClick={() => simpan(key)}>Simpan</Button>
+                    <Button size="sm" variant="outline" onClick={() => setEdit(null)}>Batal</Button>
+                  </div>
+                ) : (
+                  <p className="text-sm text-muted-foreground mt-0.5">{val}</p>
+                )}
+              </div>
+              {edit !== key && (
+                <Button variant="link" size="sm" className="whitespace-nowrap ml-4" onClick={() => { setEdit(key); setValue(val); }}>
+                  Ubah
+                </Button>
               )}
             </div>
-            {edit !== key && (
-              <button onClick={() => { setEdit(key); setValue(val); }}
-                className="text-blue-600 hover:underline text-sm whitespace-nowrap ml-4">Ubah</button>
-            )}
-          </div>
-        ))}
-      </div>
+          ))}
+        </CardContent>
+      </Card>
     </div>
   );
 }

@@ -2,6 +2,7 @@ import { getServerSession } from 'next-auth';
 import { redirect } from 'next/navigation';
 import { authOptions } from '@/lib/auth';
 import { sql } from '@/lib/db';
+import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 
 export default async function DashboardPage() {
   const session = await getServerSession(authOptions);
@@ -15,28 +16,37 @@ export default async function DashboardPage() {
   `;
 
   return (
-    <div className="p-8">
-      <h1 className="text-3xl font-bold mb-2">Dashboard</h1>
-      <p className="text-gray-500 mb-8">Selamat datang, {session.user?.name}</p>
-
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
-        <StatCard title="Total Guru" value={Number(counts?.total_guru ?? 0)} color="bg-blue-500" />
-        <StatCard title="Absen Hari Ini" value={Number(counts?.absen_hari_ini ?? 0)} color="bg-green-500" />
-        <StatCard title="Izin Pending" value={Number(counts?.izin_pending ?? 0)} color="bg-yellow-500" />
-      </div>
-    </div>
-  );
-}
-
-function StatCard({ title, value, color }: { title: string; value: number; color: string }) {
-  return (
-    <div className="bg-white rounded-lg shadow p-6 flex items-center gap-4">
-      <div className={`w-12 h-12 ${color} rounded-lg flex items-center justify-center text-white text-xl font-bold`}>
-        {value}
-      </div>
+    <div className="p-4 lg:p-8 space-y-6">
       <div>
-        <p className="text-gray-500 text-sm">{title}</p>
-        <p className="text-2xl font-bold">{value}</p>
+        <h1 className="text-2xl font-bold">Dashboard</h1>
+        <p className="text-muted-foreground">Selamat datang, {session.user?.name}</p>
+      </div>
+
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+        <Card>
+          <CardHeader className="flex flex-row items-center justify-between pb-2">
+            <CardTitle className="text-sm font-medium">Total Guru</CardTitle>
+          </CardHeader>
+          <CardContent>
+            <div className="text-2xl font-bold">{Number(counts?.total_guru ?? 0)}</div>
+          </CardContent>
+        </Card>
+        <Card>
+          <CardHeader className="flex flex-row items-center justify-between pb-2">
+            <CardTitle className="text-sm font-medium">Absen Hari Ini</CardTitle>
+          </CardHeader>
+          <CardContent>
+            <div className="text-2xl font-bold">{Number(counts?.absen_hari_ini ?? 0)}</div>
+          </CardContent>
+        </Card>
+        <Card>
+          <CardHeader className="flex flex-row items-center justify-between pb-2">
+            <CardTitle className="text-sm font-medium">Izin Pending</CardTitle>
+          </CardHeader>
+          <CardContent>
+            <div className="text-2xl font-bold">{Number(counts?.izin_pending ?? 0)}</div>
+          </CardContent>
+        </Card>
       </div>
     </div>
   );

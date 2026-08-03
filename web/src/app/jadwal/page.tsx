@@ -1,5 +1,17 @@
 'use client';
 import { useState, useEffect, useRef } from 'react';
+import { Button } from '@/components/ui/button';
+import { Input } from '@/components/ui/input';
+import { Label } from '@/components/ui/label';
+import {
+  Select, SelectContent, SelectItem, SelectTrigger, SelectValue,
+} from '@/components/ui/select';
+import {
+  Dialog, DialogContent, DialogDescription, DialogFooter, DialogHeader, DialogTitle,
+} from '@/components/ui/dialog';
+import {
+  Table, TableBody, TableCell, TableHead, TableHeader, TableRow,
+} from '@/components/ui/table';
 
 interface Jadwal {
   id: number; guru_id: number; guru_nama: string; hari: number; jam_ke: number;
@@ -20,16 +32,19 @@ export default function JadwalPage() {
   const fileRef = useRef<HTMLInputElement>(null);
   const [importResult, setImportResult] = useState<{ inserted: number; updated: number; errors: any[] } | null>(null);
 
-  useEffect(() => {
-    fetch('/api/jadwal').then(r => r.json()).then(setData);
-    fetch('/api/guru').then(r => r.json()).then(setGuruList);
-  }, []);
+  const reload = async () => {
+    const [j, g] = await Promise.all([
+      fetch('/api/jadwal').then(r => r.json()),
+      fetch('/api/guru').then(r => r.json()),
+    ]);
+    setData(j); setGuruList(g);
+  };
+  useEffect(() => { reload(); }, []);
 
   const openAdd = () => {
     setEdit(null); setGuruId(0); setHari(new Date().getDay() || 1); setJamKe(1);
     setJamMulai('07:00'); setJamSelesai('07:40'); setKelas(''); setMapel(''); setRuangan(''); setModal(true);
   };
-
   const openEdit = (j: Jadwal) => {
     setEdit(j); setGuruId(j.guru_id); setHari(j.hari); setJamKe(j.jam_ke);
     setJamMulai(j.jam_mulai); setJamSelesai(j.jam_selesai); setKelas(j.kelas); setMapel(j.mapel);
@@ -42,48 +57,44 @@ export default function JadwalPage() {
       method: 'POST', headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(edit ? { ...body, id: edit.id } : body),
     });
-    if (res.ok) { setModal(false); setData(await fetch('/api/jadwal').then(r => r.json())); }
+    if (res.ok) { setModal(false); reload(); }
     else alert((await res.json()).error);
   };
 
   const hapus = async (id: number) => {
     if (!confirm('Hapus jadwal ini?')) return;
     await fetch(`/api/jadwal/${id}`, { method: 'DELETE' });
-    setData(await fetch('/api/jadwal').then(r => r.json()));
+    reload();
   };
 
   const handleImportJadwal = async (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
     if (!file) return;
-    const fd = new FormData();
-    fd.append('file', file);
+    const fd = new FormData(); fd.append('file', file);
     const res = await fetch('/api/import/jadwal', { method: 'POST', body: fd });
     const data = await res.json();
-    setImportResult(data);
-    setData(await fetch('/api/jadwal').then(r => r.json()));
+    setImportResult(data); reload();
     e.target.value = '';
   };
 
   return (
-    <div className="p-4 lg:p-8">
-      <div className="flex justify-between items-center mb-6">
+    <div className="p-4 lg:p-8 space-y-6">
+      <div className="flex justify-between items-center">
         <h1 className="text-2xl font-bold">Jadwal Mengajar</h1>
         <div className="flex gap-2 items-center">
-          <a href="/api/export/jadwal-template" className="bg-green-600 text-white px-3 py-2 rounded-lg hover:bg-green-700 text-sm">Download Template</a>
+          <a href="/api/export/jadwal-template" className="inline-flex items-center justify-center rounded-lg border border-border bg-background px-2.5 py-1 text-sm font-medium hover:bg-muted hover:text-foreground transition-all h-7 gap-1">Download Template</a>
           <input type="file" accept=".xlsx" onChange={handleImportJadwal} className="hidden" ref={fileRef} />
-          <button onClick={() => fileRef.current?.click()} className="bg-orange-600 text-white px-3 py-2 rounded-lg hover:bg-orange-700 text-sm">Import Excel</button>
-          <button onClick={openAdd} className="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700">+ Tambah</button>
+          <Button variant="secondary" size="sm" onClick={() => fileRef.current?.click()}>Import Excel</Button>
+          <Button size="sm" onClick={openAdd}>+ Tambah</Button>
         </div>
       </div>
       {importResult && (
-        <div className="mb-4 p-3 rounded-lg bg-slate-100 text-sm">
+        <div className="p-4 rounded-lg bg-muted text-sm">
           <p>✅ Tambah: {importResult.inserted} | Update: {importResult.updated}</p>
           {importResult.errors.length > 0 && (
             <details>
-              <summary className="cursor-pointer text-red-600 font-medium">
-                ❌ {importResult.errors.length} error(s)
-              </summary>
-              <ul className="mt-1 text-red-500">
+              <summary className="cursor-pointer text-destructive font-medium">❌ {importResult.errors.length} error(s)</summary>
+              <ul className="mt-1 text-destructive">
                 {importResult.errors.map((err: any, idx: number) => (
                   <li key={idx}>Row {err.row}: {err.error}</li>
                 ))}
@@ -92,68 +103,99 @@ export default function JadwalPage() {
           )}
         </div>
       )}
-      <div className="bg-white rounded-lg shadow overflow-x-auto">
-        <table className="w-full">
-          <thead><tr className="bg-slate-100 text-left">
-            <th className="p-3">Hari</th><th className="p-3">Jam</th><th className="p-3">Guru</th>
-            <th className="p-3">Kelas</th><th className="p-3">Mapel</th><th className="p-3">Ruangan</th><th className="p-3">Aksi</th>
-          </tr></thead>
-          <tbody>
-            {data.length === 0 && <tr><td colSpan={7} className="p-6 text-center text-gray-400">Belum ada jadwal</td></tr>}
+      <div className="rounded-lg border overflow-x-auto">
+        <Table>
+          <TableHeader>
+            <TableRow>
+              <TableHead>Hari</TableHead><TableHead>Jam</TableHead><TableHead>Guru</TableHead>
+              <TableHead>Kelas</TableHead><TableHead>Mapel</TableHead><TableHead>Ruangan</TableHead><TableHead>Aksi</TableHead>
+            </TableRow>
+          </TableHeader>
+          <TableBody>
+            {data.length === 0 && (
+              <TableRow><TableCell colSpan={7} className="h-24 text-center text-muted-foreground">Belum ada jadwal</TableCell></TableRow>
+            )}
             {data.map((j) => (
-              <tr key={j.id} className="border-t hover:bg-slate-50">
-                <td className="p-3">{hariMap[j.hari]}</td>
-                <td className="p-3">{j.jam_ke} ({j.jam_mulai}-{j.jam_selesai})</td>
-                <td className="p-3">{j.guru_nama}</td>
-                <td className="p-3">{j.kelas}</td>
-                <td className="p-3">{j.mapel}</td>
-                <td className="p-3">{j.ruangan || '-'}</td>
-                <td className="p-3 flex gap-2">
-                  <button onClick={() => openEdit(j)} className="text-blue-600 hover:underline text-sm">Edit</button>
-                  <button onClick={() => hapus(j.id)} className="text-red-600 hover:underline text-sm">Hapus</button>
-                </td>
-              </tr>
+              <TableRow key={j.id}>
+                <TableCell>{hariMap[j.hari]}</TableCell>
+                <TableCell>{j.jam_ke} ({j.jam_mulai}-{j.jam_selesai})</TableCell>
+                <TableCell>{j.guru_nama}</TableCell>
+                <TableCell>{j.kelas}</TableCell>
+                <TableCell>{j.mapel}</TableCell>
+                <TableCell>{j.ruangan || '-'}</TableCell>
+                <TableCell className="flex gap-2">
+                  <Button variant="link" size="sm" onClick={() => openEdit(j)}>Edit</Button>
+                  <Button variant="link" size="sm" className="text-destructive" onClick={() => hapus(j.id)}>Hapus</Button>
+                </TableCell>
+              </TableRow>
             ))}
-          </tbody>
-        </table>
+          </TableBody>
+        </Table>
       </div>
 
-      {modal && <div className="fixed inset-0 bg-black/40 z-50 flex items-center justify-center p-4" onClick={() => setModal(false)}>
-        <div className="bg-white rounded-xl shadow-xl p-6 w-full max-w-md" onClick={e => e.stopPropagation()}>
-          <h2 className="text-xl font-bold mb-4">{edit ? 'Edit Jadwal' : 'Tambah Jadwal'}</h2>
+      <Dialog open={modal} onOpenChange={setModal}>
+        <DialogContent className="sm:max-w-md">
+          <DialogHeader>
+            <DialogTitle>{edit ? 'Edit Jadwal' : 'Tambah Jadwal'}</DialogTitle>
+            <DialogDescription>
+              {edit ? 'Ubah jadwal mengajar.' : 'Tambahkan jadwal mengajar baru.'}
+            </DialogDescription>
+          </DialogHeader>
           <div className="space-y-3">
-            <div><label className="block text-sm font-medium mb-1">Guru</label>
-              <select value={guruId} onChange={e => setGuruId(Number(e.target.value))} className="w-full px-3 py-2 border rounded-lg">
-                <option value={0}>Pilih Guru</option>
-                {guruList.map((g: any) => <option key={g.id} value={g.id}>{g.nama}</option>)}
-              </select></div>
-            <div className="grid grid-cols-2 gap-2">
-              <div><label className="block text-sm font-medium mb-1">Hari</label>
-                <select value={hari} onChange={e => setHari(Number(e.target.value))} className="w-full px-3 py-2 border rounded-lg">
-                  {hariMap.slice(1).map((h, i) => <option key={i+1} value={i+1}>{h}</option>)}
-                </select></div>
-              <div><label className="block text-sm font-medium mb-1">Jam Ke</label>
-                <input type="number" min={1} max={10} value={jamKe} onChange={e => setJamKe(Number(e.target.value))} className="w-full px-3 py-2 border rounded-lg" /></div>
+            <div className="space-y-1">
+              <Label>Guru</Label>
+              <Select value={String(guruId)} onValueChange={v => setGuruId(v ? Number(v) : 0)}>
+                <SelectTrigger className="w-full"><SelectValue placeholder="Pilih Guru" /></SelectTrigger>
+                <SelectContent>
+                  <SelectItem value="0">Pilih Guru</SelectItem>
+                  {guruList.map((g: any) => <SelectItem key={g.id} value={String(g.id)}>{g.nama}</SelectItem>)}
+                </SelectContent>
+              </Select>
             </div>
             <div className="grid grid-cols-2 gap-2">
-              <div><label className="block text-sm font-medium mb-1">Mulai</label>
-                <input type="time" value={jamMulai} onChange={e => setJamMulai(e.target.value)} className="w-full px-3 py-2 border rounded-lg" /></div>
-              <div><label className="block text-sm font-medium mb-1">Selesai</label>
-                <input type="time" value={jamSelesai} onChange={e => setJamSelesai(e.target.value)} className="w-full px-3 py-2 border rounded-lg" /></div>
+              <div className="space-y-1">
+                <Label>Hari</Label>
+                <Select value={String(hari)} onValueChange={v => setHari(Number(v))}>
+                  <SelectTrigger className="w-full"><SelectValue /></SelectTrigger>
+                  <SelectContent>
+                    {hariMap.slice(1).map((h, i) => <SelectItem key={i + 1} value={String(i + 1)}>{h}</SelectItem>)}
+                  </SelectContent>
+                </Select>
+              </div>
+              <div className="space-y-1">
+                <Label>Jam Ke</Label>
+                <Input type="number" min={1} max={10} value={jamKe} onChange={e => setJamKe(Number(e.target.value))} />
+              </div>
             </div>
-            <div><label className="block text-sm font-medium mb-1">Kelas</label>
-              <input type="text" value={kelas} onChange={e => setKelas(e.target.value)} className="w-full px-3 py-2 border rounded-lg" placeholder="X TKJ 1" /></div>
-            <div><label className="block text-sm font-medium mb-1">Mapel</label>
-              <input type="text" value={mapel} onChange={e => setMapel(e.target.value)} className="w-full px-3 py-2 border rounded-lg" placeholder="Pemrograman Web" /></div>
-            <div><label className="block text-sm font-medium mb-1">Ruangan</label>
-              <input type="text" value={ruangan} onChange={e => setRuangan(e.target.value)} className="w-full px-3 py-2 border rounded-lg" placeholder="Lab Kom 1" /></div>
+            <div className="grid grid-cols-2 gap-2">
+              <div className="space-y-1">
+                <Label>Mulai</Label>
+                <Input type="time" value={jamMulai} onChange={e => setJamMulai(e.target.value)} />
+              </div>
+              <div className="space-y-1">
+                <Label>Selesai</Label>
+                <Input type="time" value={jamSelesai} onChange={e => setJamSelesai(e.target.value)} />
+              </div>
+            </div>
+            <div className="space-y-1">
+              <Label>Kelas</Label>
+              <Input type="text" value={kelas} onChange={e => setKelas(e.target.value)} placeholder="X TKJ 1" />
+            </div>
+            <div className="space-y-1">
+              <Label>Mapel</Label>
+              <Input type="text" value={mapel} onChange={e => setMapel(e.target.value)} placeholder="Pemrograman Web" />
+            </div>
+            <div className="space-y-1">
+              <Label>Ruangan</Label>
+              <Input type="text" value={ruangan} onChange={e => setRuangan(e.target.value)} placeholder="Lab Kom 1" />
+            </div>
           </div>
-          <div className="flex gap-3 mt-6">
-            <button onClick={() => setModal(false)} className="flex-1 px-4 py-2 border rounded-lg text-gray-700 hover:bg-gray-50">Batal</button>
-            <button onClick={save} className="flex-1 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700">Simpan</button>
-          </div>
-        </div>
-      </div>}
+          <DialogFooter>
+            <Button variant="outline" onClick={() => setModal(false)}>Batal</Button>
+            <Button onClick={save}>Simpan</Button>
+          </DialogFooter>
+        </DialogContent>
+      </Dialog>
     </div>
   );
 }
