@@ -1,16 +1,16 @@
-# Graph Report - wa-absensi-guru  (2026-07-31)
+# Graph Report - wa-absensi-guru  (2026-08-04)
 
 ## Corpus Check
-- 57 files · ~19,079 words
+- 65 files · ~24,715 words
 - Verdict: corpus is large enough that graph structure adds value.
 
 ## Summary
-- 370 nodes · 461 edges · 33 communities (25 shown, 8 thin omitted)
-- Extraction: 98% EXTRACTED · 2% INFERRED · 0% AMBIGUOUS · INFERRED: 7 edges (avg confidence: 0.5)
+- 424 nodes · 528 edges · 37 communities (28 shown, 9 thin omitted)
+- Extraction: 99% EXTRACTED · 1% INFERRED · 0% AMBIGUOUS · INFERRED: 7 edges (avg confidence: 0.5)
 - Token cost: 0 input · 0 output
 
 ## Graph Freshness
-- Built from commit: `391e917b`
+- Built from commit: `f6b3b7a8`
 - Run `git rev-parse HEAD` and compare to check if the graph is stale.
 - Run `graphify update .` after code changes (no API cost).
 
@@ -44,18 +44,22 @@
 - Bot Fix Report
 - Telegram Webhook 500 Debug Report
 - vercel.json
+- Design Spec: Excel Import/Export Guru & Jadwal
+- Global Constraints
+- Shadcn/ui Pi Extension — Design Spec
+- izin/page.tsx
 
 ## God Nodes (most connected - your core abstractions)
-1. `sql()` - 44 edges
+1. `sql()` - 52 edges
 2. `setup()` - 21 edges
-3. `authOptions` - 15 edges
+3. `authOptions` - 19 edges
 4. `compilerOptions` - 13 edges
 5. `Global Constraints` - 12 edges
 6. `compilerOptions` - 11 edges
 7. `WA Absensi Guru — Design Spec` - 11 edges
-8. `Agent 3 Report — Build Check + TypeScript Validation` - 9 edges
-9. `guruByTelegram()` - 8 edges
-10. `wita()` - 8 edges
+8. `Shadcn/ui Pi Extension — Design Spec` - 11 edges
+9. `Agent 3 Report — Build Check + TypeScript Validation` - 9 edges
+10. `Design Spec: Excel Import/Export Guru & Jadwal` - 9 edges
 
 ## Surprising Connections (you probably didn't know these)
 - `setup()` --calls--> `hitungJarak()`  [EXTRACTED]
@@ -65,26 +69,26 @@
 - `GET()` --calls--> `sql()`  [EXTRACTED]
   web/src/app/api/export/excel/route.ts → web/src/lib/db.ts
 - `GET()` --calls--> `sql()`  [EXTRACTED]
-  web/src/app/api/export/pdf/route.ts → web/src/lib/db.ts
-- `PATCH()` --calls--> `sql()`  [EXTRACTED]
-  web/src/app/api/guru/[id]/route.ts → web/src/lib/db.ts
+  web/src/app/api/export/guru-template/route.ts → web/src/lib/db.ts
+- `GET()` --calls--> `sql()`  [EXTRACTED]
+  web/src/app/api/export/jadwal-template/route.ts → web/src/lib/db.ts
 
 ## Import Cycles
 - None detected.
 
-## Communities (33 total, 8 thin omitted)
+## Communities (37 total, 9 thin omitted)
 
 ### Community 0 - "dependencies"
 Cohesion: 0.05
 Nodes (43): autoprefixer, bcryptjs, exceljs, grammy, iconv-lite, @neondatabase/serverless, next, next-auth (+35 more)
 
 ### Community 1 - "telegram.ts"
-Cohesion: 0.20
-Nodes (23): hitungJarak(), POST(), cmdAbsen(), cmdCek(), cmdDaftar(), cmdHelp(), cmdIzin(), cmdJadwal() (+15 more)
+Cohesion: 0.13
+Nodes (29): Absen, Guru, Izin, Jadwal, hariIni(), hitungJarak(), sekarang(), POST() (+21 more)
 
 ### Community 2 - "sql"
-Cohesion: 0.13
-Nodes (21): GET(), getWitaDate(), handler, GET(), GET(), GET(), DELETE(), PATCH() (+13 more)
+Cohesion: 0.11
+Nodes (26): GET(), getWitaDate(), handler, GET(), GET(), GET(), GET(), GET() (+18 more)
 
 ### Community 3 - "scripts"
 Cohesion: 0.20
@@ -119,8 +123,8 @@ Cohesion: 0.25
 Nodes (7): dependencies, main, name, private, type, types, version
 
 ### Community 12 - "constants.ts"
-Cohesion: 0.11
-Nodes (14): HARI, JAM_JUMAT, JAM_SENIN_KAMIS, JENIS_IZIN, TODO: update koordinat asli SMAN 6 SIGI, SEKOLAH, STATUS_ABSEN, STATUS_IZIN (+6 more)
+Cohesion: 0.22
+Nodes (8): HARI, JAM_JUMAT, JAM_SENIN_KAMIS, JENIS_IZIN, TODO: update koordinat asli SMAN 6 SIGI, SEKOLAH, STATUS_ABSEN, STATUS_IZIN
 
 ### Community 13 - "Global Constraints"
 Cohesion: 0.13
@@ -158,10 +162,22 @@ Nodes (9): 1. Added `b.filter()` handler (line ~197), 2. Removed keyboard button
 Cohesion: 0.25
 Nodes (7): 1. `web/src/lib/telegram.ts`, 2. `web/src/app/api/telegram/route.ts`, Fixes Applied, Key Learnings, Root Cause, Telegram Webhook 500 Debug Report, Test Results
 
+### Community 33 - "Design Spec: Excel Import/Export Guru & Jadwal"
+Cohesion: 0.11
+Nodes (17): 1. GET `/api/export/guru-template`, 2. POST `/api/import/guru`, 3. GET `/api/export/jadwal-template`, 4. POST `/api/import/jadwal`, API Design, Design Spec: Excel Import/Export Guru & Jadwal, Error Handling, File Structure (new files) (+9 more)
+
+### Community 34 - "Global Constraints"
+Cohesion: 0.20
+Nodes (9): Excel Import/Export Guru & Jadwal Implementation Plan, Global Constraints, Task 1: GET `/api/export/guru-template` — Download template guru, Task 2: GET `/api/export/jadwal-template` — Download template jadwal, Task 3: POST `/api/import/guru` — Upload guru Excel, Task 4: POST `/api/import/jadwal` — Upload jadwal Excel, Task 5: UI guru page — Download + Import buttons, Task 6: UI jadwal page — Download + Import buttons (+1 more)
+
+### Community 35 - "Shadcn/ui Pi Extension — Design Spec"
+Cohesion: 0.14
+Nodes (13): Architecture, Capabilities (v1), Commands, Component Installer, Dependencies, Error Handling, Non-Goals (v1), Purpose (+5 more)
+
 ## Knowledge Gaps
-- **194 isolated node(s):** `name`, `private`, `shared`, `web`, `web:dev` (+189 more)
+- **226 isolated node(s):** `name`, `private`, `shared`, `web`, `web:dev` (+221 more)
   These have ≤1 connection - possible missing edges or undocumented components.
-- **8 thin communities (<3 nodes) omitted from report** — run `graphify query` to explore isolated nodes.
+- **9 thin communities (<3 nodes) omitted from report** — run `graphify query` to explore isolated nodes.
 
 ## Suggested Questions
 _Questions this graph is uniquely positioned to answer:_
@@ -169,14 +185,14 @@ _Questions this graph is uniquely positioned to answer:_
 - **Why does `sql()` connect `sql` to `telegram.ts`?**
   _High betweenness centrality (0.031) - this node is a cross-community bridge._
 - **Why does `dependencies` connect `dependencies` to `scripts`?**
-  _High betweenness centrality (0.019) - this node is a cross-community bridge._
+  _High betweenness centrality (0.014) - this node is a cross-community bridge._
+- **Why does `setup()` connect `telegram.ts` to `sql`?**
+  _High betweenness centrality (0.004) - this node is a cross-community bridge._
 - **Are the 7 inferred relationships involving `setup()` (e.g. with `cmdAbsen()` and `cmdCek()`) actually correct?**
   _`setup()` has 7 INFERRED edges - model-reasoned connections that need verification._
 - **What connects `name`, `private`, `shared` to the rest of the system?**
-  _194 weakly-connected nodes found - possible documentation gaps or missing edges._
+  _226 weakly-connected nodes found - possible documentation gaps or missing edges._
 - **Should `dependencies` be split into smaller, more focused modules?**
   _Cohesion score 0.046511627906976744 - nodes in this community are weakly interconnected._
-- **Should `sql` be split into smaller, more focused modules?**
-  _Cohesion score 0.1337126600284495 - nodes in this community are weakly interconnected._
-- **Should `compilerOptions` be split into smaller, more focused modules?**
-  _Cohesion score 0.08333333333333333 - nodes in this community are weakly interconnected._
+- **Should `telegram.ts` be split into smaller, more focused modules?**
+  _Cohesion score 0.1253968253968254 - nodes in this community are weakly interconnected._

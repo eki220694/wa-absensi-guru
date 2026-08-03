@@ -19,6 +19,7 @@ export default function AbsenPage({
   const [tanggal, setTanggal] = useState(searchParams.tanggal || new Date().toISOString().slice(0, 10));
   const [guruId, setGuruId] = useState(searchParams.guru_id || '');
   const [loading, setLoading] = useState(true);
+  const [lastUpdated, setLastUpdated] = useState<string | null>(null);
 
   const fetchData = async (t: string, g: string) => {
     setLoading(true);
@@ -33,11 +34,17 @@ export default function AbsenPage({
     setRows(Array.isArray(absenData) ? absenData : []);
     setGuruList(guruData);
     setLoading(false);
+    setLastUpdated(new Date().toLocaleTimeString('id-ID'));
   };
 
   useEffect(() => {
     fetchData(tanggal, guruId);
-  }, []);
+    // Auto-refresh setiap 15 detik — tab visible only
+    const id = setInterval(() => {
+      if (document.visibilityState === 'visible') fetchData(tanggal, guruId);
+    }, 15000);
+    return () => clearInterval(id);
+  }, [tanggal, guruId]);
 
   const handleTanggalChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const t = e.target.value;
@@ -60,6 +67,9 @@ export default function AbsenPage({
   return (
     <div className="p-4 lg:p-8">
       <h1 className="text-2xl font-bold mb-4">Absen Harian</h1>
+      {lastUpdated && (
+        <p className="text-xs text-gray-400 -mt-2 mb-4">🔄 Auto-refresh 15 detik · Terakhir diperbarui {lastUpdated}</p>
+      )}
 
       <div className="mb-6 flex flex-wrap gap-4 items-end">
         <div>

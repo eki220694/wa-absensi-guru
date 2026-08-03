@@ -70,8 +70,8 @@
     "semantic_hash": "d87f5ecf0da67fd7ea134c39acb80893"
   },
   "web/src/app/absen/page.tsx": {
-    "mtime": 1785371184.9687088,
-    "ast_hash": "ad171c06c8ea32ae082d5f2919d02a4a",
+    "mtime": 1785799797.9650395,
+    "ast_hash": "3ad25ed218f35aa244f77f78d0fa84de",
     "semantic_hash": ""
   },
   "web/src/app/api/auth/[...nextauth]/route.ts": {
@@ -105,18 +105,18 @@
     "semantic_hash": "879c5f3f301fb1bee679f8d542b3660a"
   },
   "web/src/app/guru/page.tsx": {
-    "mtime": 1785370963.7297153,
-    "ast_hash": "296e312c9e28281b28a95464714fcd1d",
+    "mtime": 1785799176.033036,
+    "ast_hash": "bddc4960fb0118a217090fc5b84af838",
     "semantic_hash": ""
   },
   "web/src/app/izin/page.tsx": {
-    "mtime": 1784270853.6277223,
-    "ast_hash": "c7674c4abb35c4a6eb9c2897f01fd5e1",
-    "semantic_hash": "c7674c4abb35c4a6eb9c2897f01fd5e1"
+    "mtime": 1785799953.1559525,
+    "ast_hash": "ba9a4e72291c435d4fc1ea041e6a4dfd",
+    "semantic_hash": ""
   },
   "web/src/app/jadwal/page.tsx": {
-    "mtime": 1785371033.6502948,
-    "ast_hash": "25ccffd3edeb910e26cc6499ea923b89",
+    "mtime": 1785799176.033036,
+    "ast_hash": "23d011834b6c2d5f3699edef3cfb9175",
     "semantic_hash": ""
   },
   "web/src/app/layout.tsx": {
@@ -190,13 +190,13 @@
     "semantic_hash": ""
   },
   "web/src/app/api/guru/[id]/route.ts": {
-    "mtime": 1785370930.7309697,
-    "ast_hash": "03b65fec9b6a47eb174c9445794814cd",
+    "mtime": 1785731442.5408366,
+    "ast_hash": "be33c8ceed1966936e51d06d668a9061",
     "semantic_hash": ""
   },
   "web/src/app/api/guru/route.ts": {
-    "mtime": 1785370922.5487845,
-    "ast_hash": "d6f4af7a4e1633d325e45f120f2138c2",
+    "mtime": 1785731431.8966813,
+    "ast_hash": "1f84bca20c52ce5a4380174a537d6238",
     "semantic_hash": ""
   },
   "web/src/app/api/jadwal/[id]/route.ts": {
@@ -225,8 +225,8 @@
     "semantic_hash": ""
   },
   "web/src/lib/telegram.ts": {
-    "mtime": 1785459510.705618,
-    "ast_hash": "d35a9927b41bdde8de4a85dc928bb5b9",
+    "mtime": 1785730151.5503843,
+    "ast_hash": "bb818fd0a2401ca96f90d4c86b7aa8cf",
     "semantic_hash": ""
   },
   "web/src/scripts/migrate.ts": {
@@ -255,8 +255,8 @@
     "semantic_hash": ""
   },
   "web/src/app/api/cron/reminder/route.ts": {
-    "mtime": 1785454105.844124,
-    "ast_hash": "d2e75d657e92c01b78ff956f9c3fa7c3",
+    "mtime": 1785730185.344791,
+    "ast_hash": "52373c762b87f34950b9746e4e35100e",
     "semantic_hash": ""
   },
   "web/src/scripts/add-absen-unique.sql": {
@@ -287,6 +287,46 @@
   ".superpowers/report-agent3.md": {
     "mtime": 1785372690.2383308,
     "ast_hash": "4a86032dee12505d26790534c0695b2f",
+    "semantic_hash": ""
+  },
+  "web/src/app/api/export/guru-template/route.ts": {
+    "mtime": 1785799176.0313046,
+    "ast_hash": "b908478f092198266cddd0ec8aa4c921",
+    "semantic_hash": ""
+  },
+  "web/src/app/api/export/jadwal-template/route.ts": {
+    "mtime": 1785799176.0313046,
+    "ast_hash": "125be2ce656ecc8761ebf2bf20ade822",
+    "semantic_hash": ""
+  },
+  "web/src/app/api/import/guru/route.ts": {
+    "mtime": 1785799176.033036,
+    "ast_hash": "ec5224de3e2e7163564f3a75181bca7e",
+    "semantic_hash": ""
+  },
+  "web/src/app/api/import/jadwal/route.ts": {
+    "mtime": 1785799176.033036,
+    "ast_hash": "930c65810d4ce6f7bbaf3700c2898f9c",
+    "semantic_hash": ""
+  },
+  "docs/superpowers/plans/2026-08-03-excel-import-export-plan.md": {
+    "mtime": 1785799176.0313046,
+    "ast_hash": "fd25e3d9a26925b2f1dc9d907f5adec7",
+    "semantic_hash": ""
+  },
+  "docs/superpowers/specs/2026-08-03-excel-import-export-design.md": {
+    "mtime": 1785799176.0313046,
+    "ast_hash": "754facdc44857cdc72dfc75be8cecc81",
+    "semantic_hash": ""
+  },
+  "web/src/app/api/izin/route.ts": {
+    "mtime": 1785800024.80524,
+    "ast_hash": "47ed1655c478dc96790a9b8892920960",
+    "semantic_hash": ""
+  },
+  "docs/superpowers/specs/2026-08-05-shadcn-extension-design.md": {
+    "mtime": 1785800038.3834808,
+    "ast_hash": "ee305376b6866780f3cf26341d690865",
     "semantic_hash": ""
   }
 }

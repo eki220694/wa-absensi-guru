@@ -31,5 +31,9 @@
   "29": "Agent 3 Report — Build Check + TypeScript Validation",
   "30": "Bot Fix Report",
   "31": "Telegram Webhook 500 Debug Report",
-  "32": "vercel.json"
+  "32": "vercel.json",
+  "33": "Design Spec: Excel Import/Export Guru & Jadwal",
+  "34": "Global Constraints",
+  "35": "Shadcn/ui Pi Extension — Design Spec",
+  "36": "izin/page.tsx"
 }
