@@ -16,7 +16,7 @@
   "14": "dropdown-menu.tsx",
   "15": "next.config.js",
   "16": "DashboardCharts.tsx",
-  "17": "@base-ui/react",
+  "17": "autoprefixer",
   "18": "tailwind.config.ts",
   "19": "postcss.config.js",
   "20": "shared/tsconfig.json",

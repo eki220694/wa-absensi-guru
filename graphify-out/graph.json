@@ -1330,8 +1330,8 @@
       "source_location": "L13",
       "_origin": "ast",
       "id": "web_package_dependencies_base_ui_react",
-      "community": 17,
-      "community_name": "@base-ui/react",
+      "community": 0,
+      "community_name": "dependencies",
       "norm_label": "@base-ui/react"
     },
     {
@@ -1341,8 +1341,8 @@
       "source_location": "L13",
       "_origin": "ast",
       "id": "base_ui_react",
-      "community": 17,
-      "community_name": "@base-ui/react",
+      "community": 0,
+      "community_name": "dependencies",
       "norm_label": "@base-ui/react"
     },
     {
@@ -1506,8 +1506,8 @@
       "source_location": "L21",
       "_origin": "ast",
       "id": "web_package_dependencies_autoprefixer",
-      "community": 0,
-      "community_name": "dependencies",
+      "community": 17,
+      "community_name": "autoprefixer",
       "norm_label": "autoprefixer"
     },
     {
@@ -1517,8 +1517,8 @@
       "source_location": "L21",
       "_origin": "ast",
       "id": "autoprefixer",
-      "community": 0,
-      "community_name": "dependencies",
+      "community": 17,
+      "community_name": "autoprefixer",
       "norm_label": "autoprefixer"
     },
     {
@@ -2735,7 +2735,7 @@
       "label": "LoginPage()",
       "file_type": "code",
       "source_file": "web/src/app/login/page.tsx",
-      "source_location": "L11",
+      "source_location": "L12",
       "_origin": "ast",
       "id": "web_src_app_login_page_loginpage",
       "community": 23,
@@ -11116,7 +11116,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "web/src/app/login/page.tsx",
-      "source_location": "L11",
+      "source_location": "L12",
       "weight": 1.0,
       "_origin": "ast",
       "source": "web_src_app_login_page",
@@ -16292,5 +16292,5 @@
     }
   ],
   "hyperedges": [],
-  "built_at_commit": "64d822e3741fba86b511fa2fdb7398c018115a1d"
+  "built_at_commit": "13355c286528cbd1718dcd88b127f2dac1edbc5e"
 }

@@ -17,8 +17,8 @@ export async function GET(req: Request) {
   }
 
   const start = `${tahun}-${String(bulan).padStart(2, '0')}-01`;
-  const endDate = new Date(Number(tahun!), Number(bulan!), 0);
-  const end = endDate?.toISOString().slice(0, 10) ?? '';
+  const lastDay = new Date(Number(tahun), Number(bulan), 0).getDate();
+  const end = `${tahun}-${String(bulan).padStart(2, '0')}-${String(lastDay).padStart(2, '0')}`;
 
   const rows = await sql`
     SELECT a.tanggal, a.jam_ke, a.status, a.jarak_meter, a.foto_valid,
@@ -29,6 +29,13 @@ export async function GET(req: Request) {
     WHERE a.tanggal >= ${start} AND a.tanggal <= ${end}
     ORDER BY a.tanggal, g.nama, a.jam_ke
   `;
+
+  if (!rows.length) {
+    return NextResponse.json(
+      { error: `Tidak ada data absensi untuk bulan ${bulan}/${tahun}.` },
+      { status: 404 },
+    );
+  }
 
   const doc = new PDFDocument({ margin: 30, size: 'A4', layout: 'landscape' });
 

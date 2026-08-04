@@ -4,11 +4,14 @@ import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card';
+import { Alert, AlertTitle, AlertDescription } from '@/components/ui/alert';
 
 export default function ExportPage() {
-  const [bulan, setBulan] = useState('');
-  const [tahun, setTahun] = useState('');
+  const now = new Date();
+  const [bulan, setBulan] = useState(String(now.getMonth() + 1));
+  const [tahun, setTahun] = useState(String(now.getFullYear()));
   const [downloading, setDownloading] = useState<'excel' | 'pdf' | null>(null);
+  const [msg, setMsg] = useState<string | null>(null);
 
   const download = async (type: 'excel' | 'pdf') => {
     if (!bulan || !tahun) {
@@ -16,13 +19,16 @@ export default function ExportPage() {
       return;
     }
     setDownloading(type);
+    setMsg(null);
     try {
       const res = await fetch(`/api/export/${type}?bulan=${bulan}&tahun=${tahun}`, {
         credentials: 'include',
       });
       if (!res.ok) {
         const text = await res.text().catch(() => '');
-        throw new Error(`Export gagal (${res.status}): ${text}`);
+        let msg = `Export gagal (${res.status})`;
+        try { msg = JSON.parse(text).error || msg; } catch { msg = text || msg; }
+        throw new Error(msg);
       }
       const blob = await res.blob();
       const url = URL.createObjectURL(blob);
@@ -34,9 +40,9 @@ export default function ExportPage() {
       document.body.appendChild(a);
       a.click();
       a.remove();
-      URL.revokeObjectURL(url);
+      setTimeout(() => URL.revokeObjectURL(url), 1000);
     } catch (err: any) {
-      alert(err?.message || 'Export gagal');
+      setMsg(err?.message || 'Export gagal');
     } finally {
       setDownloading(null);
     }
@@ -91,6 +97,12 @@ export default function ExportPage() {
               {downloading === 'pdf' ? 'Mengunduh...' : 'Download PDF'}
             </Button>
           </div>
+          {msg && (
+            <Alert variant="destructive">
+              <AlertTitle>Perhatian</AlertTitle>
+              <AlertDescription>{msg}</AlertDescription>
+            </Alert>
+          )}
         </CardContent>
       </Card>
     </div>
