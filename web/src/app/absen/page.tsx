@@ -36,7 +36,8 @@ export default function AbsenPage({
       fetch(`/api/absen?${params}`),
       fetch('/api/guru'),
     ]);
-    setRows(Array.isArray(await absenRes.json()) ? await absenRes.json() : []);
+    const absenData = await absenRes.json();
+    setRows(Array.isArray(absenData) ? absenData : []);
     setGuruList(await guruRes.json());
     setLoading(false);
     setLastUpdated(new Date().toLocaleTimeString('id-ID'));
