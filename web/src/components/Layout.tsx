@@ -9,7 +9,7 @@ import {
   DropdownMenu, DropdownMenuContent, DropdownMenuGroup, DropdownMenuItem,
   DropdownMenuLabel, DropdownMenuSeparator, DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu';
-import { Menu, Sun, Moon } from 'lucide-react';
+import { Menu, Sun, Moon, LogOut } from 'lucide-react';
 
 const navLinks = [
   { href: '/', label: 'Dashboard' },
@@ -78,8 +78,9 @@ export default function Layout({ children, session: serverSession }: { children:
             {dark ? <Moon className="w-4 h-4" /> : <Sun className="w-4 h-4" />}
           </Button>
         </div>
-        <Button variant="ghost" size="sm" className="w-full justify-start text-destructive hover:text-destructive hover:bg-destructive/10"
+        <Button variant="ghost" size="sm" className="w-full justify-start text-destructive hover:text-destructive hover:bg-destructive/10 flex items-center gap-2"
           onClick={() => signOut({ callbackUrl: '/login' })}>
+          <LogOut className="w-4 h-4" />
           Keluar
         </Button>
       </div>
@@ -90,7 +91,7 @@ export default function Layout({ children, session: serverSession }: { children:
   if (!session) return <div className="min-h-screen bg-background">{children}</div>;
 
   return (
-    <div className="min-h-screen bg-background flex flex-col">
+    <div className="min-h-screen bg-background flex flex-col lg:flex-row">
       {/* Mobile header (logged-in) */}
       <header className="lg:hidden bg-card border-b sticky top-0 z-40">
         <div className="flex items-center justify-between h-16 px-4">
@@ -112,30 +113,7 @@ export default function Layout({ children, session: serverSession }: { children:
         {SidebarInner()}
       </aside>
 
-      {/* Desktop floating user-menu (top-right) */}
-      <div className="fixed top-4 right-4 z-40 lg:block hidden">
-        <DropdownMenu>
-          <DropdownMenuTrigger className="inline-flex items-center justify-center rounded-lg border border-border bg-background px-2.5 py-1.5 text-sm font-medium transition hover:bg-muted hover:text-foreground h-8 gap-1.5">
-            {session.user?.name?.split(' ').slice(0, 1).join('') || 'U'}
-          </DropdownMenuTrigger>
-          <DropdownMenuContent className="w-48" align="end">
-            <DropdownMenuLabel>{session.user?.name}</DropdownMenuLabel>
-            <DropdownMenuSeparator />
-            <DropdownMenuGroup>
-              <DropdownMenuItem onSelect={toggleDark}>
-                {dark ? <Moon className="w-4 h-4 mr-2" /> : <Sun className="w-4 h-4 mr-2" />}
-                {dark ? 'Light' : 'Dark'} Mode
-              </DropdownMenuItem>
-            </DropdownMenuGroup>
-            <DropdownMenuSeparator />
-            <DropdownMenuItem onSelect={() => signOut({ callbackUrl: '/login' })} className="text-destructive">
-              Keluar
-            </DropdownMenuItem>
-          </DropdownMenuContent>
-        </DropdownMenu>
-      </div>
-
-      <main className="lg:ml-0 flex-1 p-4 lg:p-6">{children}</main>
+      <main className="flex-1 p-4 lg:p-6 lg:ml-0">{children}</main>
     </div>
   );
 }
