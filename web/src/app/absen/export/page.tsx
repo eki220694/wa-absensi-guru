@@ -8,18 +8,37 @@ import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/com
 export default function ExportPage() {
   const [bulan, setBulan] = useState('');
   const [tahun, setTahun] = useState('');
+  const [downloading, setDownloading] = useState<'excel' | 'pdf' | null>(null);
 
-  const handleExcel = (e: React.MouseEvent<HTMLAnchorElement>) => {
+  const download = async (type: 'excel' | 'pdf') => {
     if (!bulan || !tahun) {
-      e.preventDefault();
       alert('Isi bulan dan tahun terlebih dahulu');
+      return;
     }
-  };
-
-  const handlePdf = (e: React.MouseEvent<HTMLAnchorElement>) => {
-    if (!bulan || !tahun) {
-      e.preventDefault();
-      alert('Isi bulan dan tahun terlebih dahulu');
+    setDownloading(type);
+    try {
+      const res = await fetch(`/api/export/${type}?bulan=${bulan}&tahun=${tahun}`, {
+        credentials: 'include',
+      });
+      if (!res.ok) {
+        const text = await res.text().catch(() => '');
+        throw new Error(`Export gagal (${res.status}): ${text}`);
+      }
+      const blob = await res.blob();
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      const ext = type === 'excel' ? 'xlsx' : 'pdf';
+      const pad = String(bulan).padStart(2, '0');
+      a.href = url;
+      a.download = `rekap-absensi-${tahun}-${pad}.${ext}`;
+      document.body.appendChild(a);
+      a.click();
+      a.remove();
+      URL.revokeObjectURL(url);
+    } catch (err: any) {
+      alert(err?.message || 'Export gagal');
+    } finally {
+      setDownloading(null);
     }
   };
 
@@ -55,20 +74,22 @@ export default function ExportPage() {
             />
           </div>
           <div className="flex gap-4">
-            <a
-              href={`/api/export/excel?bulan=${bulan}&tahun=${tahun}`}
-              onClick={handleExcel}
-              className="flex-1 inline-flex items-center justify-center rounded-lg bg-green-600 px-4 py-2.5 text-white text-sm font-medium transition hover:bg-green-700"
+            <Button
+              variant="default"
+              className="flex-1 bg-green-600 hover:bg-green-700"
+              disabled={downloading !== null}
+              onClick={() => download('excel')}
             >
-              Download Excel
-            </a>
-            <a
-              href={`/api/export/pdf?bulan=${bulan}&tahun=${tahun}`}
-              onClick={handlePdf}
-              className="flex-1 inline-flex items-center justify-center rounded-lg bg-red-600 px-4 py-2.5 text-white text-sm font-medium transition hover:bg-red-700"
+              {downloading === 'excel' ? 'Mengunduh...' : 'Download Excel'}
+            </Button>
+            <Button
+              variant="default"
+              className="flex-1 bg-red-600 hover:bg-red-700"
+              disabled={downloading !== null}
+              onClick={() => download('pdf')}
             >
-              Download PDF
-            </a>
+              {downloading === 'pdf' ? 'Mengunduh...' : 'Download PDF'}
+            </Button>
           </div>
         </CardContent>
       </Card>
