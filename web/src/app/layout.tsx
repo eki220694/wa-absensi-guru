@@ -1,10 +1,28 @@
 import type { Metadata } from 'next';
+import localFont from 'next/font/local';
 import './globals.css';
 import { getServerSession } from 'next-auth';
 import { authOptions } from '@/lib/auth';
 import AuthProvider from '@/components/AuthProvider';
 import Layout from '@/components/Layout';
 import { TooltipProvider } from '@/components/ui/tooltip';
+
+const geistSans = localFont({
+  src: [
+    { path: '../../../node_modules/geist/dist/fonts/geist-sans/Geist-Variable.woff2', weight: '100 900', style: 'normal' },
+    { path: '../../../node_modules/geist/dist/fonts/geist-sans/Geist-Italic[wght].woff2', weight: '100 900', style: 'italic' },
+  ],
+  variable: '--font-sans',
+  display: 'swap',
+});
+
+const geistMono = localFont({
+  src: [
+    { path: '../../../node_modules/geist/dist/fonts/geist-mono/GeistMono-Variable.woff2', weight: '100 900', style: 'normal' },
+  ],
+  variable: '--font-mono',
+  display: 'swap',
+});
 
 export const metadata: Metadata = {
   title: 'SMAN 6 SIGI - Absensi Guru',
@@ -15,14 +33,14 @@ export default async function RootLayout({ children }: { children: React.ReactNo
   const session = await getServerSession(authOptions);
 
   return (
-    <html lang="id" suppressHydrationWarning>
-      <body suppressHydrationWarning>
+    <html lang="id" suppressHydrationWarning className={`${geistSans.variable} ${geistMono.variable} font-sans`}>
+      <body suppressHydrationWarning className="antialiased">
         <TooltipProvider delay={0}>
-        <AuthProvider>
-          <Layout session={session}>
-            {children}
-          </Layout>
-        </AuthProvider>
+          <AuthProvider>
+            <Layout session={session}>
+              {children}
+            </Layout>
+          </AuthProvider>
         </TooltipProvider>
       </body>
     </html>
