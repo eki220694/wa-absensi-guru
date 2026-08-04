@@ -37,9 +37,11 @@ export default function PengaturanPage() {
   };
 
   return (
-    <div className="p-4 lg:p-8 space-y-4">
-      <h1 className="text-2xl font-bold">Pengaturan</h1>
-      <Card className="max-w-xl">
+    <div className="p-4 lg:p-8 space-y-6 stagger-in">
+      <div className="flex items-center gap-3">
+        <h1 className="text-2xl font-bold tracking-tight">Pengaturan</h1>
+      </div>
+      <Card className="max-w-xl shadow-md card-hover">
         <CardContent className="p-0">
           {Object.entries(config).map(([key, val]) => (
             <div key={key} className="border-t first:border-t-0 p-4 flex items-center justify-between">

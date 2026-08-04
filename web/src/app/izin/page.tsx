@@ -61,10 +61,12 @@ export default function IzinPage() {
   };
 
   return (
-    <div className="p-4 lg:p-8 space-y-4">
-      <h1 className="text-2xl font-bold">Daftar Izin</h1>
+    <div className="p-4 lg:p-8 space-y-6 stagger-in">
+      <div className="flex items-center gap-3">
+        <h1 className="text-2xl font-bold tracking-tight">Daftar Izin</h1>
+      </div>
       {lastUpdated && <p className="text-xs text-muted-foreground">🔄 Auto-refresh 15 detik · Terakhir diperbarui {lastUpdated}</p>}
-      <div className="rounded-lg border overflow-x-auto">
+      <div className="rounded-lg border overflow-x-auto shadow-md card-hover">
         <Table>
           <TableHeader>
             <TableRow>

@@ -24,8 +24,10 @@ export default function ExportPage() {
   };
 
   return (
-    <div className="p-4 lg:p-8 space-y-4">
-      <h1 className="text-2xl font-bold">Export Rekap Bulanan</h1>
+    <div className="p-4 lg:p-8 space-y-6 stagger-in">
+      <div className="flex items-center gap-3">
+        <h1 className="text-2xl font-bold tracking-tight">Export Rekap Bulanan</h1>
+      </div>
       <Card className="max-w-md">
         <CardHeader>
           <CardTitle>Unduh Rekap Absensi</CardTitle>

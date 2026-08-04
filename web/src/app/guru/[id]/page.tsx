@@ -41,14 +41,14 @@ export default async function GuruDetailPage({ params }: { params: { id: string 
   };
 
   return (
-    <div className="p-4 lg:p-8 space-y-6">
-      <Link href="/guru" className="inline-flex items-center justify-center rounded-lg text-sm font-medium transition-all hover:bg-accent hover:text-accent-foreground h-7 gap-1 px-2.5 py-1">
+    <div className="p-4 lg:p-8 space-y-6 stagger-in">
+      <Link href="/guru" className="inline-flex items-center justify-center rounded-lg text-sm font-medium transition-all hover:bg-accent hover:text-accent-foreground h-7 gap-1 px-2.5 py-1 hover-lift">
         ← Kembali
       </Link>
 
-      <h1 className="text-2xl font-bold">{String(guru.nama)}</h1>
+      <h1 className="text-2xl font-bold tracking-tight">{String(guru.nama)}</h1>
 
-      <Card className="max-w-lg">
+      <Card className="max-w-lg shadow-md card-hover">
         <CardHeader>
           <CardTitle>Data Guru</CardTitle>
         </CardHeader>
@@ -69,7 +69,7 @@ export default async function GuruDetailPage({ params }: { params: { id: string 
       </Card>
 
       <h2 className="text-xl font-bold">Riwayat Absen (50 terakhir)</h2>
-      <div className="rounded-lg border overflow-x-auto">
+      <div className="rounded-lg border overflow-x-auto shadow-md card-hover">
         <Table>
           <TableHeader>
             <TableRow>

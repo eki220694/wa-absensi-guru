@@ -30,7 +30,7 @@ export default function LoginPage() {
 
   return (
     <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-slate-700 to-slate-900">
-      <Card className="w-full max-w-sm shadow-2xl">
+      <Card className="w-full max-w-sm shadow-xl animate-scale-in">
         <CardHeader className="text-center">
           <CardTitle className="text-2xl">SMAN 6 SIGI</CardTitle>
           <CardDescription>Absensi Guru - Admin Panel</CardDescription>

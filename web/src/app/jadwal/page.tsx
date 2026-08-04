@@ -79,9 +79,11 @@ export default function JadwalPage() {
   };
 
   return (
-    <div className="p-4 lg:p-8 space-y-6">
-      <div className="flex justify-between items-center">
-        <h1 className="text-2xl font-bold">Jadwal Mengajar</h1>
+    <div className="p-4 lg:p-8 space-y-6 stagger-in">
+      <div className="flex items-center justify-between">
+        <div className="flex items-center gap-3">
+          <h1 className="text-2xl font-bold tracking-tight">Jadwal Mengajar</h1>
+        </div>
         <div className="flex gap-2 items-center">
           <a href="/api/export/jadwal-template" className="inline-flex items-center justify-center rounded-lg border border-border bg-background px-2.5 py-1 text-sm font-medium hover:bg-muted hover:text-foreground transition-all h-7 gap-1">Download Template</a>
           <input type="file" accept=".xlsx" onChange={handleImportJadwal} className="hidden" ref={fileRef} />
@@ -104,7 +106,7 @@ export default function JadwalPage() {
           )}
         </div>
       )}
-      <div className="rounded-lg border overflow-x-auto">
+      <div className="rounded-lg border overflow-x-auto shadow-md card-hover">
         <Table>
           <TableHeader>
             <TableRow>

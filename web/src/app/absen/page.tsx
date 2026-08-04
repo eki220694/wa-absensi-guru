@@ -61,8 +61,10 @@ export default function AbsenPage({
   };
 
   return (
-    <div className="p-4 lg:p-8 space-y-4">
-      <h1 className="text-2xl font-bold">Absen Harian</h1>
+    <div className="p-4 lg:p-8 space-y-6 stagger-in">
+      <div className="flex items-center gap-3">
+        <h1 className="text-2xl font-bold tracking-tight">Absen Harian</h1>
+      </div>
       {lastUpdated && <p className="text-xs text-muted-foreground">🔄 Auto-refresh 15 detik · Terakhir diperbarui {lastUpdated}</p>}
 
       <div className="flex flex-wrap gap-4 items-end">
@@ -84,7 +86,7 @@ export default function AbsenPage({
         </div>
       </div>
 
-      <div className="rounded-lg border overflow-x-auto">
+      <div className="rounded-lg border overflow-x-auto shadow-md card-hover">
         {loading ? (
           <div className="p-6 text-center text-muted-foreground">Memuat...</div>
         ) : (
