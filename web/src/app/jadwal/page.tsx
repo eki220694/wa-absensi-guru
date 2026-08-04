@@ -12,6 +12,7 @@ import {
 import {
   Table, TableBody, TableCell, TableHead, TableHeader, TableRow,
 } from '@/components/ui/table';
+import { Pencil, Trash2 } from 'lucide-react';
 
 interface Jadwal {
   id: number; guru_id: number; guru_nama: string; hari: number; jam_ke: number;
@@ -124,8 +125,8 @@ export default function JadwalPage() {
                 <TableCell>{j.mapel}</TableCell>
                 <TableCell>{j.ruangan || '-'}</TableCell>
                 <TableCell className="flex gap-2">
-                  <Button variant="link" size="sm" onClick={() => openEdit(j)}>Edit</Button>
-                  <Button variant="link" size="sm" className="text-destructive" onClick={() => hapus(j.id)}>Hapus</Button>
+                  <Button variant="link" size="icon-sm" aria-label="Edit jadwal" onClick={() => openEdit(j)}><Pencil className="h-4 w-4" /></Button>
+                  <Button variant="link" size="icon-sm" className="text-destructive" aria-label="Hapus jadwal" onClick={() => hapus(j.id)}><Trash2 className="h-4 w-4" /></Button>
                 </TableCell>
               </TableRow>
             ))}

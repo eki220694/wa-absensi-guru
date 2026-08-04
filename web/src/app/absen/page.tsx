@@ -7,6 +7,7 @@ import {
   Table, TableBody, TableCell, TableHead, TableHeader, TableRow,
 } from '@/components/ui/table';
 import { Badge } from '@/components/ui/badge';
+import { Tooltip, TooltipContent, TooltipTrigger } from '@/components/ui/tooltip';
 
 interface AbsenRow {
   id: number; tanggal: string; jam_ke: number; guru: string; kelas: string;
@@ -112,7 +113,16 @@ export default function AbsenPage({
                     <Badge className={statusColor[a.status] || 'bg-gray-100 text-gray-800'}>{a.status}</Badge>
                   </TableCell>
                   <TableCell className="text-center">
-                    {a.foto_valid ? '✅' : a.foto_path ? '⚠️' : '—'}
+                    <Tooltip>
+                      <TooltipTrigger>
+                        <span className="cursor-default">
+                          {a.foto_valid ? '✅' : a.foto_path ? '⚠️' : '—'}
+                        </span>
+                      </TooltipTrigger>
+                      <TooltipContent>
+                        {a.foto_valid ? 'Foto valid' : a.foto_path ? 'Foto tidak valid' : 'Tidak ada foto'}
+                      </TooltipContent>
+                    </Tooltip>
                   </TableCell>
                   <TableCell>{a.jarak_meter !== null ? `${a.jarak_meter.toFixed(1)} m` : '—'}</TableCell>
                 </TableRow>

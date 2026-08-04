@@ -13,6 +13,7 @@ import {
   Table, TableBody, TableCell, TableHead, TableHeader, TableRow,
 } from '@/components/ui/table';
 import { Badge } from '@/components/ui/badge';
+import { Pencil, Trash2 } from 'lucide-react';
 
 interface Guru {
   id: number; nip: string; nama: string; no_wa: string; jabatan: string;
@@ -108,8 +109,8 @@ export default function GuruPage() {
                 <TableCell>{g.no_wa || '-'}</TableCell>
                 <TableCell><Badge variant="secondary">{g.jabatan}</Badge></TableCell>
                 <TableCell className="flex gap-2">
-                  <Button variant="link" size="sm" onClick={() => openEdit(g)}>Edit</Button>
-                  <Button variant="link" size="sm" className="text-destructive" onClick={() => hapus(g.id)}>Hapus</Button>
+                  <Button variant="link" size="icon-sm" aria-label="Edit guru" onClick={() => openEdit(g)}><Pencil className="h-4 w-4" /></Button>
+                  <Button variant="link" size="icon-sm" className="text-destructive" aria-label="Hapus guru" onClick={() => hapus(g.id)}><Trash2 className="h-4 w-4" /></Button>
                 </TableCell>
               </TableRow>
             ))}

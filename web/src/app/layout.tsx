@@ -4,6 +4,7 @@ import { getServerSession } from 'next-auth';
 import { authOptions } from '@/lib/auth';
 import AuthProvider from '@/components/AuthProvider';
 import Layout from '@/components/Layout';
+import { TooltipProvider } from '@/components/ui/tooltip';
 
 export const metadata: Metadata = {
   title: 'SMAN 6 SIGI - Absensi Guru',
@@ -16,11 +17,13 @@ export default async function RootLayout({ children }: { children: React.ReactNo
   return (
     <html lang="id" suppressHydrationWarning>
       <body suppressHydrationWarning>
+        <TooltipProvider delay={0}>
         <AuthProvider>
           <Layout session={session}>
             {children}
           </Layout>
         </AuthProvider>
+        </TooltipProvider>
       </body>
     </html>
   );

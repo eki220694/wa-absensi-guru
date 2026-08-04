@@ -98,7 +98,9 @@ export default function Layout({ children, session: serverSession }: { children:
             <Menu className="w-6 h-6" />
           </Button>
           <h1 className="text-lg font-bold">SMAN 6 SIGI</h1>
-          <div className="w-10" />
+          <Button variant="ghost" size="icon" onClick={toggleDark} aria-label="Toggle dark mode">
+            {dark ? <Moon className="w-5 h-5" /> : <Sun className="w-5 h-5" />}
+          </Button>
         </div>
       </header>
 

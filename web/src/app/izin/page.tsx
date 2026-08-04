@@ -6,6 +6,7 @@ import {
   Table, TableBody, TableCell, TableHead, TableHeader, TableRow,
 } from '@/components/ui/table';
 import { Badge } from '@/components/ui/badge';
+import { CheckCircle2, XCircle } from 'lucide-react';
 
 interface IzinRow {
   id: number;
@@ -95,8 +96,8 @@ export default function IzinPage() {
                   <TableCell>
                     {String(i.status) === 'pending' && (
                       <div className="flex gap-2">
-                        <Button variant="link" size="sm" className="text-green-600" onClick={() => updateStatus(i.id, 'disetujui')}>Setuju</Button>
-                        <Button variant="link" size="sm" className="text-destructive" onClick={() => updateStatus(i.id, 'ditolak')}>Tolak</Button>
+                        <Button variant="link" size="icon-sm" className="text-green-600" aria-label="Setujui izin" onClick={() => updateStatus(i.id, 'disetujui')}><CheckCircle2 className="h-4 w-4" /></Button>
+                        <Button variant="link" size="icon-sm" className="text-destructive" aria-label="Tolak izin" onClick={() => updateStatus(i.id, 'ditolak')}><XCircle className="h-4 w-4" /></Button>
                       </div>
                     )}
                   </TableCell>
