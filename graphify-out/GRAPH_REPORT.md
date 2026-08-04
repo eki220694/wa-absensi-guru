@@ -1,7 +1,7 @@
 # Graph Report - wa-absensi-guru  (2026-08-04)
 
 ## Corpus Check
-- 82 files · ~28,304 words
+- 82 files · ~28,362 words
 - Verdict: corpus is large enough that graph structure adds value.
 
 ## Summary
@@ -10,7 +10,7 @@
 - Token cost: 0 input · 0 output
 
 ## Graph Freshness
-- Built from commit: `87008f4b`
+- Built from commit: `6364b0b3`
 - Run `git rev-parse HEAD` and compare to check if the graph is stale.
 - Run `graphify update .` after code changes (no API cost).
 
@@ -39,7 +39,7 @@
 - Report Agent 1 — Fix Absen Page + Guru Page
 - cn
 - bcryptjs
-- clsx
+- autoprefixer
 - next-env.d.ts
 - grammy
 - DB Schema + Seed Check Report
@@ -103,7 +103,7 @@
 
 ### Community 0 - "dependencies"
 Cohesion: 0.22
-Nodes (9): autoprefixer, class-variance-authority, exceljs, @wa-absensi/shared, dependencies, autoprefixer, class-variance-authority, exceljs (+1 more)
+Nodes (9): class-variance-authority, clsx, exceljs, @wa-absensi/shared, dependencies, class-variance-authority, clsx, exceljs (+1 more)
 
 ### Community 1 - "telegram.ts"
 Cohesion: 0.09
@@ -217,7 +217,7 @@ _Questions this graph is uniquely positioned to answer:_
   _High betweenness centrality (0.059) - this node is a cross-community bridge._
 - **Why does `cn()` connect `cn` to `login/page.tsx`?**
   _High betweenness centrality (0.043) - this node is a cross-community bridge._
-- **Why does `dependencies` connect `dependencies` to `scripts`, `@base-ui/react`, `bcryptjs`, `clsx`, `grammy`, `iconv-lite`, `lucide-react`, `@neondatabase/serverless`, `next`, `next-auth`, `pdfkit`, `postcss`, `react`, `react-dom`, `recharts`, `shadcn`, `tailwind-merge`, `tailwindcss`, `tailwindcss-animate`, `tw-animate-css`, `@types/bcryptjs`, `@types/node`, `@types/pdfkit`, `@types/react`, `@types/react-dom`, `typescript`?**
+- **Why does `dependencies` connect `dependencies` to `scripts`, `@base-ui/react`, `bcryptjs`, `autoprefixer`, `grammy`, `iconv-lite`, `lucide-react`, `@neondatabase/serverless`, `next`, `next-auth`, `pdfkit`, `postcss`, `react`, `react-dom`, `recharts`, `shadcn`, `tailwind-merge`, `tailwindcss`, `tailwindcss-animate`, `tw-animate-css`, `@types/bcryptjs`, `@types/node`, `@types/pdfkit`, `@types/react`, `@types/react-dom`, `typescript`?**
   _High betweenness centrality (0.015) - this node is a cross-community bridge._
 - **Are the 7 inferred relationships involving `setup()` (e.g. with `cmdAbsen()` and `cmdCek()`) actually correct?**
   _`setup()` has 7 INFERRED edges - model-reasoned connections that need verification._

@@ -70,8 +70,8 @@
     "semantic_hash": ""
   },
   "web/src/app/absen/page.tsx": {
-    "mtime": 1785802502.080199,
-    "ast_hash": "a8eda6fdf8ccf44fe7ae2e2a23d927ba",
+    "mtime": 1785804368.7198277,
+    "ast_hash": "22175499201ac19c866a2592f40aca58",
     "semantic_hash": ""
   },
   "web/src/app/api/auth/[...nextauth]/route.ts": {
@@ -130,8 +130,8 @@
     "semantic_hash": ""
   },
   "web/src/app/page.tsx": {
-    "mtime": 1785802502.0941997,
-    "ast_hash": "c8da6ca37770d886374cd6a70e3577ed",
+    "mtime": 1785804991.7389374,
+    "ast_hash": "bdbfbcaebd481f8b9a4be3f9a5913a8a",
     "semantic_hash": ""
   },
   "web/src/app/pengaturan/page.tsx": {
@@ -150,8 +150,8 @@
     "semantic_hash": ""
   },
   "web/tailwind.config.ts": {
-    "mtime": 1785800734.1709173,
-    "ast_hash": "229617ea24fcea796725cdf1a524b9bd",
+    "mtime": 1785804961.966263,
+    "ast_hash": "c7157278cb4dd6ce05abcbe85aceef88",
     "semantic_hash": ""
   },
   "web/tsconfig.json": {
@@ -215,8 +215,8 @@
     "semantic_hash": ""
   },
   "web/src/components/Layout.tsx": {
-    "mtime": 1785802502.1032,
-    "ast_hash": "c65153417ea72df5fa1f1dfa48209389",
+    "mtime": 1785804422.874054,
+    "ast_hash": "f23c559a27b7277f18963c5795882a91",
     "semantic_hash": ""
   },
   "web/src/lib/db-pool.ts": {
