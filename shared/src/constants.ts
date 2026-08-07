@@ -1,8 +1,7 @@
 export const SEKOLAH = {
   nama: 'SMAN 6 SIGI',
-  // TODO: update koordinat asli SMAN 6 SIGI
-  latitude: -1.1234,
-  longitude: 121.1234,
+  latitude: -1.1929,
+  longitude: 120.0794,
 } as const;
 
 export const RADIUS_METER = 100;
