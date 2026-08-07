@@ -1,16 +1,16 @@
-# Graph Report - wa-absensi-guru  (2026-08-04)
+# Graph Report - wa-absensi-guru  (2026-08-06)
 
 ## Corpus Check
-- 82 files · ~28,849 words
+- 90 files · ~29,986 words
 - Verdict: corpus is large enough that graph structure adds value.
 
 ## Summary
-- 554 nodes · 885 edges · 58 communities (27 shown, 31 thin omitted)
+- 581 nodes · 914 edges · 67 communities (31 shown, 36 thin omitted)
 - Extraction: 99% EXTRACTED · 1% INFERRED · 0% AMBIGUOUS · INFERRED: 7 edges (avg confidence: 0.5)
 - Token cost: 0 input · 0 output
 
 ## Graph Freshness
-- Built from commit: `13355c28`
+- Built from commit: `c2b6ca79`
 - Run `git rev-parse HEAD` and compare to check if the graph is stale.
 - Run `graphify update .` after code changes (no API cost).
 
@@ -31,8 +31,8 @@
 - Global Constraints
 - dropdown-menu.tsx
 - next.config.js
-- DashboardCharts.tsx
-- autoprefixer
+- quick-fix.js
+- deploy.sh
 - tailwind.config.ts
 - shared/tsconfig.json
 - next-auth.d.ts
@@ -41,7 +41,7 @@
 - bcryptjs
 - class-variance-authority
 - next-env.d.ts
-- grammy
+- layout.tsx
 - DB Schema + Seed Check Report
 - Agent 3 Report — Build Check + TypeScript Validation
 - Bot Fix Report
@@ -72,6 +72,14 @@
 - @types/react-dom
 - typescript
 - geist
+- @base-ui/react
+- count-words.sh
+- grammy
+- count
+- word_count.py
+- wordcount.sh
+- DashboardCharts.tsx
+- hitung_kata.sh script
 
 ## God Nodes (most connected - your core abstractions)
 1. `cn()` - 65 edges
@@ -100,11 +108,11 @@
 ## Import Cycles
 - None detected.
 
-## Communities (58 total, 31 thin omitted)
+## Communities (67 total, 36 thin omitted)
 
 ### Community 0 - "dependencies"
 Cohesion: 0.22
-Nodes (9): @base-ui/react, tailwindcss-animate, @types/react, @wa-absensi/shared, dependencies, @base-ui/react, tailwindcss-animate, @types/react (+1 more)
+Nodes (9): autoprefixer, tailwindcss-animate, @types/react, @wa-absensi/shared, dependencies, autoprefixer, tailwindcss-animate, @types/react (+1 more)
 
 ### Community 1 - "telegram.ts"
 Cohesion: 0.09
@@ -155,12 +163,16 @@ Cohesion: 0.13
 Nodes (14): Global Constraints, Missing in MVP (Future), Task 10: Bottom Navigation + Deploy Checklist, Task 11: Final Configuration & Verification, Task 1: Monorepo Root + Shared Package + DB Schema, Task 2: Bot Connection + Auth Middleware, Task 3: GPS + OCR Services, Task 4: Message Handler + Absen Flow (+6 more)
 
 ### Community 14 - "dropdown-menu.tsx"
-Cohesion: 0.10
-Nodes (18): geistMono, geistSans, metadata, AuthProvider(), navLinks, DropdownMenu(), DropdownMenuCheckboxItem(), DropdownMenuContent() (+10 more)
+Cohesion: 0.15
+Nodes (13): navLinks, DropdownMenu(), DropdownMenuCheckboxItem(), DropdownMenuContent(), DropdownMenuGroup(), DropdownMenuItem(), DropdownMenuLabel(), DropdownMenuRadioItem() (+5 more)
 
-### Community 16 - "DashboardCharts.tsx"
-Cohesion: 0.40
-Nodes (4): COLORS, DailyLineChart(), RangeData, StatusBarChart()
+### Community 16 - "quick-fix.js"
+Cohesion: 0.29
+Nodes (4): CONFIG_FILES, fs, path, ROOT
+
+### Community 17 - "deploy.sh"
+Cohesion: 0.60
+Nodes (5): err(), log(), require_cmd(), deploy.sh script, warn()
 
 ### Community 20 - "shared/tsconfig.json"
 Cohesion: 0.29
@@ -175,8 +187,12 @@ Cohesion: 0.40
 Nodes (4): File-by-File Analysis, Report Agent 1 — Fix Absen Page + Guru Page, Summary, TypeScript Check Result
 
 ### Community 23 - "cn"
-Cohesion: 0.07
-Nodes (56): AbsenRow, GuruItem, Guru, IzinRow, hariMap, Jadwal, DashboardPage(), Alert() (+48 more)
+Cohesion: 0.08
+Nodes (54): AbsenRow, GuruItem, Guru, IzinRow, hariMap, Jadwal, DashboardPage(), Alert() (+46 more)
+
+### Community 27 - "layout.tsx"
+Cohesion: 0.22
+Nodes (7): geistMono, geistSans, metadata, AuthProvider(), Tooltip(), TooltipProvider(), TooltipTrigger()
 
 ### Community 28 - "DB Schema + Seed Check Report"
 Cohesion: 0.17
@@ -206,24 +222,28 @@ Nodes (9): Excel Import/Export Guru & Jadwal Implementation Plan, Global Constra
 Cohesion: 0.14
 Nodes (13): Architecture, Capabilities (v1), Commands, Component Installer, Dependencies, Error Handling, Non-Goals (v1), Purpose (+5 more)
 
+### Community 64 - "DashboardCharts.tsx"
+Cohesion: 0.40
+Nodes (4): COLORS, DailyLineChart(), RangeData, StatusBarChart()
+
 ## Knowledge Gaps
-- **258 isolated node(s):** `name`, `private`, `shared`, `web`, `web:dev` (+253 more)
+- **265 isolated node(s):** `count-words.sh script`, `hitung_kata.sh script`, `name`, `private`, `shared` (+260 more)
   These have ≤1 connection - possible missing edges or undocumented components.
-- **31 thin communities (<3 nodes) omitted from report** — run `graphify query` to explore isolated nodes.
+- **36 thin communities (<3 nodes) omitted from report** — run `graphify query` to explore isolated nodes.
 
 ## Suggested Questions
 _Questions this graph is uniquely positioned to answer:_
 
 - **Why does `sql()` connect `sql` to `telegram.ts`, `cn`?**
-  _High betweenness centrality (0.059) - this node is a cross-community bridge._
-- **Why does `cn()` connect `cn` to `dropdown-menu.tsx`?**
-  _High betweenness centrality (0.043) - this node is a cross-community bridge._
-- **Why does `dependencies` connect `dependencies` to `scripts`, `autoprefixer`, `bcryptjs`, `class-variance-authority`, `grammy`, `iconv-lite`, `lucide-react`, `@neondatabase/serverless`, `next`, `next-auth`, `pdfkit`, `postcss`, `react`, `react-dom`, `recharts`, `shadcn`, `tailwind-merge`, `tailwindcss`, `clsx`, `tw-animate-css`, `@types/bcryptjs`, `@types/node`, `@types/pdfkit`, `exceljs`, `@types/react-dom`, `typescript`, `geist`?**
-  _High betweenness centrality (0.015) - this node is a cross-community bridge._
+  _High betweenness centrality (0.053) - this node is a cross-community bridge._
+- **Why does `cn()` connect `cn` to `layout.tsx`, `dropdown-menu.tsx`?**
+  _High betweenness centrality (0.038) - this node is a cross-community bridge._
+- **Why does `dependencies` connect `dependencies` to `scripts`, `bcryptjs`, `class-variance-authority`, `iconv-lite`, `lucide-react`, `@neondatabase/serverless`, `next`, `next-auth`, `pdfkit`, `postcss`, `react`, `react-dom`, `recharts`, `shadcn`, `tailwind-merge`, `tailwindcss`, `clsx`, `tw-animate-css`, `@types/bcryptjs`, `@types/node`, `@types/pdfkit`, `exceljs`, `@types/react-dom`, `typescript`, `geist`, `@base-ui/react`, `grammy`?**
+  _High betweenness centrality (0.014) - this node is a cross-community bridge._
 - **Are the 7 inferred relationships involving `setup()` (e.g. with `cmdAbsen()` and `cmdCek()`) actually correct?**
   _`setup()` has 7 INFERRED edges - model-reasoned connections that need verification._
-- **What connects `name`, `private`, `shared` to the rest of the system?**
-  _258 weakly-connected nodes found - possible documentation gaps or missing edges._
+- **What connects `count-words.sh script`, `hitung_kata.sh script`, `name` to the rest of the system?**
+  _265 weakly-connected nodes found - possible documentation gaps or missing edges._
 - **Should `telegram.ts` be split into smaller, more focused modules?**
   _Cohesion score 0.0898989898989899 - nodes in this community are weakly interconnected._
 - **Should `sql` be split into smaller, more focused modules?**

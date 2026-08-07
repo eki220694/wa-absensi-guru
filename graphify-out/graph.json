@@ -4,6 +4,211 @@
   "graph": {},
   "nodes": [
     {
+      "label": "count-words.sh",
+      "file_type": "code",
+      "source_file": "count-words.sh",
+      "source_location": "L1",
+      "metadata": {
+        "language": "bash",
+        "kind": "file"
+      },
+      "_origin": "ast",
+      "id": "count_words",
+      "community": 59,
+      "community_name": "count-words.sh",
+      "norm_label": "count-words.sh"
+    },
+    {
+      "label": "count-words.sh script",
+      "file_type": "code",
+      "source_file": "count-words.sh",
+      "source_location": "L1",
+      "metadata": {
+        "language": "bash",
+        "kind": "bash_entrypoint"
+      },
+      "_origin": "ast",
+      "id": "count_words_sh__entry",
+      "community": 59,
+      "community_name": "count-words.sh",
+      "norm_label": "count-words.sh script"
+    },
+    {
+      "label": "count_files.py",
+      "file_type": "code",
+      "source_file": "count_files.py",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "count_files",
+      "community": 65,
+      "community_name": "count_files.py",
+      "norm_label": "count_files.py"
+    },
+    {
+      "label": "count_files()",
+      "file_type": "code",
+      "source_file": "count_files.py",
+      "source_location": "L6",
+      "_origin": "ast",
+      "id": "count_files_count_files",
+      "community": 65,
+      "community_name": "count_files.py",
+      "norm_label": "count_files()"
+    },
+    {
+      "label": "deploy.sh",
+      "file_type": "code",
+      "source_file": "deploy.sh",
+      "source_location": "L1",
+      "metadata": {
+        "language": "bash",
+        "kind": "file"
+      },
+      "_origin": "ast",
+      "id": "deploy",
+      "community": 17,
+      "community_name": "deploy.sh",
+      "norm_label": "deploy.sh"
+    },
+    {
+      "label": "deploy.sh script",
+      "file_type": "code",
+      "source_file": "deploy.sh",
+      "source_location": "L1",
+      "metadata": {
+        "language": "bash",
+        "kind": "bash_entrypoint"
+      },
+      "_origin": "ast",
+      "id": "deploy_sh__entry",
+      "community": 17,
+      "community_name": "deploy.sh",
+      "norm_label": "deploy.sh script"
+    },
+    {
+      "label": "log()",
+      "file_type": "code",
+      "source_file": "deploy.sh",
+      "source_location": "L23",
+      "metadata": {
+        "language": "bash",
+        "kind": "bash_function"
+      },
+      "_origin": "ast",
+      "id": "deploy_log",
+      "community": 17,
+      "community_name": "deploy.sh",
+      "norm_label": "log()"
+    },
+    {
+      "label": "err()",
+      "file_type": "code",
+      "source_file": "deploy.sh",
+      "source_location": "L24",
+      "metadata": {
+        "language": "bash",
+        "kind": "bash_function"
+      },
+      "_origin": "ast",
+      "id": "deploy_err",
+      "community": 17,
+      "community_name": "deploy.sh",
+      "norm_label": "err()"
+    },
+    {
+      "label": "warn()",
+      "file_type": "code",
+      "source_file": "deploy.sh",
+      "source_location": "L25",
+      "metadata": {
+        "language": "bash",
+        "kind": "bash_function"
+      },
+      "_origin": "ast",
+      "id": "deploy_warn",
+      "community": 17,
+      "community_name": "deploy.sh",
+      "norm_label": "warn()"
+    },
+    {
+      "label": "require_cmd()",
+      "file_type": "code",
+      "source_file": "deploy.sh",
+      "source_location": "L27",
+      "metadata": {
+        "language": "bash",
+        "kind": "bash_function"
+      },
+      "_origin": "ast",
+      "id": "deploy_require_cmd",
+      "community": 17,
+      "community_name": "deploy.sh",
+      "norm_label": "require_cmd()"
+    },
+    {
+      "label": "hitung_kata.py",
+      "file_type": "code",
+      "source_file": "hitung_kata.py",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "hitung_kata_py_hitung_kata",
+      "community": 61,
+      "community_name": "count",
+      "norm_label": "hitung_kata.py"
+    },
+    {
+      "label": "count()",
+      "file_type": "code",
+      "source_file": "hitung_kata.py",
+      "source_location": "L8",
+      "_origin": "ast",
+      "id": "hitung_kata_count",
+      "community": 61,
+      "community_name": "count",
+      "norm_label": "count()"
+    },
+    {
+      "label": "main()",
+      "file_type": "code",
+      "source_file": "hitung_kata.py",
+      "source_location": "L20",
+      "_origin": "ast",
+      "id": "hitung_kata_main",
+      "community": 61,
+      "community_name": "count",
+      "norm_label": "main()"
+    },
+    {
+      "label": "hitung_kata.sh",
+      "file_type": "code",
+      "source_file": "hitung_kata.sh",
+      "source_location": "L1",
+      "metadata": {
+        "language": "bash",
+        "kind": "file"
+      },
+      "_origin": "ast",
+      "id": "hitung_kata_sh_hitung_kata",
+      "community": 66,
+      "community_name": "hitung_kata.sh script",
+      "norm_label": "hitung_kata.sh"
+    },
+    {
+      "label": "hitung_kata.sh script",
+      "file_type": "code",
+      "source_file": "hitung_kata.sh",
+      "source_location": "L1",
+      "metadata": {
+        "language": "bash",
+        "kind": "bash_entrypoint"
+      },
+      "_origin": "ast",
+      "id": "hitung_kata_sh__entry",
+      "community": 66,
+      "community_name": "hitung_kata.sh script",
+      "norm_label": "hitung_kata.sh script"
+    },
+    {
       "label": "package.json",
       "file_type": "code",
       "source_file": "package.json",
@@ -156,6 +361,83 @@
       "community": 5,
       "community_name": "package.json",
       "norm_label": "typescript"
+    },
+    {
+      "label": "quick-fix.js",
+      "file_type": "code",
+      "source_file": "quick-fix.js",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "quick_fix",
+      "community": 16,
+      "community_name": "quick-fix.js",
+      "norm_label": "quick-fix.js"
+    },
+    {
+      "label": "fs",
+      "file_type": "code",
+      "source_file": "quick-fix.js",
+      "source_location": "L7",
+      "_origin": "ast",
+      "id": "quick_fix_fs",
+      "community": 16,
+      "community_name": "quick-fix.js",
+      "norm_label": "fs"
+    },
+    {
+      "label": "path",
+      "file_type": "code",
+      "source_file": "quick-fix.js",
+      "source_location": "L8",
+      "_origin": "ast",
+      "id": "quick_fix_path",
+      "community": 16,
+      "community_name": "quick-fix.js",
+      "norm_label": "path"
+    },
+    {
+      "label": "CONFIG_FILES",
+      "file_type": "code",
+      "source_file": "quick-fix.js",
+      "source_location": "L11",
+      "_origin": "ast",
+      "id": "quick_fix_config_files",
+      "community": 16,
+      "community_name": "quick-fix.js",
+      "norm_label": "config_files"
+    },
+    {
+      "label": "ROOT",
+      "file_type": "code",
+      "source_file": "quick-fix.js",
+      "source_location": "L16",
+      "_origin": "ast",
+      "id": "quick_fix_root",
+      "community": 16,
+      "community_name": "quick-fix.js",
+      "norm_label": "root"
+    },
+    {
+      "label": "backup()",
+      "file_type": "code",
+      "source_file": "quick-fix.js",
+      "source_location": "L18",
+      "_origin": "ast",
+      "id": "quick_fix_backup",
+      "community": 16,
+      "community_name": "quick-fix.js",
+      "norm_label": "backup()"
+    },
+    {
+      "label": "restore()",
+      "file_type": "code",
+      "source_file": "quick-fix.js",
+      "source_location": "L34",
+      "_origin": "ast",
+      "id": "quick_fix_restore",
+      "community": 16,
+      "community_name": "quick-fix.js",
+      "norm_label": "restore()"
     },
     {
       "label": "shared/package.json",
@@ -1330,8 +1612,8 @@
       "source_location": "L13",
       "_origin": "ast",
       "id": "web_package_dependencies_base_ui_react",
-      "community": 0,
-      "community_name": "dependencies",
+      "community": 58,
+      "community_name": "@base-ui/react",
       "norm_label": "@base-ui/react"
     },
     {
@@ -1341,8 +1623,8 @@
       "source_location": "L13",
       "_origin": "ast",
       "id": "base_ui_react",
-      "community": 0,
-      "community_name": "dependencies",
+      "community": 58,
+      "community_name": "@base-ui/react",
       "norm_label": "@base-ui/react"
     },
     {
@@ -1506,8 +1788,8 @@
       "source_location": "L21",
       "_origin": "ast",
       "id": "web_package_dependencies_autoprefixer",
-      "community": 17,
-      "community_name": "autoprefixer",
+      "community": 0,
+      "community_name": "dependencies",
       "norm_label": "autoprefixer"
     },
     {
@@ -1517,8 +1799,8 @@
       "source_location": "L21",
       "_origin": "ast",
       "id": "autoprefixer",
-      "community": 17,
-      "community_name": "autoprefixer",
+      "community": 0,
+      "community_name": "dependencies",
       "norm_label": "autoprefixer"
     },
     {
@@ -1638,7 +1920,7 @@
       "source_location": "L27",
       "_origin": "ast",
       "id": "web_package_dependencies_grammy",
-      "community": 27,
+      "community": 60,
       "community_name": "grammy",
       "norm_label": "grammy"
     },
@@ -1649,7 +1931,7 @@
       "source_location": "L27",
       "_origin": "ast",
       "id": "grammy",
-      "community": 27,
+      "community": 60,
       "community_name": "grammy",
       "norm_label": "grammy"
     },
@@ -2009,7 +2291,7 @@
       "label": "ExportPage()",
       "file_type": "code",
       "source_file": "web/src/app/absen/export/page.tsx",
-      "source_location": "L8",
+      "source_location": "L9",
       "_origin": "ast",
       "id": "web_src_app_absen_export_page_exportpage",
       "community": 23,
@@ -2672,8 +2954,8 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "web_src_app_layout",
-      "community": 14,
-      "community_name": "dropdown-menu.tsx",
+      "community": 27,
+      "community_name": "layout.tsx",
       "norm_label": "layout.tsx"
     },
     {
@@ -2683,8 +2965,8 @@
       "source_location": "L10",
       "_origin": "ast",
       "id": "web_src_app_layout_geistsans",
-      "community": 14,
-      "community_name": "dropdown-menu.tsx",
+      "community": 27,
+      "community_name": "layout.tsx",
       "norm_label": "geistsans"
     },
     {
@@ -2694,8 +2976,8 @@
       "source_location": "L19",
       "_origin": "ast",
       "id": "web_src_app_layout_geistmono",
-      "community": 14,
-      "community_name": "dropdown-menu.tsx",
+      "community": 27,
+      "community_name": "layout.tsx",
       "norm_label": "geistmono"
     },
     {
@@ -2705,8 +2987,8 @@
       "source_location": "L27",
       "_origin": "ast",
       "id": "web_src_app_layout_metadata",
-      "community": 14,
-      "community_name": "dropdown-menu.tsx",
+      "community": 27,
+      "community_name": "layout.tsx",
       "norm_label": "metadata"
     },
     {
@@ -2716,8 +2998,8 @@
       "source_location": "L32",
       "_origin": "ast",
       "id": "web_src_app_layout_rootlayout",
-      "community": 14,
-      "community_name": "dropdown-menu.tsx",
+      "community": 27,
+      "community_name": "layout.tsx",
       "norm_label": "rootlayout()"
     },
     {
@@ -2793,8 +3075,8 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "web_src_components_authprovider",
-      "community": 14,
-      "community_name": "dropdown-menu.tsx",
+      "community": 27,
+      "community_name": "layout.tsx",
       "norm_label": "authprovider.tsx"
     },
     {
@@ -2804,8 +3086,8 @@
       "source_location": "L4",
       "_origin": "ast",
       "id": "web_src_components_authprovider_authprovider",
-      "community": 14,
-      "community_name": "dropdown-menu.tsx",
+      "community": 27,
+      "community_name": "layout.tsx",
       "norm_label": "authprovider()"
     },
     {
@@ -2815,7 +3097,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "web_src_components_dashboardcharts",
-      "community": 16,
+      "community": 64,
       "community_name": "DashboardCharts.tsx",
       "norm_label": "dashboardcharts.tsx"
     },
@@ -2826,7 +3108,7 @@
       "source_location": "L17",
       "_origin": "ast",
       "id": "web_src_components_dashboardcharts_rangedata",
-      "community": 16,
+      "community": 64,
       "community_name": "DashboardCharts.tsx",
       "norm_label": "rangedata"
     },
@@ -2837,7 +3119,7 @@
       "source_location": "L22",
       "_origin": "ast",
       "id": "web_src_components_dashboardcharts_colors",
-      "community": 16,
+      "community": 64,
       "community_name": "DashboardCharts.tsx",
       "norm_label": "colors"
     },
@@ -2848,7 +3130,7 @@
       "source_location": "L24",
       "_origin": "ast",
       "id": "web_src_components_dashboardcharts_dailylinechart",
-      "community": 16,
+      "community": 64,
       "community_name": "DashboardCharts.tsx",
       "norm_label": "dailylinechart()"
     },
@@ -2859,7 +3141,7 @@
       "source_location": "L41",
       "_origin": "ast",
       "id": "web_src_components_dashboardcharts_statusbarchart",
-      "community": 16,
+      "community": 64,
       "community_name": "DashboardCharts.tsx",
       "norm_label": "statusbarchart()"
     },
@@ -3728,8 +4010,8 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "web_src_components_ui_tooltip",
-      "community": 23,
-      "community_name": "cn",
+      "community": 27,
+      "community_name": "layout.tsx",
       "norm_label": "tooltip.tsx"
     },
     {
@@ -3739,8 +4021,8 @@
       "source_location": "L7",
       "_origin": "ast",
       "id": "web_src_components_ui_tooltip_tooltipprovider",
-      "community": 14,
-      "community_name": "dropdown-menu.tsx",
+      "community": 27,
+      "community_name": "layout.tsx",
       "norm_label": "tooltipprovider()"
     },
     {
@@ -3750,8 +4032,8 @@
       "source_location": "L20",
       "_origin": "ast",
       "id": "web_src_components_ui_tooltip_tooltip",
-      "community": 23,
-      "community_name": "cn",
+      "community": 27,
+      "community_name": "layout.tsx",
       "norm_label": "tooltip()"
     },
     {
@@ -3761,8 +4043,8 @@
       "source_location": "L24",
       "_origin": "ast",
       "id": "web_src_components_ui_tooltip_tooltiptrigger",
-      "community": 23,
-      "community_name": "cn",
+      "community": 27,
+      "community_name": "layout.tsx",
       "norm_label": "tooltiptrigger()"
     },
     {
@@ -4512,6 +4794,69 @@
       "community": 4,
       "community_name": "compilerOptions",
       "norm_label": "node_modules"
+    },
+    {
+      "label": "word_count.py",
+      "file_type": "code",
+      "source_file": "word_count.py",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "word_count",
+      "community": 62,
+      "community_name": "word_count.py",
+      "norm_label": "word_count.py"
+    },
+    {
+      "label": "count_words()",
+      "file_type": "code",
+      "source_file": "word_count.py",
+      "source_location": "L7",
+      "_origin": "ast",
+      "id": "word_count_count_words",
+      "community": 62,
+      "community_name": "word_count.py",
+      "norm_label": "count_words()"
+    },
+    {
+      "label": "main()",
+      "file_type": "code",
+      "source_file": "word_count.py",
+      "source_location": "L11",
+      "_origin": "ast",
+      "id": "word_count_main",
+      "community": 62,
+      "community_name": "word_count.py",
+      "norm_label": "main()"
+    },
+    {
+      "label": "wordcount.sh",
+      "file_type": "code",
+      "source_file": "wordcount.sh",
+      "source_location": "L1",
+      "metadata": {
+        "language": "bash",
+        "kind": "file"
+      },
+      "_origin": "ast",
+      "id": "wordcount",
+      "community": 63,
+      "community_name": "wordcount.sh",
+      "norm_label": "wordcount.sh"
+    },
+    {
+      "label": "wordcount.sh script",
+      "file_type": "code",
+      "source_file": "wordcount.sh",
+      "source_location": "L1",
+      "metadata": {
+        "language": "bash",
+        "kind": "bash_entrypoint"
+      },
+      "_origin": "ast",
+      "id": "wordcount_sh__entry",
+      "community": 63,
+      "community_name": "wordcount.sh",
+      "norm_label": "wordcount.sh script"
     },
     {
       "label": "bot-500-debug.md",
@@ -6102,6 +6447,176 @@
     {
       "relation": "contains",
       "confidence": "EXTRACTED",
+      "source_file": "count-words.sh",
+      "source_location": "L1",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "count_words",
+      "target": "count_words_sh__entry",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "count_files.py",
+      "source_location": "L6",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "count_files",
+      "target": "count_files_count_files",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "defines",
+      "confidence": "EXTRACTED",
+      "source_file": "deploy.sh",
+      "source_location": "L24",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "deploy",
+      "target": "deploy_err",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "defines",
+      "confidence": "EXTRACTED",
+      "source_file": "deploy.sh",
+      "source_location": "L23",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "deploy",
+      "target": "deploy_log",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "defines",
+      "confidence": "EXTRACTED",
+      "source_file": "deploy.sh",
+      "source_location": "L27",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "deploy",
+      "target": "deploy_require_cmd",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "deploy.sh",
+      "source_location": "L1",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "deploy",
+      "target": "deploy_sh__entry",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "defines",
+      "confidence": "EXTRACTED",
+      "source_file": "deploy.sh",
+      "source_location": "L25",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "deploy",
+      "target": "deploy_warn",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "source_file": "deploy.sh",
+      "source_location": "L31",
+      "weight": 1.0,
+      "context": "call",
+      "_origin": "ast",
+      "source": "deploy_sh__entry",
+      "target": "deploy_log",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "source_file": "deploy.sh",
+      "source_location": "L32",
+      "weight": 1.0,
+      "context": "call",
+      "_origin": "ast",
+      "source": "deploy_sh__entry",
+      "target": "deploy_require_cmd",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "source_file": "deploy.sh",
+      "source_location": "L45",
+      "weight": 1.0,
+      "context": "call",
+      "_origin": "ast",
+      "source": "deploy_sh__entry",
+      "target": "deploy_warn",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "source_file": "deploy.sh",
+      "source_location": "L28",
+      "weight": 1.0,
+      "context": "call",
+      "_origin": "ast",
+      "source": "deploy_require_cmd",
+      "target": "deploy_err",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "hitung_kata.py",
+      "source_location": "L8",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "hitung_kata_py_hitung_kata",
+      "target": "hitung_kata_count",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "hitung_kata.py",
+      "source_location": "L20",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "hitung_kata_py_hitung_kata",
+      "target": "hitung_kata_main",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "hitung_kata.py",
+      "source_location": "L31",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "hitung_kata_main",
+      "target": "hitung_kata_count",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "hitung_kata.sh",
+      "source_location": "L1",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "hitung_kata_sh_hitung_kata",
+      "target": "hitung_kata_sh__entry",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
       "source_file": "package.json",
       "source_location": "L11",
       "weight": 1.0,
@@ -6243,6 +6758,72 @@
       "_origin": "ast",
       "source": "package_devdependencies_typescript",
       "target": "package_json_typescript",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "quick-fix.js",
+      "source_location": "L18",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "quick_fix",
+      "target": "quick_fix_backup",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "quick-fix.js",
+      "source_location": "L11",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "quick_fix",
+      "target": "quick_fix_config_files",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "quick-fix.js",
+      "source_location": "L7",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "quick_fix",
+      "target": "quick_fix_fs",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "quick-fix.js",
+      "source_location": "L8",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "quick_fix",
+      "target": "quick_fix_path",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "quick-fix.js",
+      "source_location": "L34",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "quick_fix",
+      "target": "quick_fix_restore",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "quick-fix.js",
+      "source_location": "L16",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "quick_fix",
+      "target": "quick_fix_root",
       "confidence_score": 1.0
     },
     {
@@ -8097,11 +8678,59 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "web/src/app/absen/export/page.tsx",
-      "source_location": "L8",
+      "source_location": "L9",
       "weight": 1.0,
       "_origin": "ast",
       "source": "web_src_app_absen_export_page",
       "target": "web_src_app_absen_export_page_exportpage",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "web/src/app/absen/export/page.tsx",
+      "source_location": "L7",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "web_src_app_absen_export_page",
+      "target": "web_src_components_ui_alert",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "web/src/app/absen/export/page.tsx",
+      "source_location": "L7",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "web_src_app_absen_export_page",
+      "target": "web_src_components_ui_alert_alert",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "web/src/app/absen/export/page.tsx",
+      "source_location": "L7",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "web_src_app_absen_export_page",
+      "target": "web_src_components_ui_alert_alertdescription",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "web/src/app/absen/export/page.tsx",
+      "source_location": "L7",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "web_src_app_absen_export_page",
+      "target": "web_src_components_ui_alert_alerttitle",
       "confidence_score": 1.0
     },
     {
@@ -14830,6 +15459,51 @@
     {
       "relation": "contains",
       "confidence": "EXTRACTED",
+      "source_file": "word_count.py",
+      "source_location": "L7",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "word_count",
+      "target": "word_count_count_words",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "word_count.py",
+      "source_location": "L11",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "word_count",
+      "target": "word_count_main",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "word_count.py",
+      "source_location": "L16",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "word_count_main",
+      "target": "word_count_count_words",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "wordcount.sh",
+      "source_location": "L1",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "wordcount",
+      "target": "wordcount_sh__entry",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
       "source_file": ".superpowers/bot-500-debug.md",
       "source_location": "L1",
       "weight": 1.0,
@@ -16292,5 +16966,5 @@
     }
   ],
   "hyperedges": [],
-  "built_at_commit": "13355c286528cbd1718dcd88b127f2dac1edbc5e"
+  "built_at_commit": "c2b6ca793bb47a0e64649be80f2c6bc1ad59d289"
 }
