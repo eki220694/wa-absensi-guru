@@ -188,50 +188,6 @@
       "norm_label": "typescript"
     },
     {
-      "label": "parse_json.go",
-      "file_type": "code",
-      "source_file": "parse_json.go",
-      "source_location": "L1",
-      "_origin": "ast",
-      "id": "parse_json",
-      "community": 16,
-      "community_name": "parse_json.go",
-      "norm_label": "parse_json.go"
-    },
-    {
-      "label": "Teacher",
-      "file_type": "code",
-      "source_file": "parse_json.go",
-      "source_location": "L11",
-      "_origin": "ast",
-      "id": "wa_absensi_guru_teacher",
-      "community": 16,
-      "community_name": "parse_json.go",
-      "norm_label": "teacher"
-    },
-    {
-      "label": "Attendance",
-      "file_type": "code",
-      "source_file": "parse_json.go",
-      "source_location": "L18",
-      "_origin": "ast",
-      "id": "wa_absensi_guru_attendance",
-      "community": 16,
-      "community_name": "parse_json.go",
-      "norm_label": "attendance"
-    },
-    {
-      "label": "main()",
-      "file_type": "code",
-      "source_file": "parse_json.go",
-      "source_location": "L26",
-      "_origin": "ast",
-      "id": "parse_json_main",
-      "community": 16,
-      "community_name": "parse_json.go",
-      "norm_label": "main()"
-    },
-    {
       "label": "shared/package.json",
       "file_type": "code",
       "source_file": "shared/package.json",
@@ -1415,8 +1371,8 @@
       "source_location": "L14",
       "_origin": "ast",
       "id": "web_package_dependencies_neondatabase_serverless",
-      "community": 38,
-      "community_name": "@neondatabase/serverless",
+      "community": 0,
+      "community_name": "dependencies",
       "norm_label": "@neondatabase/serverless"
     },
     {
@@ -1426,8 +1382,8 @@
       "source_location": "L14",
       "_origin": "ast",
       "id": "neondatabase_serverless",
-      "community": 38,
-      "community_name": "@neondatabase/serverless",
+      "community": 0,
+      "community_name": "dependencies",
       "norm_label": "@neondatabase/serverless"
     },
     {
@@ -1569,8 +1525,8 @@
       "source_location": "L21",
       "_origin": "ast",
       "id": "web_package_dependencies_autoprefixer",
-      "community": 0,
-      "community_name": "dependencies",
+      "community": 27,
+      "community_name": "autoprefixer",
       "norm_label": "autoprefixer"
     },
     {
@@ -1580,8 +1536,8 @@
       "source_location": "L21",
       "_origin": "ast",
       "id": "autoprefixer",
-      "community": 0,
-      "community_name": "dependencies",
+      "community": 27,
+      "community_name": "autoprefixer",
       "norm_label": "autoprefixer"
     },
     {
@@ -2064,8 +2020,8 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "web_src_app_absen_export_page",
-      "community": 23,
-      "community_name": "cn",
+      "community": 16,
+      "community_name": "export/page.tsx",
       "norm_label": "export/page.tsx"
     },
     {
@@ -2075,8 +2031,8 @@
       "source_location": "L9",
       "_origin": "ast",
       "id": "web_src_app_absen_export_page_exportpage",
-      "community": 23,
-      "community_name": "cn",
+      "community": 16,
+      "community_name": "export/page.tsx",
       "norm_label": "exportpage()"
     },
     {
@@ -2614,8 +2570,8 @@
       "source_location": "L13",
       "_origin": "ast",
       "id": "web_src_app_guru_id_page_gurudetailpage",
-      "community": 23,
-      "community_name": "cn",
+      "community": 2,
+      "community_name": "sql",
       "norm_label": "gurudetailpage()"
     },
     {
@@ -2790,8 +2746,8 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "web_src_app_login_page",
-      "community": 23,
-      "community_name": "cn",
+      "community": 16,
+      "community_name": "export/page.tsx",
       "norm_label": "login/page.tsx"
     },
     {
@@ -2801,8 +2757,8 @@
       "source_location": "L12",
       "_origin": "ast",
       "id": "web_src_app_login_page_loginpage",
-      "community": 23,
-      "community_name": "cn",
+      "community": 16,
+      "community_name": "export/page.tsx",
       "norm_label": "loginpage()"
     },
     {
@@ -2812,8 +2768,8 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "web_src_app_page",
-      "community": 2,
-      "community_name": "sql",
+      "community": 16,
+      "community_name": "export/page.tsx",
       "norm_label": "app/page.tsx"
     },
     {
@@ -2823,8 +2779,8 @@
       "source_location": "L9",
       "_origin": "ast",
       "id": "web_src_app_page_dashboardpage",
-      "community": 2,
-      "community_name": "sql",
+      "community": 16,
+      "community_name": "export/page.tsx",
       "norm_label": "dashboardpage()"
     },
     {
@@ -2834,8 +2790,8 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "web_src_app_pengaturan_page",
-      "community": 23,
-      "community_name": "cn",
+      "community": 16,
+      "community_name": "export/page.tsx",
       "norm_label": "pengaturan/page.tsx"
     },
     {
@@ -2845,8 +2801,8 @@
       "source_location": "L8",
       "_origin": "ast",
       "id": "web_src_app_pengaturan_page_pengaturanpage",
-      "community": 23,
-      "community_name": "cn",
+      "community": 16,
+      "community_name": "export/page.tsx",
       "norm_label": "pengaturanpage()"
     },
     {
@@ -2878,8 +2834,8 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "web_src_components_dashboardcharts",
-      "community": 2,
-      "community_name": "sql",
+      "community": 16,
+      "community_name": "export/page.tsx",
       "norm_label": "dashboardcharts.tsx"
     },
     {
@@ -2889,8 +2845,8 @@
       "source_location": "L17",
       "_origin": "ast",
       "id": "web_src_components_dashboardcharts_rangedata",
-      "community": 2,
-      "community_name": "sql",
+      "community": 16,
+      "community_name": "export/page.tsx",
       "norm_label": "rangedata"
     },
     {
@@ -2900,8 +2856,8 @@
       "source_location": "L22",
       "_origin": "ast",
       "id": "web_src_components_dashboardcharts_colors",
-      "community": 2,
-      "community_name": "sql",
+      "community": 16,
+      "community_name": "export/page.tsx",
       "norm_label": "colors"
     },
     {
@@ -2911,8 +2867,8 @@
       "source_location": "L24",
       "_origin": "ast",
       "id": "web_src_components_dashboardcharts_dailylinechart",
-      "community": 2,
-      "community_name": "sql",
+      "community": 16,
+      "community_name": "export/page.tsx",
       "norm_label": "dailylinechart()"
     },
     {
@@ -2922,8 +2878,8 @@
       "source_location": "L41",
       "_origin": "ast",
       "id": "web_src_components_dashboardcharts_statusbarchart",
-      "community": 2,
-      "community_name": "sql",
+      "community": 16,
+      "community_name": "export/page.tsx",
       "norm_label": "statusbarchart()"
     },
     {
@@ -2966,8 +2922,8 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "web_src_components_ui_alert",
-      "community": 23,
-      "community_name": "cn",
+      "community": 16,
+      "community_name": "export/page.tsx",
       "norm_label": "alert.tsx"
     },
     {
@@ -2977,8 +2933,8 @@
       "source_location": "L6",
       "_origin": "ast",
       "id": "web_src_components_ui_alert_alertvariants",
-      "community": 23,
-      "community_name": "cn",
+      "community": 16,
+      "community_name": "export/page.tsx",
       "norm_label": "alertvariants"
     },
     {
@@ -2988,8 +2944,8 @@
       "source_location": "L22",
       "_origin": "ast",
       "id": "web_src_components_ui_alert_alert",
-      "community": 23,
-      "community_name": "cn",
+      "community": 16,
+      "community_name": "export/page.tsx",
       "norm_label": "alert()"
     },
     {
@@ -2999,8 +2955,8 @@
       "source_location": "L37",
       "_origin": "ast",
       "id": "web_src_components_ui_alert_alerttitle",
-      "community": 23,
-      "community_name": "cn",
+      "community": 16,
+      "community_name": "export/page.tsx",
       "norm_label": "alerttitle()"
     },
     {
@@ -3010,8 +2966,8 @@
       "source_location": "L50",
       "_origin": "ast",
       "id": "web_src_components_ui_alert_alertdescription",
-      "community": 23,
-      "community_name": "cn",
+      "community": 16,
+      "community_name": "export/page.tsx",
       "norm_label": "alertdescription()"
     },
     {
@@ -3021,8 +2977,8 @@
       "source_location": "L66",
       "_origin": "ast",
       "id": "web_src_components_ui_alert_alertaction",
-      "community": 23,
-      "community_name": "cn",
+      "community": 16,
+      "community_name": "export/page.tsx",
       "norm_label": "alertaction()"
     },
     {
@@ -3098,8 +3054,8 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "web_src_components_ui_card",
-      "community": 23,
-      "community_name": "cn",
+      "community": 16,
+      "community_name": "export/page.tsx",
       "norm_label": "card.tsx"
     },
     {
@@ -3109,8 +3065,8 @@
       "source_location": "L5",
       "_origin": "ast",
       "id": "web_src_components_ui_card_card",
-      "community": 23,
-      "community_name": "cn",
+      "community": 16,
+      "community_name": "export/page.tsx",
       "norm_label": "card()"
     },
     {
@@ -3120,8 +3076,8 @@
       "source_location": "L23",
       "_origin": "ast",
       "id": "web_src_components_ui_card_cardheader",
-      "community": 23,
-      "community_name": "cn",
+      "community": 16,
+      "community_name": "export/page.tsx",
       "norm_label": "cardheader()"
     },
     {
@@ -3131,8 +3087,8 @@
       "source_location": "L36",
       "_origin": "ast",
       "id": "web_src_components_ui_card_cardtitle",
-      "community": 23,
-      "community_name": "cn",
+      "community": 16,
+      "community_name": "export/page.tsx",
       "norm_label": "cardtitle()"
     },
     {
@@ -3142,8 +3098,8 @@
       "source_location": "L49",
       "_origin": "ast",
       "id": "web_src_components_ui_card_carddescription",
-      "community": 23,
-      "community_name": "cn",
+      "community": 16,
+      "community_name": "export/page.tsx",
       "norm_label": "carddescription()"
     },
     {
@@ -3153,8 +3109,8 @@
       "source_location": "L59",
       "_origin": "ast",
       "id": "web_src_components_ui_card_cardaction",
-      "community": 23,
-      "community_name": "cn",
+      "community": 16,
+      "community_name": "export/page.tsx",
       "norm_label": "cardaction()"
     },
     {
@@ -3164,8 +3120,8 @@
       "source_location": "L72",
       "_origin": "ast",
       "id": "web_src_components_ui_card_cardcontent",
-      "community": 23,
-      "community_name": "cn",
+      "community": 16,
+      "community_name": "export/page.tsx",
       "norm_label": "cardcontent()"
     },
     {
@@ -3175,8 +3131,8 @@
       "source_location": "L82",
       "_origin": "ast",
       "id": "web_src_components_ui_card_cardfooter",
-      "community": 23,
-      "community_name": "cn",
+      "community": 16,
+      "community_name": "export/page.tsx",
       "norm_label": "cardfooter()"
     },
     {
@@ -3802,8 +3758,8 @@
       "source_location": "L7",
       "_origin": "ast",
       "id": "web_src_components_ui_tooltip_tooltipprovider",
-      "community": 14,
-      "community_name": "dropdown-menu.tsx",
+      "community": 23,
+      "community_name": "cn",
       "norm_label": "tooltipprovider()"
     },
     {
@@ -4575,6 +4531,50 @@
       "community": 4,
       "community_name": "compilerOptions",
       "norm_label": "node_modules"
+    },
+    {
+      "label": "word_count.py",
+      "file_type": "code",
+      "source_file": "word_count.py",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "word_count",
+      "community": 38,
+      "community_name": "word_count.py",
+      "norm_label": "word_count.py"
+    },
+    {
+      "label": "count_words()",
+      "file_type": "code",
+      "source_file": "word_count.py",
+      "source_location": "L7",
+      "_origin": "ast",
+      "id": "word_count_count_words",
+      "community": 38,
+      "community_name": "word_count.py",
+      "norm_label": "count_words()"
+    },
+    {
+      "label": "wordcount.py",
+      "file_type": "code",
+      "source_file": "wordcount.py",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "wordcount",
+      "community": 59,
+      "community_name": "wordcount.py",
+      "norm_label": "wordcount.py"
+    },
+    {
+      "label": "main()",
+      "file_type": "code",
+      "source_file": "wordcount.py",
+      "source_location": "L4",
+      "_origin": "ast",
+      "id": "wordcount_main",
+      "community": 59,
+      "community_name": "wordcount.py",
+      "norm_label": "main()"
     },
     {
       "label": "bot-500-debug.md",
@@ -6317,39 +6317,6 @@
       "_origin": "ast",
       "source": "package_devdependencies_typescript",
       "target": "package_json_typescript",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "parse_json.go",
-      "source_location": "L26",
-      "weight": 1.0,
-      "_origin": "ast",
-      "source": "parse_json",
-      "target": "parse_json_main",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "parse_json.go",
-      "source_location": "L18",
-      "weight": 1.0,
-      "_origin": "ast",
-      "source": "parse_json",
-      "target": "wa_absensi_guru_attendance",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "parse_json.go",
-      "source_location": "L11",
-      "weight": 1.0,
-      "_origin": "ast",
-      "source": "parse_json",
-      "target": "wa_absensi_guru_teacher",
       "confidence_score": 1.0
     },
     {
@@ -14974,6 +14941,28 @@
     {
       "relation": "contains",
       "confidence": "EXTRACTED",
+      "source_file": "word_count.py",
+      "source_location": "L7",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "word_count",
+      "target": "word_count_count_words",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "wordcount.py",
+      "source_location": "L4",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "wordcount",
+      "target": "wordcount_main",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
       "source_file": ".superpowers/bot-500-debug.md",
       "source_location": "L1",
       "weight": 1.0,
@@ -16436,5 +16425,5 @@
     }
   ],
   "hyperedges": [],
-  "built_at_commit": "cfffcdc8e41091ae1d00bc5470886614196b9562"
+  "built_at_commit": "b4b5a434eb251471d34c302e3ed8ecb94dd2dc41"
 }

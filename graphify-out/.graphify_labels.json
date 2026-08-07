@@ -15,7 +15,7 @@
   "13": "Global Constraints",
   "14": "dropdown-menu.tsx",
   "15": "next.config.js",
-  "16": "parse_json.go",
+  "16": "export/page.tsx",
   "17": "count.sh",
   "18": "tailwind.config.ts",
   "19": "postcss.config.js",
@@ -26,6 +26,7 @@
   "24": "bcryptjs",
   "25": "class-variance-authority",
   "26": "next-env.d.ts",
+  "27": "autoprefixer",
   "28": "DB Schema + Seed Check Report",
   "29": "Agent 3 Report — Build Check + TypeScript Validation",
   "30": "Bot Fix Report",
@@ -36,7 +37,7 @@
   "35": "Shadcn/ui Pi Extension — Design Spec",
   "36": "iconv-lite",
   "37": "lucide-react",
-  "38": "@neondatabase/serverless",
+  "38": "word_count.py",
   "39": "next",
   "40": "next-auth",
   "41": "pdfkit",
@@ -57,5 +58,6 @@
   "56": "typescript",
   "57": "geist",
   "58": "@base-ui/react",
+  "59": "wordcount.py",
   "60": "grammy"
 }

@@ -414,14 +414,19 @@
     "ast_hash": "5a6fd53fdcf2be529e9cc0b718fde352",
     "semantic_hash": ""
   },
-  "parse_json.go": {
-    "mtime": 1786080575.7917924,
-    "ast_hash": "2c0e03a15c7e341ab47ea33c620ec854",
-    "semantic_hash": ""
-  },
   "count.sh": {
     "mtime": 1786081341.8540363,
     "ast_hash": "4c24effb9d6cdbea79d22ba2b3d031a2",
+    "semantic_hash": ""
+  },
+  "word_count.py": {
+    "mtime": 1786082446.145974,
+    "ast_hash": "c5a5d9b35008c6e7f77e992db32f43e6",
+    "semantic_hash": ""
+  },
+  "wordcount.py": {
+    "mtime": 1786081438.0981162,
+    "ast_hash": "613b28a1a121a5fa21c7a46ad8060d7a",
     "semantic_hash": ""
   }
 }
