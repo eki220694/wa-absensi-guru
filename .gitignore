@@ -5,4 +5,5 @@ dist/
 data/photos/
 graphify-out/
 .next/
-web/.next/
+web/.next/count.sh
+parse_json.go
