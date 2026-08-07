@@ -15,8 +15,8 @@
   "13": "Global Constraints",
   "14": "dropdown-menu.tsx",
   "15": "next.config.js",
-  "16": "quick-fix.js",
-  "17": "deploy.sh",
+  "16": "parse_json.go",
+  "17": "count.sh",
   "18": "tailwind.config.ts",
   "19": "postcss.config.js",
   "20": "shared/tsconfig.json",
@@ -26,7 +26,6 @@
   "24": "bcryptjs",
   "25": "class-variance-authority",
   "26": "next-env.d.ts",
-  "27": "layout.tsx",
   "28": "DB Schema + Seed Check Report",
   "29": "Agent 3 Report — Build Check + TypeScript Validation",
   "30": "Bot Fix Report",
@@ -58,12 +57,5 @@
   "56": "typescript",
   "57": "geist",
   "58": "@base-ui/react",
-  "59": "count-words.sh",
-  "60": "grammy",
-  "61": "count",
-  "62": "word_count.py",
-  "63": "wordcount.sh",
-  "64": "DashboardCharts.tsx",
-  "65": "count_files.py",
-  "66": "hitung_kata.sh script"
+  "60": "grammy"
 }

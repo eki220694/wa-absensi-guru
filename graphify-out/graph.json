@@ -4,209 +4,34 @@
   "graph": {},
   "nodes": [
     {
-      "label": "count-words.sh",
+      "label": "count.sh",
       "file_type": "code",
-      "source_file": "count-words.sh",
+      "source_file": "count.sh",
       "source_location": "L1",
       "metadata": {
         "language": "bash",
         "kind": "file"
       },
       "_origin": "ast",
-      "id": "count_words",
-      "community": 59,
-      "community_name": "count-words.sh",
-      "norm_label": "count-words.sh"
+      "id": "count",
+      "community": 17,
+      "community_name": "count.sh",
+      "norm_label": "count.sh"
     },
     {
-      "label": "count-words.sh script",
+      "label": "count.sh script",
       "file_type": "code",
-      "source_file": "count-words.sh",
+      "source_file": "count.sh",
       "source_location": "L1",
       "metadata": {
         "language": "bash",
         "kind": "bash_entrypoint"
       },
       "_origin": "ast",
-      "id": "count_words_sh__entry",
-      "community": 59,
-      "community_name": "count-words.sh",
-      "norm_label": "count-words.sh script"
-    },
-    {
-      "label": "count_files.py",
-      "file_type": "code",
-      "source_file": "count_files.py",
-      "source_location": "L1",
-      "_origin": "ast",
-      "id": "count_files",
-      "community": 65,
-      "community_name": "count_files.py",
-      "norm_label": "count_files.py"
-    },
-    {
-      "label": "count_files()",
-      "file_type": "code",
-      "source_file": "count_files.py",
-      "source_location": "L6",
-      "_origin": "ast",
-      "id": "count_files_count_files",
-      "community": 65,
-      "community_name": "count_files.py",
-      "norm_label": "count_files()"
-    },
-    {
-      "label": "deploy.sh",
-      "file_type": "code",
-      "source_file": "deploy.sh",
-      "source_location": "L1",
-      "metadata": {
-        "language": "bash",
-        "kind": "file"
-      },
-      "_origin": "ast",
-      "id": "deploy",
+      "id": "count_sh__entry",
       "community": 17,
-      "community_name": "deploy.sh",
-      "norm_label": "deploy.sh"
-    },
-    {
-      "label": "deploy.sh script",
-      "file_type": "code",
-      "source_file": "deploy.sh",
-      "source_location": "L1",
-      "metadata": {
-        "language": "bash",
-        "kind": "bash_entrypoint"
-      },
-      "_origin": "ast",
-      "id": "deploy_sh__entry",
-      "community": 17,
-      "community_name": "deploy.sh",
-      "norm_label": "deploy.sh script"
-    },
-    {
-      "label": "log()",
-      "file_type": "code",
-      "source_file": "deploy.sh",
-      "source_location": "L23",
-      "metadata": {
-        "language": "bash",
-        "kind": "bash_function"
-      },
-      "_origin": "ast",
-      "id": "deploy_log",
-      "community": 17,
-      "community_name": "deploy.sh",
-      "norm_label": "log()"
-    },
-    {
-      "label": "err()",
-      "file_type": "code",
-      "source_file": "deploy.sh",
-      "source_location": "L24",
-      "metadata": {
-        "language": "bash",
-        "kind": "bash_function"
-      },
-      "_origin": "ast",
-      "id": "deploy_err",
-      "community": 17,
-      "community_name": "deploy.sh",
-      "norm_label": "err()"
-    },
-    {
-      "label": "warn()",
-      "file_type": "code",
-      "source_file": "deploy.sh",
-      "source_location": "L25",
-      "metadata": {
-        "language": "bash",
-        "kind": "bash_function"
-      },
-      "_origin": "ast",
-      "id": "deploy_warn",
-      "community": 17,
-      "community_name": "deploy.sh",
-      "norm_label": "warn()"
-    },
-    {
-      "label": "require_cmd()",
-      "file_type": "code",
-      "source_file": "deploy.sh",
-      "source_location": "L27",
-      "metadata": {
-        "language": "bash",
-        "kind": "bash_function"
-      },
-      "_origin": "ast",
-      "id": "deploy_require_cmd",
-      "community": 17,
-      "community_name": "deploy.sh",
-      "norm_label": "require_cmd()"
-    },
-    {
-      "label": "hitung_kata.py",
-      "file_type": "code",
-      "source_file": "hitung_kata.py",
-      "source_location": "L1",
-      "_origin": "ast",
-      "id": "hitung_kata_py_hitung_kata",
-      "community": 61,
-      "community_name": "count",
-      "norm_label": "hitung_kata.py"
-    },
-    {
-      "label": "count()",
-      "file_type": "code",
-      "source_file": "hitung_kata.py",
-      "source_location": "L8",
-      "_origin": "ast",
-      "id": "hitung_kata_count",
-      "community": 61,
-      "community_name": "count",
-      "norm_label": "count()"
-    },
-    {
-      "label": "main()",
-      "file_type": "code",
-      "source_file": "hitung_kata.py",
-      "source_location": "L20",
-      "_origin": "ast",
-      "id": "hitung_kata_main",
-      "community": 61,
-      "community_name": "count",
-      "norm_label": "main()"
-    },
-    {
-      "label": "hitung_kata.sh",
-      "file_type": "code",
-      "source_file": "hitung_kata.sh",
-      "source_location": "L1",
-      "metadata": {
-        "language": "bash",
-        "kind": "file"
-      },
-      "_origin": "ast",
-      "id": "hitung_kata_sh_hitung_kata",
-      "community": 66,
-      "community_name": "hitung_kata.sh script",
-      "norm_label": "hitung_kata.sh"
-    },
-    {
-      "label": "hitung_kata.sh script",
-      "file_type": "code",
-      "source_file": "hitung_kata.sh",
-      "source_location": "L1",
-      "metadata": {
-        "language": "bash",
-        "kind": "bash_entrypoint"
-      },
-      "_origin": "ast",
-      "id": "hitung_kata_sh__entry",
-      "community": 66,
-      "community_name": "hitung_kata.sh script",
-      "norm_label": "hitung_kata.sh script"
+      "community_name": "count.sh",
+      "norm_label": "count.sh script"
     },
     {
       "label": "package.json",
@@ -363,81 +188,48 @@
       "norm_label": "typescript"
     },
     {
-      "label": "quick-fix.js",
+      "label": "parse_json.go",
       "file_type": "code",
-      "source_file": "quick-fix.js",
+      "source_file": "parse_json.go",
       "source_location": "L1",
       "_origin": "ast",
-      "id": "quick_fix",
+      "id": "parse_json",
       "community": 16,
-      "community_name": "quick-fix.js",
-      "norm_label": "quick-fix.js"
+      "community_name": "parse_json.go",
+      "norm_label": "parse_json.go"
     },
     {
-      "label": "fs",
+      "label": "Teacher",
       "file_type": "code",
-      "source_file": "quick-fix.js",
-      "source_location": "L7",
-      "_origin": "ast",
-      "id": "quick_fix_fs",
-      "community": 16,
-      "community_name": "quick-fix.js",
-      "norm_label": "fs"
-    },
-    {
-      "label": "path",
-      "file_type": "code",
-      "source_file": "quick-fix.js",
-      "source_location": "L8",
-      "_origin": "ast",
-      "id": "quick_fix_path",
-      "community": 16,
-      "community_name": "quick-fix.js",
-      "norm_label": "path"
-    },
-    {
-      "label": "CONFIG_FILES",
-      "file_type": "code",
-      "source_file": "quick-fix.js",
+      "source_file": "parse_json.go",
       "source_location": "L11",
       "_origin": "ast",
-      "id": "quick_fix_config_files",
+      "id": "wa_absensi_guru_teacher",
       "community": 16,
-      "community_name": "quick-fix.js",
-      "norm_label": "config_files"
+      "community_name": "parse_json.go",
+      "norm_label": "teacher"
     },
     {
-      "label": "ROOT",
+      "label": "Attendance",
       "file_type": "code",
-      "source_file": "quick-fix.js",
-      "source_location": "L16",
-      "_origin": "ast",
-      "id": "quick_fix_root",
-      "community": 16,
-      "community_name": "quick-fix.js",
-      "norm_label": "root"
-    },
-    {
-      "label": "backup()",
-      "file_type": "code",
-      "source_file": "quick-fix.js",
+      "source_file": "parse_json.go",
       "source_location": "L18",
       "_origin": "ast",
-      "id": "quick_fix_backup",
+      "id": "wa_absensi_guru_attendance",
       "community": 16,
-      "community_name": "quick-fix.js",
-      "norm_label": "backup()"
+      "community_name": "parse_json.go",
+      "norm_label": "attendance"
     },
     {
-      "label": "restore()",
+      "label": "main()",
       "file_type": "code",
-      "source_file": "quick-fix.js",
-      "source_location": "L34",
+      "source_file": "parse_json.go",
+      "source_location": "L26",
       "_origin": "ast",
-      "id": "quick_fix_restore",
+      "id": "parse_json_main",
       "community": 16,
-      "community_name": "quick-fix.js",
-      "norm_label": "restore()"
+      "community_name": "parse_json.go",
+      "norm_label": "main()"
     },
     {
       "label": "shared/package.json",
@@ -553,7 +345,7 @@
       "label": "JAM_SENIN_KAMIS",
       "file_type": "code",
       "source_file": "shared/src/constants.ts",
-      "source_location": "L9",
+      "source_location": "L8",
       "_origin": "ast",
       "id": "shared_src_constants_jam_senin_kamis",
       "community": 1,
@@ -564,7 +356,7 @@
       "label": "JAM_JUMAT",
       "file_type": "code",
       "source_file": "shared/src/constants.ts",
-      "source_location": "L10",
+      "source_location": "L9",
       "_origin": "ast",
       "id": "shared_src_constants_jam_jumat",
       "community": 1,
@@ -575,7 +367,7 @@
       "label": "HARI",
       "file_type": "code",
       "source_file": "shared/src/constants.ts",
-      "source_location": "L11",
+      "source_location": "L10",
       "_origin": "ast",
       "id": "shared_src_constants_hari",
       "community": 1,
@@ -586,7 +378,7 @@
       "label": "JENIS_IZIN",
       "file_type": "code",
       "source_file": "shared/src/constants.ts",
-      "source_location": "L12",
+      "source_location": "L11",
       "_origin": "ast",
       "id": "shared_src_constants_jenis_izin",
       "community": 1,
@@ -597,7 +389,7 @@
       "label": "STATUS_ABSEN",
       "file_type": "code",
       "source_file": "shared/src/constants.ts",
-      "source_location": "L13",
+      "source_location": "L12",
       "_origin": "ast",
       "id": "shared_src_constants_status_absen",
       "community": 1,
@@ -608,23 +400,12 @@
       "label": "STATUS_IZIN",
       "file_type": "code",
       "source_file": "shared/src/constants.ts",
-      "source_location": "L14",
+      "source_location": "L13",
       "_origin": "ast",
       "id": "shared_src_constants_status_izin",
       "community": 1,
       "community_name": "telegram.ts",
       "norm_label": "status_izin"
-    },
-    {
-      "label": "TODO: update koordinat asli SMAN 6 SIGI",
-      "file_type": "rationale",
-      "source_file": "shared/src/constants.ts",
-      "source_location": "L3",
-      "_origin": "ast",
-      "id": "shared_src_constants_rationale_3",
-      "community": 1,
-      "community_name": "telegram.ts",
-      "norm_label": "todo: update koordinat asli sman 6 sigi"
     },
     {
       "label": "index.ts",
@@ -2833,8 +2614,8 @@
       "source_location": "L13",
       "_origin": "ast",
       "id": "web_src_app_guru_id_page_gurudetailpage",
-      "community": 2,
-      "community_name": "sql",
+      "community": 23,
+      "community_name": "cn",
       "norm_label": "gurudetailpage()"
     },
     {
@@ -2954,8 +2735,8 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "web_src_app_layout",
-      "community": 27,
-      "community_name": "layout.tsx",
+      "community": 14,
+      "community_name": "dropdown-menu.tsx",
       "norm_label": "layout.tsx"
     },
     {
@@ -2965,8 +2746,8 @@
       "source_location": "L10",
       "_origin": "ast",
       "id": "web_src_app_layout_geistsans",
-      "community": 27,
-      "community_name": "layout.tsx",
+      "community": 14,
+      "community_name": "dropdown-menu.tsx",
       "norm_label": "geistsans"
     },
     {
@@ -2976,8 +2757,8 @@
       "source_location": "L19",
       "_origin": "ast",
       "id": "web_src_app_layout_geistmono",
-      "community": 27,
-      "community_name": "layout.tsx",
+      "community": 14,
+      "community_name": "dropdown-menu.tsx",
       "norm_label": "geistmono"
     },
     {
@@ -2987,8 +2768,8 @@
       "source_location": "L27",
       "_origin": "ast",
       "id": "web_src_app_layout_metadata",
-      "community": 27,
-      "community_name": "layout.tsx",
+      "community": 14,
+      "community_name": "dropdown-menu.tsx",
       "norm_label": "metadata"
     },
     {
@@ -2998,8 +2779,8 @@
       "source_location": "L32",
       "_origin": "ast",
       "id": "web_src_app_layout_rootlayout",
-      "community": 27,
-      "community_name": "layout.tsx",
+      "community": 14,
+      "community_name": "dropdown-menu.tsx",
       "norm_label": "rootlayout()"
     },
     {
@@ -3031,8 +2812,8 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "web_src_app_page",
-      "community": 23,
-      "community_name": "cn",
+      "community": 2,
+      "community_name": "sql",
       "norm_label": "app/page.tsx"
     },
     {
@@ -3042,8 +2823,8 @@
       "source_location": "L9",
       "_origin": "ast",
       "id": "web_src_app_page_dashboardpage",
-      "community": 23,
-      "community_name": "cn",
+      "community": 2,
+      "community_name": "sql",
       "norm_label": "dashboardpage()"
     },
     {
@@ -3075,8 +2856,8 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "web_src_components_authprovider",
-      "community": 27,
-      "community_name": "layout.tsx",
+      "community": 14,
+      "community_name": "dropdown-menu.tsx",
       "norm_label": "authprovider.tsx"
     },
     {
@@ -3086,8 +2867,8 @@
       "source_location": "L4",
       "_origin": "ast",
       "id": "web_src_components_authprovider_authprovider",
-      "community": 27,
-      "community_name": "layout.tsx",
+      "community": 14,
+      "community_name": "dropdown-menu.tsx",
       "norm_label": "authprovider()"
     },
     {
@@ -3097,8 +2878,8 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "web_src_components_dashboardcharts",
-      "community": 64,
-      "community_name": "DashboardCharts.tsx",
+      "community": 2,
+      "community_name": "sql",
       "norm_label": "dashboardcharts.tsx"
     },
     {
@@ -3108,8 +2889,8 @@
       "source_location": "L17",
       "_origin": "ast",
       "id": "web_src_components_dashboardcharts_rangedata",
-      "community": 64,
-      "community_name": "DashboardCharts.tsx",
+      "community": 2,
+      "community_name": "sql",
       "norm_label": "rangedata"
     },
     {
@@ -3119,8 +2900,8 @@
       "source_location": "L22",
       "_origin": "ast",
       "id": "web_src_components_dashboardcharts_colors",
-      "community": 64,
-      "community_name": "DashboardCharts.tsx",
+      "community": 2,
+      "community_name": "sql",
       "norm_label": "colors"
     },
     {
@@ -3130,8 +2911,8 @@
       "source_location": "L24",
       "_origin": "ast",
       "id": "web_src_components_dashboardcharts_dailylinechart",
-      "community": 64,
-      "community_name": "DashboardCharts.tsx",
+      "community": 2,
+      "community_name": "sql",
       "norm_label": "dailylinechart()"
     },
     {
@@ -3141,8 +2922,8 @@
       "source_location": "L41",
       "_origin": "ast",
       "id": "web_src_components_dashboardcharts_statusbarchart",
-      "community": 64,
-      "community_name": "DashboardCharts.tsx",
+      "community": 2,
+      "community_name": "sql",
       "norm_label": "statusbarchart()"
     },
     {
@@ -4010,8 +3791,8 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "web_src_components_ui_tooltip",
-      "community": 27,
-      "community_name": "layout.tsx",
+      "community": 23,
+      "community_name": "cn",
       "norm_label": "tooltip.tsx"
     },
     {
@@ -4021,8 +3802,8 @@
       "source_location": "L7",
       "_origin": "ast",
       "id": "web_src_components_ui_tooltip_tooltipprovider",
-      "community": 27,
-      "community_name": "layout.tsx",
+      "community": 14,
+      "community_name": "dropdown-menu.tsx",
       "norm_label": "tooltipprovider()"
     },
     {
@@ -4032,8 +3813,8 @@
       "source_location": "L20",
       "_origin": "ast",
       "id": "web_src_components_ui_tooltip_tooltip",
-      "community": 27,
-      "community_name": "layout.tsx",
+      "community": 23,
+      "community_name": "cn",
       "norm_label": "tooltip()"
     },
     {
@@ -4043,8 +3824,8 @@
       "source_location": "L24",
       "_origin": "ast",
       "id": "web_src_components_ui_tooltip_tooltiptrigger",
-      "community": 27,
-      "community_name": "layout.tsx",
+      "community": 23,
+      "community_name": "cn",
       "norm_label": "tooltiptrigger()"
     },
     {
@@ -4794,69 +4575,6 @@
       "community": 4,
       "community_name": "compilerOptions",
       "norm_label": "node_modules"
-    },
-    {
-      "label": "word_count.py",
-      "file_type": "code",
-      "source_file": "word_count.py",
-      "source_location": "L1",
-      "_origin": "ast",
-      "id": "word_count",
-      "community": 62,
-      "community_name": "word_count.py",
-      "norm_label": "word_count.py"
-    },
-    {
-      "label": "count_words()",
-      "file_type": "code",
-      "source_file": "word_count.py",
-      "source_location": "L7",
-      "_origin": "ast",
-      "id": "word_count_count_words",
-      "community": 62,
-      "community_name": "word_count.py",
-      "norm_label": "count_words()"
-    },
-    {
-      "label": "main()",
-      "file_type": "code",
-      "source_file": "word_count.py",
-      "source_location": "L11",
-      "_origin": "ast",
-      "id": "word_count_main",
-      "community": 62,
-      "community_name": "word_count.py",
-      "norm_label": "main()"
-    },
-    {
-      "label": "wordcount.sh",
-      "file_type": "code",
-      "source_file": "wordcount.sh",
-      "source_location": "L1",
-      "metadata": {
-        "language": "bash",
-        "kind": "file"
-      },
-      "_origin": "ast",
-      "id": "wordcount",
-      "community": 63,
-      "community_name": "wordcount.sh",
-      "norm_label": "wordcount.sh"
-    },
-    {
-      "label": "wordcount.sh script",
-      "file_type": "code",
-      "source_file": "wordcount.sh",
-      "source_location": "L1",
-      "metadata": {
-        "language": "bash",
-        "kind": "bash_entrypoint"
-      },
-      "_origin": "ast",
-      "id": "wordcount_sh__entry",
-      "community": 63,
-      "community_name": "wordcount.sh",
-      "norm_label": "wordcount.sh script"
     },
     {
       "label": "bot-500-debug.md",
@@ -6447,171 +6165,12 @@
     {
       "relation": "contains",
       "confidence": "EXTRACTED",
-      "source_file": "count-words.sh",
+      "source_file": "count.sh",
       "source_location": "L1",
       "weight": 1.0,
       "_origin": "ast",
-      "source": "count_words",
-      "target": "count_words_sh__entry",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "count_files.py",
-      "source_location": "L6",
-      "weight": 1.0,
-      "_origin": "ast",
-      "source": "count_files",
-      "target": "count_files_count_files",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "defines",
-      "confidence": "EXTRACTED",
-      "source_file": "deploy.sh",
-      "source_location": "L24",
-      "weight": 1.0,
-      "_origin": "ast",
-      "source": "deploy",
-      "target": "deploy_err",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "defines",
-      "confidence": "EXTRACTED",
-      "source_file": "deploy.sh",
-      "source_location": "L23",
-      "weight": 1.0,
-      "_origin": "ast",
-      "source": "deploy",
-      "target": "deploy_log",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "defines",
-      "confidence": "EXTRACTED",
-      "source_file": "deploy.sh",
-      "source_location": "L27",
-      "weight": 1.0,
-      "_origin": "ast",
-      "source": "deploy",
-      "target": "deploy_require_cmd",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "deploy.sh",
-      "source_location": "L1",
-      "weight": 1.0,
-      "_origin": "ast",
-      "source": "deploy",
-      "target": "deploy_sh__entry",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "defines",
-      "confidence": "EXTRACTED",
-      "source_file": "deploy.sh",
-      "source_location": "L25",
-      "weight": 1.0,
-      "_origin": "ast",
-      "source": "deploy",
-      "target": "deploy_warn",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "calls",
-      "confidence": "EXTRACTED",
-      "source_file": "deploy.sh",
-      "source_location": "L31",
-      "weight": 1.0,
-      "context": "call",
-      "_origin": "ast",
-      "source": "deploy_sh__entry",
-      "target": "deploy_log",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "calls",
-      "confidence": "EXTRACTED",
-      "source_file": "deploy.sh",
-      "source_location": "L32",
-      "weight": 1.0,
-      "context": "call",
-      "_origin": "ast",
-      "source": "deploy_sh__entry",
-      "target": "deploy_require_cmd",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "calls",
-      "confidence": "EXTRACTED",
-      "source_file": "deploy.sh",
-      "source_location": "L45",
-      "weight": 1.0,
-      "context": "call",
-      "_origin": "ast",
-      "source": "deploy_sh__entry",
-      "target": "deploy_warn",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "calls",
-      "confidence": "EXTRACTED",
-      "source_file": "deploy.sh",
-      "source_location": "L28",
-      "weight": 1.0,
-      "context": "call",
-      "_origin": "ast",
-      "source": "deploy_require_cmd",
-      "target": "deploy_err",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "hitung_kata.py",
-      "source_location": "L8",
-      "weight": 1.0,
-      "_origin": "ast",
-      "source": "hitung_kata_py_hitung_kata",
-      "target": "hitung_kata_count",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "hitung_kata.py",
-      "source_location": "L20",
-      "weight": 1.0,
-      "_origin": "ast",
-      "source": "hitung_kata_py_hitung_kata",
-      "target": "hitung_kata_main",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "calls",
-      "context": "call",
-      "confidence": "EXTRACTED",
-      "source_file": "hitung_kata.py",
-      "source_location": "L31",
-      "weight": 1.0,
-      "_origin": "ast",
-      "source": "hitung_kata_main",
-      "target": "hitung_kata_count",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "hitung_kata.sh",
-      "source_location": "L1",
-      "weight": 1.0,
-      "_origin": "ast",
-      "source": "hitung_kata_sh_hitung_kata",
-      "target": "hitung_kata_sh__entry",
+      "source": "count",
+      "target": "count_sh__entry",
       "confidence_score": 1.0
     },
     {
@@ -6763,67 +6322,34 @@
     {
       "relation": "contains",
       "confidence": "EXTRACTED",
-      "source_file": "quick-fix.js",
+      "source_file": "parse_json.go",
+      "source_location": "L26",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "parse_json",
+      "target": "parse_json_main",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "parse_json.go",
       "source_location": "L18",
       "weight": 1.0,
       "_origin": "ast",
-      "source": "quick_fix",
-      "target": "quick_fix_backup",
+      "source": "parse_json",
+      "target": "wa_absensi_guru_attendance",
       "confidence_score": 1.0
     },
     {
       "relation": "contains",
       "confidence": "EXTRACTED",
-      "source_file": "quick-fix.js",
+      "source_file": "parse_json.go",
       "source_location": "L11",
       "weight": 1.0,
       "_origin": "ast",
-      "source": "quick_fix",
-      "target": "quick_fix_config_files",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "quick-fix.js",
-      "source_location": "L7",
-      "weight": 1.0,
-      "_origin": "ast",
-      "source": "quick_fix",
-      "target": "quick_fix_fs",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "quick-fix.js",
-      "source_location": "L8",
-      "weight": 1.0,
-      "_origin": "ast",
-      "source": "quick_fix",
-      "target": "quick_fix_path",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "quick-fix.js",
-      "source_location": "L34",
-      "weight": 1.0,
-      "_origin": "ast",
-      "source": "quick_fix",
-      "target": "quick_fix_restore",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "quick-fix.js",
-      "source_location": "L16",
-      "weight": 1.0,
-      "_origin": "ast",
-      "source": "quick_fix",
-      "target": "quick_fix_root",
+      "source": "parse_json",
+      "target": "wa_absensi_guru_teacher",
       "confidence_score": 1.0
     },
     {
@@ -6907,7 +6433,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "shared/src/constants.ts",
-      "source_location": "L11",
+      "source_location": "L10",
       "weight": 1.0,
       "_origin": "ast",
       "source": "shared_src_constants",
@@ -6918,7 +6444,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "shared/src/constants.ts",
-      "source_location": "L10",
+      "source_location": "L9",
       "weight": 1.0,
       "_origin": "ast",
       "source": "shared_src_constants",
@@ -6929,7 +6455,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "shared/src/constants.ts",
-      "source_location": "L9",
+      "source_location": "L8",
       "weight": 1.0,
       "_origin": "ast",
       "source": "shared_src_constants",
@@ -6940,7 +6466,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "shared/src/constants.ts",
-      "source_location": "L12",
+      "source_location": "L11",
       "weight": 1.0,
       "_origin": "ast",
       "source": "shared_src_constants",
@@ -6962,7 +6488,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "shared/src/constants.ts",
-      "source_location": "L13",
+      "source_location": "L12",
       "weight": 1.0,
       "_origin": "ast",
       "source": "shared_src_constants",
@@ -6973,22 +6499,11 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "shared/src/constants.ts",
-      "source_location": "L14",
+      "source_location": "L13",
       "weight": 1.0,
       "_origin": "ast",
       "source": "shared_src_constants",
       "target": "shared_src_constants_status_izin",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "rationale_for",
-      "confidence": "EXTRACTED",
-      "source_file": "shared/src/constants.ts",
-      "source_location": "L3",
-      "weight": 1.0,
-      "_origin": "ast",
-      "source": "shared_src_constants_rationale_3",
-      "target": "shared_src_constants",
       "confidence_score": 1.0
     },
     {
@@ -15459,51 +14974,6 @@
     {
       "relation": "contains",
       "confidence": "EXTRACTED",
-      "source_file": "word_count.py",
-      "source_location": "L7",
-      "weight": 1.0,
-      "_origin": "ast",
-      "source": "word_count",
-      "target": "word_count_count_words",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "word_count.py",
-      "source_location": "L11",
-      "weight": 1.0,
-      "_origin": "ast",
-      "source": "word_count",
-      "target": "word_count_main",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "calls",
-      "context": "call",
-      "confidence": "EXTRACTED",
-      "source_file": "word_count.py",
-      "source_location": "L16",
-      "weight": 1.0,
-      "_origin": "ast",
-      "source": "word_count_main",
-      "target": "word_count_count_words",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "wordcount.sh",
-      "source_location": "L1",
-      "weight": 1.0,
-      "_origin": "ast",
-      "source": "wordcount",
-      "target": "wordcount_sh__entry",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
       "source_file": ".superpowers/bot-500-debug.md",
       "source_location": "L1",
       "weight": 1.0,
@@ -16966,5 +16436,5 @@
     }
   ],
   "hyperedges": [],
-  "built_at_commit": "c2b6ca793bb47a0e64649be80f2c6bc1ad59d289"
+  "built_at_commit": "cfffcdc8e41091ae1d00bc5470886614196b9562"
 }
