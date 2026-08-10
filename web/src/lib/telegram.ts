@@ -170,9 +170,27 @@ async function cmdHelp(ctx: Context) {
   return ctx.reply('🤖 *Bantuan*\n/start — Menu\n/absen — Absen\n/jadwal — Jadwal\n/izin — Izin\n/cek — Cek absen\n/daftar NIP PASS — Login', { parse_mode: 'Markdown' });
 }
 
+// ─── Rate limit: sliding window 5 msg/min per chat (plan constraint) ──
+const rateHits = new Map<string, number[]>();
+function rateLimited(chatId: string): boolean {
+  const now = Date.now();
+  const recent = (rateHits.get(chatId) ?? []).filter(t => now - t < 60_000);
+  if (recent.length >= 5) { rateHits.set(chatId, recent); return true; }
+  recent.push(now);
+  rateHits.set(chatId, recent);
+  return false;
+}
+const rateLimitMw = async (ctx: Context, next: () => Promise<void>) => {
+  const chatId = ctx.chat?.id;
+  if (chatId !== undefined && rateLimited(String(chatId)))
+    return ctx.reply('⏳ Terlalu cepat. Coba lagi sebentar lagi.');
+  return next();
+};
+
 // ─── Register ────────────────────────────────────
 function setup() {
   const b = getBot();
+  b.use(rateLimitMw);
   b.command('start', cmdStart);
   b.command('daftar', cmdDaftar);
   b.command('absen', cmdAbsen);

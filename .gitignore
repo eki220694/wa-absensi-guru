@@ -5,5 +5,9 @@ dist/
 data/photos/
 graphify-out/
 .next/
-web/.next/count.sh
+*.tsbuildinfo
+count.sh
+count_lines.py
+word_count.py
+wordcount.py
 parse_json.go

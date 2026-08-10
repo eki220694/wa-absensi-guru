@@ -1,16 +1,16 @@
 # Graph Report - wa-absensi-guru  (2026-08-07)
 
 ## Corpus Check
-- 85 files · ~29,137 words
+- 86 files · ~29,258 words
 - Verdict: corpus is large enough that graph structure adds value.
 
 ## Summary
-- 559 nodes · 891 edges · 61 communities (29 shown, 32 thin omitted)
-- Extraction: 99% EXTRACTED · 1% INFERRED · 0% AMBIGUOUS · INFERRED: 7 edges (avg confidence: 0.5)
+- 563 nodes · 897 edges · 61 communities (29 shown, 32 thin omitted)
+- Extraction: 99% EXTRACTED · 1% INFERRED · 0% AMBIGUOUS · INFERRED: 8 edges (avg confidence: 0.54)
 - Token cost: 0 input · 0 output
 
 ## Graph Freshness
-- Built from commit: `b4b5a434`
+- Built from commit: `8abc5005`
 - Run `git rev-parse HEAD` and compare to check if the graph is stale.
 - Run `graphify update .` after code changes (no API cost).
 
@@ -31,7 +31,7 @@
 - Global Constraints
 - dropdown-menu.tsx
 - next.config.js
-- export/page.tsx
+- DashboardCharts.tsx
 - count.sh
 - tailwind.config.ts
 - shared/tsconfig.json
@@ -52,7 +52,8 @@
 - Shadcn/ui Pi Extension — Design Spec
 - iconv-lite
 - lucide-react
-- next
+- count_lines
+- @neondatabase/serverless
 - next-auth
 - pdfkit
 - postcss
@@ -91,12 +92,12 @@
   web/src/lib/telegram.ts → shared/src/utils.ts
 - `DashboardPage()` --calls--> `sql()`  [EXTRACTED]
   web/src/app/page.tsx → web/src/lib/db.ts
-- `AlertAction()` --calls--> `cn()`  [EXTRACTED]
-  web/src/components/ui/alert.tsx → web/src/lib/utils.ts
-- `CardAction()` --calls--> `cn()`  [EXTRACTED]
-  web/src/components/ui/card.tsx → web/src/lib/utils.ts
-- `CardFooter()` --calls--> `cn()`  [EXTRACTED]
-  web/src/components/ui/card.tsx → web/src/lib/utils.ts
+- `DropdownMenuSubTrigger()` --calls--> `cn()`  [EXTRACTED]
+  web/src/components/ui/dropdown-menu.tsx → web/src/lib/utils.ts
+- `DropdownMenuSubContent()` --calls--> `cn()`  [EXTRACTED]
+  web/src/components/ui/dropdown-menu.tsx → web/src/lib/utils.ts
+- `DropdownMenuCheckboxItem()` --calls--> `cn()`  [EXTRACTED]
+  web/src/components/ui/dropdown-menu.tsx → web/src/lib/utils.ts
 
 ## Import Cycles
 - None detected.
@@ -105,7 +106,7 @@
 
 ### Community 0 - "dependencies"
 Cohesion: 0.22
-Nodes (9): @neondatabase/serverless, tailwindcss-animate, @types/react, @wa-absensi/shared, dependencies, @neondatabase/serverless, tailwindcss-animate, @types/react (+1 more)
+Nodes (9): next, tailwindcss-animate, @types/react, @wa-absensi/shared, dependencies, next, tailwindcss-animate, @types/react (+1 more)
 
 ### Community 1 - "telegram.ts"
 Cohesion: 0.09
@@ -159,9 +160,9 @@ Nodes (14): Global Constraints, Missing in MVP (Future), Task 10: Bottom Navigat
 Cohesion: 0.10
 Nodes (17): geistMono, geistSans, metadata, AuthProvider(), navLinks, DropdownMenu(), DropdownMenuCheckboxItem(), DropdownMenuContent() (+9 more)
 
-### Community 16 - "export/page.tsx"
-Cohesion: 0.15
-Nodes (17): DashboardPage(), COLORS, DailyLineChart(), RangeData, StatusBarChart(), Alert(), AlertAction(), AlertDescription() (+9 more)
+### Community 16 - "DashboardCharts.tsx"
+Cohesion: 0.40
+Nodes (4): COLORS, DailyLineChart(), RangeData, StatusBarChart()
 
 ### Community 20 - "shared/tsconfig.json"
 Cohesion: 0.29
@@ -176,8 +177,8 @@ Cohesion: 0.40
 Nodes (4): File-by-File Analysis, Report Agent 1 — Fix Absen Page + Guru Page, Summary, TypeScript Check Result
 
 ### Community 23 - "cn"
-Cohesion: 0.09
-Nodes (44): AbsenRow, GuruItem, Guru, IzinRow, hariMap, Jadwal, Badge(), badgeVariants (+36 more)
+Cohesion: 0.07
+Nodes (57): AbsenRow, GuruItem, Guru, IzinRow, hariMap, Jadwal, DashboardPage(), Alert() (+49 more)
 
 ### Community 28 - "DB Schema + Seed Check Report"
 Cohesion: 0.17
@@ -207,6 +208,10 @@ Nodes (9): Excel Import/Export Guru & Jadwal Implementation Plan, Global Constra
 Cohesion: 0.14
 Nodes (13): Architecture, Capabilities (v1), Commands, Component Installer, Dependencies, Error Handling, Non-Goals (v1), Purpose (+5 more)
 
+### Community 38 - "count_lines"
+Cohesion: 0.47
+Nodes (4): count_lines(), main(), Path, count_words()
+
 ## Knowledge Gaps
 - **259 isolated node(s):** `count.sh script`, `name`, `private`, `shared`, `web` (+254 more)
   These have ≤1 connection - possible missing edges or undocumented components.
@@ -215,11 +220,11 @@ Nodes (13): Architecture, Capabilities (v1), Commands, Component Installer, Depe
 ## Suggested Questions
 _Questions this graph is uniquely positioned to answer:_
 
-- **Why does `sql()` connect `sql` to `export/page.tsx`, `telegram.ts`, `cn`?**
-  _High betweenness centrality (0.057) - this node is a cross-community bridge._
-- **Why does `cn()` connect `cn` to `export/page.tsx`, `dropdown-menu.tsx`?**
-  _High betweenness centrality (0.041) - this node is a cross-community bridge._
-- **Why does `dependencies` connect `dependencies` to `scripts`, `bcryptjs`, `class-variance-authority`, `autoprefixer`, `iconv-lite`, `lucide-react`, `next`, `next-auth`, `pdfkit`, `postcss`, `react`, `react-dom`, `recharts`, `shadcn`, `tailwind-merge`, `tailwindcss`, `clsx`, `tw-animate-css`, `@types/bcryptjs`, `@types/node`, `@types/pdfkit`, `exceljs`, `@types/react-dom`, `typescript`, `geist`, `@base-ui/react`, `grammy`?**
+- **Why does `sql()` connect `sql` to `telegram.ts`, `cn`?**
+  _High betweenness centrality (0.056) - this node is a cross-community bridge._
+- **Why does `cn()` connect `cn` to `dropdown-menu.tsx`?**
+  _High betweenness centrality (0.040) - this node is a cross-community bridge._
+- **Why does `dependencies` connect `dependencies` to `scripts`, `bcryptjs`, `class-variance-authority`, `autoprefixer`, `iconv-lite`, `lucide-react`, `@neondatabase/serverless`, `next-auth`, `pdfkit`, `postcss`, `react`, `react-dom`, `recharts`, `shadcn`, `tailwind-merge`, `tailwindcss`, `clsx`, `tw-animate-css`, `@types/bcryptjs`, `@types/node`, `@types/pdfkit`, `exceljs`, `@types/react-dom`, `typescript`, `geist`, `@base-ui/react`, `grammy`?**
   _High betweenness centrality (0.015) - this node is a cross-community bridge._
 - **Are the 7 inferred relationships involving `setup()` (e.g. with `cmdAbsen()` and `cmdCek()`) actually correct?**
   _`setup()` has 7 INFERRED edges - model-reasoned connections that need verification._
