@@ -116,16 +116,16 @@ export default function AbsenPage({
                     <Badge className={statusColor[a.status] || 'bg-gray-100 text-gray-800'}>{a.status}</Badge>
                   </TableCell>
                   <TableCell className="text-center">
-                    <Tooltip>
-                      <TooltipTrigger>
-                        <span className="cursor-default">
-                          {a.foto_valid ? '✅' : a.foto_path ? '⚠️' : '—'}
-                        </span>
-                      </TooltipTrigger>
-                      <TooltipContent>
-                        {a.foto_valid ? 'Foto valid' : a.foto_path ? 'Foto tidak valid' : 'Tidak ada foto'}
-                      </TooltipContent>
-                    </Tooltip>
+                    {a.foto_path ? (
+                      <a href={`/api/absen/foto?id=${a.id}`} target="_blank" rel="noreferrer"
+                         title={a.foto_valid ? 'Foto valid (klik untuk perbesar)' : 'Foto tidak valid (klik untuk perbesar)'}>
+                        {/* eslint-disable-next-line @next/next/no-img-element */}
+                        <img src={`/api/absen/foto?id=${a.id}`} alt="foto absen"
+                             className="inline-block h-10 w-10 rounded-md object-cover ring-1 ring-border" />
+                      </a>
+                    ) : (
+                      <span className="text-muted-foreground">—</span>
+                    )}
                   </TableCell>
                   <TableCell>{a.jarak_meter !== null ? `${a.jarak_meter.toFixed(1)} m` : '—'}</TableCell>
                 </TableRow>

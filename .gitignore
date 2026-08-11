@@ -11,3 +11,6 @@ count_lines.py
 word_count.py
 wordcount.py
 parse_json.go
+.vercel/auth.json
+.vercel/README.txt
+.env*
