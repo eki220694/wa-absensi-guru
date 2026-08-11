@@ -16,8 +16,8 @@ export async function GET(req: Request) {
   // Filter jadwal yang waktunya sudah dekat (15 menit sebelum mulai sampai 30 menit setelah selesai)
   const rows = await sql`
     SELECT g.*, j.id as jadwal_id, j.mapel, j.kelas, j.jam_ke,
-      CAST(SPLIT_PART(j.jam_mulai, ':', 1) AS INT) * 60 + CAST(SPLIT_PART(j.jam_mulai, ':', 2) AS INT) as mulai_menit,
-      CAST(SPLIT_PART(j.jam_selesai, ':', 1) AS INT) * 60 + CAST(SPLIT_PART(j.jam_selesai, ':', 2) AS INT) as selesai_menit
+      CAST(SPLIT_PART(j.jam_mulai::text, ':', 1) AS INT) * 60 + CAST(SPLIT_PART(j.jam_mulai::text, ':', 2) AS INT) as mulai_menit,
+      CAST(SPLIT_PART(j.jam_selesai::text, ':', 1) AS INT) * 60 + CAST(SPLIT_PART(j.jam_selesai::text, ':', 2) AS INT) as selesai_menit
     FROM guru g
     JOIN jadwal j ON j.guru_id = g.id
     WHERE j.hari = ${hari}
