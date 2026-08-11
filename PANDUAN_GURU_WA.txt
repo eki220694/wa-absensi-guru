@@ -1,0 +1,35 @@
+📢 *ABASENSI GURU SMAN 6 SIGI — CARA PAKAI*
+
+Mulai Senin, absensi pakai Telegram. Ikuti langkah ini:
+
+1️⃣ DAFTAR (sekali saja)
+Buka Telegram → cari @sman6sigi_absen_bot → tekan START
+Ketik:
+/daftar [NIP] guru123
+Contoh: /daftar 199406222022211001 guru123
+Balasan: "✅ Berhasil terdaftar!"
+
+2️⃣ ABSEN SETIAP HARI
+• Ketik /start → tekan tombol "Absen"
+• Pilih jam pelajaran yang muncul
+• Kirim lokasi (📎 → Location)
+• Kirim foto kelas/selfie — atau /skip
+• Selesai!
+
+⏰ Boleh absen 15 menit SEBELUM jam mulai s/d 30 menit SETELAH selesai.
+📍 Wajib dalam radius 100 m dari sekolah.
+❌ Minggu libur, absen dobel ditolak, di luar jam = "Belum waktunya absen."
+
+3️⃣ IZIN (Sakit/Izin/Cuti/Dinas)
+• Ketik /izin → pilih jenis
+• Tanggal mulai & selesai (DD/MM/YYYY)
+• Alasan → foto bukti atau /skip
+• Admin akan setujui di web — hari itu tidak perlu absen manual
+
+4️⃣ LAINNYA
+• /jadwal — lihat jadwal hari ini
+• /cek — riwayat absen hari ini
+• Ganti HP? Buka bot → START → /daftar lagi
+
+Password default semua guru: guru123
+Panduan lengkap PDF menyusul di sini. Kalau ada kendala, hubungi admin.
