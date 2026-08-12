@@ -26,6 +26,12 @@ export async function GET(req: Request) {
         SELECT 1 FROM absen a
         WHERE a.guru_id = g.id AND a.jadwal_id = j.id AND a.tanggal = ${tgl}
       )
+      AND NOT EXISTS (
+        SELECT 1 FROM izin i
+        WHERE i.guru_id = g.id
+          AND i.status IN ('pending', 'disetujui')
+          AND i.tanggal_mulai <= ${tgl} AND i.tanggal_selesai >= ${tgl}
+      )
   `;
 
   const nearby = rows.filter((r: any) => {

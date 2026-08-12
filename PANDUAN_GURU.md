@@ -78,7 +78,27 @@ Alur:
 - Status izin: **Menunggu admin** → admin setujui/tolak lewat web admin
 - Izin tercatat untuk rentang tanggal yang diajukan — tidak perlu absen manual di hari itu
 
-## 6️⃣ Perintah cepat
+## 6️⃣ Notifikasi belum absen
+
+Tidak perlu membuka Telegram terus-menerus. Bot **mengirim notifikasi otomatis** ke HP setiap 30 menit (Senin–Sabtu, 08:00–15:30 WITA) selama jam pelajaran belum diabsen.
+
+Contoh notif:
+
+```
+⏰ Reminder Absen
+Jam ke-2: Koding — X-D
+
+Ketik /absen untuk absen sekarang.
+```
+
+Syarat notif sampai:
+- Sudah `/daftar` sekali (bot menyimpan chat ID)
+- Notifikasi Telegram aktif di HP
+- Chat dengan bot TIDAK di-mute (pesan tetap masuk tapi tanpa bunyi kalau di-mute)
+- Guru yang sudah absen / sudah izin (disetujui atau menunggu admin) TIDAK akan di-remind
+
+## 7️⃣ Perintah cepat
+
 
 | Perintah | Fungsi |
 |---|---|
@@ -90,7 +110,7 @@ Alur:
 | `/izin` | Ajukan izin |
 | `/help` | Bantuan |
 
-## 7️⃣ Troubleshooting
+## 8️⃣ Troubleshooting
 
 | Masalah | Solusi |
 |---|---|

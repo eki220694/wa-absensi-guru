@@ -26,6 +26,9 @@ Balasan: "✅ Berhasil terdaftar!"
 • Alasan → foto bukti atau /skip
 • Admin akan setujui di web — hari itu tidak perlu absen manual
 
+🔔 NOTIF OTOMATIS
+Bot kirim pengingat otomatis tiap 30 menit (Senin-Sabtu 08:00-15:30 WITA) kalau belum absen — TANPA perlu buka Telegram. Pastikan notifikasi Telegram aktif & chat bot tidak di-mute. Sudah absen/izin? Tidak di-remind.
+
 4️⃣ LAINNYA
 • /jadwal — lihat jadwal hari ini
 • /cek — riwayat absen hari ini
