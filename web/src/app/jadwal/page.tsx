@@ -12,7 +12,8 @@ import {
 import {
   Table, TableBody, TableCell, TableHead, TableHeader, TableRow,
 } from '@/components/ui/table';
-import { Pencil, Trash2 } from 'lucide-react';
+import { Pencil, Trash2, Plus, Download, Upload } from 'lucide-react';
+import { toast } from 'sonner';
 
 interface Jadwal {
   id: number; guru_id: number; guru_nama: string; hari: number; jam_ke: number;
@@ -24,6 +25,7 @@ const hariMap = ['', 'Senin', 'Selasa', 'Rabu', 'Kamis', 'Jumat', 'Sabtu'];
 export default function JadwalPage() {
   const [data, setData] = useState<Jadwal[]>([]);
   const [guruList, setGuruList] = useState<any[]>([]);
+  const [loading, setLoading] = useState(true);
   const [modal, setModal] = useState(false);
   const [edit, setEdit] = useState<Jadwal | null>(null);
   const [guruId, setGuruId] = useState(0); const [hari, setHari] = useState(1);
@@ -34,11 +36,13 @@ export default function JadwalPage() {
   const [importResult, setImportResult] = useState<{ inserted: number; updated: number; errors: any[] } | null>(null);
 
   const reload = async () => {
+    setLoading(true);
     const [j, g] = await Promise.all([
       fetch('/api/jadwal').then(r => r.json()),
       fetch('/api/guru').then(r => r.json()),
     ]);
     setData(j); setGuruList(g);
+    setLoading(false);
   };
   useEffect(() => { reload(); }, []);
 
@@ -58,14 +62,15 @@ export default function JadwalPage() {
       method: 'POST', headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(edit ? { ...body, id: edit.id } : body),
     });
-    if (res.ok) { setModal(false); reload(); }
-    else alert((await res.json()).error);
+    if (res.ok) { setModal(false); reload(); toast.success(edit ? 'Jadwal diperbarui' : 'Jadwal ditambahkan'); }
+    else { const err = await res.json(); toast.error(err.error || 'Gagal menyimpan'); }
   };
 
   const hapus = async (id: number) => {
     if (!confirm('Hapus jadwal ini?')) return;
     await fetch(`/api/jadwal/${id}`, { method: 'DELETE' });
     reload();
+    toast.success('Jadwal dihapus');
   };
 
   const handleImportJadwal = async (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -76,62 +81,76 @@ export default function JadwalPage() {
     const data = await res.json();
     setImportResult(data); reload();
     e.target.value = '';
+    toast.success(`Import selesai: ${data.inserted} ditambah, ${data.updated} diperbarui`);
   };
 
   return (
     <div className="p-4 lg:p-8 space-y-6 stagger-in">
-      <div className="flex items-center justify-between">
+      <div className="flex flex-wrap items-center justify-between gap-4">
         <div className="flex items-center gap-3">
-          <h1 className="text-2xl font-bold tracking-tight">Jadwal Mengajar</h1>
+          <h1 className="text-h1 font-bold tracking-tight">Jadwal Mengajar</h1>
         </div>
         <div className="flex gap-2 items-center">
-          <a href="/api/export/jadwal-template" className="inline-flex items-center justify-center rounded-lg border border-border bg-background px-2.5 py-1 text-sm font-medium hover:bg-muted hover:text-foreground transition-all h-7 gap-1">Download Template</a>
+          <a href="/api/export/jadwal-template" className="inline-flex items-center gap-2 rounded-lg border border-border bg-background px-3 py-1.5 text-sm font-medium hover:bg-muted hover:text-foreground transition-all h-9">
+            <Download className="h-4 w-4" /> Template
+          </a>
           <input type="file" accept=".xlsx" onChange={handleImportJadwal} className="hidden" ref={fileRef} />
-          <Button variant="secondary" size="sm" onClick={() => fileRef.current?.click()}>Import Excel</Button>
-          <Button size="sm" onClick={openAdd}>+ Tambah</Button>
+          <Button variant="outline" size="sm" onClick={() => fileRef.current?.click()} className="gap-2">
+            <Upload className="h-4 w-4" /> Import
+          </Button>
+          <Button size="sm" onClick={openAdd} className="gap-2"><Plus className="h-4 w-4" /> Tambah</Button>
         </div>
       </div>
+
       {importResult && (
-        <div className="p-4 rounded-lg bg-muted text-sm">
-          <p>✅ Tambah: {importResult.inserted} | Update: {importResult.updated}</p>
+        <div className="p-4 rounded-lg bg-surface-2 text-sm">
+          <p className="font-medium">✅ Import selesai — Tambah: {importResult.inserted} | Update: {importResult.updated}</p>
           {importResult.errors.length > 0 && (
             <details>
               <summary className="cursor-pointer text-destructive font-medium">❌ {importResult.errors.length} error(s)</summary>
-              <ul className="mt-1 text-destructive">
+              <ul className="mt-1 text-destructive text-xs">
                 {importResult.errors.map((err: any, idx: number) => (
-                  <li key={idx}>Row {err.row}: {err.error}</li>
+                  <li key={idx}>Row {err.row}: {err.error}{err.nip ? ` (NIP: ${err.nip})` : ''}</li>
                 ))}
               </ul>
             </details>
           )}
         </div>
       )}
-      <div className="rounded-lg border overflow-x-auto shadow-md card-hover">
-        <Table>
+
+      <div className="rounded-xl border overflow-hidden e-2">
+        <Table density="compact">
           <TableHeader>
             <TableRow>
               <TableHead>Hari</TableHead><TableHead>Jam</TableHead><TableHead>Guru</TableHead>
-              <TableHead>Kelas</TableHead><TableHead>Mapel</TableHead><TableHead>Ruangan</TableHead><TableHead>Aksi</TableHead>
+              <TableHead>Kelas</TableHead><TableHead>Mapel</TableHead><TableHead>Ruangan</TableHead><TableHead className="w-24">Aksi</TableHead>
             </TableRow>
           </TableHeader>
           <TableBody>
-            {data.length === 0 && (
-              <TableRow><TableCell colSpan={7} className="h-24 text-center text-muted-foreground">Belum ada jadwal</TableCell></TableRow>
+            {loading ? (
+              <>
+                {[...Array(5)].map((_, i) => (
+                  <TableRow key={i}><TableCell colSpan={7}><div className="skeleton h-12"></div></TableCell></TableRow>
+                ))}
+              </>
+            ) : data.length === 0 ? (
+              <TableRow><TableCell colSpan={7} className="h-32 text-center text-muted-foreground">Belum ada jadwal. Klik "Tambah" untuk memulai.</TableCell></TableRow>
+            ) : (
+              data.map((j) => (
+                <TableRow key={j.id}>
+                  <TableCell>{hariMap[j.hari]}</TableCell>
+                  <TableCell><span className="font-mono text-sm">{j.jam_ke}</span> <span className="text-muted-foreground text-xs">({j.jam_mulai}-{j.jam_selesai})</span></TableCell>
+                  <TableCell className="font-medium">{j.guru_nama}</TableCell>
+                  <TableCell>{j.kelas}</TableCell>
+                  <TableCell>{j.mapel}</TableCell>
+                  <TableCell>{j.ruangan || '-'}</TableCell>
+                  <TableCell className="flex gap-1">
+                    <Button variant="ghost" size="icon-sm" aria-label="Edit jadwal" onClick={() => openEdit(j)}><Pencil className="h-4 w-4" /></Button>
+                    <Button variant="ghost" size="icon-sm" className="text-destructive" aria-label="Hapus jadwal" onClick={() => hapus(j.id)}><Trash2 className="h-4 w-4" /></Button>
+                  </TableCell>
+                </TableRow>
+              ))
             )}
-            {data.map((j) => (
-              <TableRow key={j.id}>
-                <TableCell>{hariMap[j.hari]}</TableCell>
-                <TableCell>{j.jam_ke} ({j.jam_mulai}-{j.jam_selesai})</TableCell>
-                <TableCell>{j.guru_nama}</TableCell>
-                <TableCell>{j.kelas}</TableCell>
-                <TableCell>{j.mapel}</TableCell>
-                <TableCell>{j.ruangan || '-'}</TableCell>
-                <TableCell className="flex gap-2">
-                  <Button variant="link" size="icon-sm" aria-label="Edit jadwal" onClick={() => openEdit(j)}><Pencil className="h-4 w-4" /></Button>
-                  <Button variant="link" size="icon-sm" className="text-destructive" aria-label="Hapus jadwal" onClick={() => hapus(j.id)}><Trash2 className="h-4 w-4" /></Button>
-                </TableCell>
-              </TableRow>
-            ))}
           </TableBody>
         </Table>
       </div>

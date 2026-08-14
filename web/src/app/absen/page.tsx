@@ -9,6 +9,9 @@ import {
 import { Badge } from '@/components/ui/badge';
 import { Tooltip, TooltipContent, TooltipTrigger } from '@/components/ui/tooltip';
 
+export const dynamic = 'force-dynamic';
+
+
 interface AbsenRow {
   id: number; tanggal: string; jam_ke: number; guru: string; kelas: string;
   mapel: string; status: string; foto_valid: boolean | null; foto_path: string | null;
@@ -62,8 +65,10 @@ export default function AbsenPage({
 
   return (
     <div className="p-4 lg:p-8 space-y-6 stagger-in">
-      <div className="flex items-center gap-3">
-        <h1 className="text-2xl font-bold tracking-tight">Absen Harian</h1>
+      <div className="flex flex-wrap items-center justify-between gap-4">
+        <div className="flex items-center gap-3">
+          <h1 className="text-h1 font-bold tracking-tight">Absen Harian</h1>
+        </div>
       </div>
       {lastUpdated && <p className="text-xs text-muted-foreground">🔄 Auto-refresh 15 detik · Terakhir diperbarui {lastUpdated}</p>}
 
@@ -86,20 +91,20 @@ export default function AbsenPage({
         </div>
       </div>
 
-      <div className="rounded-lg border overflow-x-auto shadow-md card-hover">
+      <div className="rounded-xl border overflow-hidden e-2">
         {loading ? (
           <div className="p-6 text-center text-muted-foreground">Memuat...</div>
         ) : (
-          <Table>
+          <Table density="compact">
             <TableHeader>
               <TableRow>
-                <TableHead className="font-semibold text-muted-foreground">Guru</TableHead>
-                <TableHead className="font-semibold text-muted-foreground">Jam</TableHead>
-                <TableHead className="font-semibold text-muted-foreground">Kelas</TableHead>
-                <TableHead className="font-semibold text-muted-foreground">Mapel</TableHead>
-                <TableHead className="font-semibold text-muted-foreground">Status</TableHead>
-                <TableHead className="font-semibold text-muted-foreground">Foto</TableHead>
-                <TableHead className="font-semibold text-muted-foreground">Jarak</TableHead>
+                <TableHead>Guru</TableHead>
+                <TableHead>Jam</TableHead>
+                <TableHead>Kelas</TableHead>
+                <TableHead>Mapel</TableHead>
+                <TableHead>Status</TableHead>
+                <TableHead>Foto</TableHead>
+                <TableHead>Jarak</TableHead>
               </TableRow>
             </TableHeader>
             <TableBody>
@@ -108,12 +113,14 @@ export default function AbsenPage({
               )}
               {rows.map((a) => (
                 <TableRow key={a.id}>
-                  <TableCell>{a.guru}</TableCell>
-                  <TableCell>{a.jam_ke}</TableCell>
+                  <TableCell className="font-medium">{a.guru}</TableCell>
+                  <TableCell><span className="font-mono">{a.jam_ke}</span></TableCell>
                   <TableCell>{a.kelas}</TableCell>
                   <TableCell>{a.mapel}</TableCell>
                   <TableCell>
-                    <Badge className={statusColor[a.status] || 'bg-gray-100 text-gray-800'}>{a.status}</Badge>
+                    <Badge variant={a.status === 'hadir' ? 'success' : a.status === 'terlambat' ? 'warning' : 'danger'}>
+                      {a.status}
+                    </Badge>
                   </TableCell>
                   <TableCell className="text-center">
                     {a.foto_path ? (

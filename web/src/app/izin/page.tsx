@@ -8,6 +8,9 @@ import {
 import { Badge } from '@/components/ui/badge';
 import { CheckCircle2, XCircle } from 'lucide-react';
 
+export const dynamic = 'force-dynamic';
+
+
 interface IzinRow {
   id: number;
   guru: string;
@@ -62,45 +65,55 @@ export default function IzinPage() {
 
   return (
     <div className="p-4 lg:p-8 space-y-6 stagger-in">
-      <div className="flex items-center gap-3">
-        <h1 className="text-2xl font-bold tracking-tight">Daftar Izin</h1>
+      <div className="flex flex-wrap items-center justify-between gap-4">
+        <div className="flex items-center gap-3">
+          <h1 className="text-h1 font-bold tracking-tight">Daftar Izin</h1>
+        </div>
       </div>
       {lastUpdated && <p className="text-xs text-muted-foreground">🔄 Auto-refresh 15 detik · Terakhir diperbarui {lastUpdated}</p>}
-      <div className="rounded-lg border overflow-x-auto shadow-md card-hover">
-        <Table>
+      <div className="rounded-xl border overflow-hidden e-2">
+        <Table density="compact">
           <TableHeader>
             <TableRow>
-              <TableHead className="font-semibold text-muted-foreground">Guru</TableHead>
-              <TableHead className="font-semibold text-muted-foreground">Jenis</TableHead>
-              <TableHead className="font-semibold text-muted-foreground">Tanggal</TableHead>
-              <TableHead className="font-semibold text-muted-foreground">Alasan</TableHead>
-              <TableHead className="font-semibold text-muted-foreground">Status</TableHead>
-              <TableHead className="font-semibold text-muted-foreground">Aksi</TableHead>
+              <TableHead>Guru</TableHead>
+              <TableHead>Jenis</TableHead>
+              <TableHead>Tanggal</TableHead>
+              <TableHead>Alasan</TableHead>
+              <TableHead>Status</TableHead>
+              <TableHead className="w-32">Aksi</TableHead>
             </TableRow>
           </TableHeader>
           <TableBody>
             {loading ? (
-              <TableRow><TableCell colSpan={6} className="h-24 text-center text-muted-foreground">Memuat...</TableCell></TableRow>
+              <>
+                {[...Array(5)].map((_, i) => (
+                  <TableRow key={i}><TableCell colSpan={6}><div className="skeleton h-12"></div></TableCell></TableRow>
+                ))}
+              </>
             ) : rows.length === 0 ? (
-              <TableRow><TableCell colSpan={6} className="h-24 text-center text-muted-foreground">Belum ada pengajuan izin</TableCell></TableRow>
+              <TableRow><TableCell colSpan={6} className="h-32 text-center text-muted-foreground">Belum ada pengajuan izin</TableCell></TableRow>
             ) : (
               rows.map((i) => (
                 <TableRow key={String(i.id)}>
-                  <TableCell>{String(i.guru)}</TableCell>
+                  <TableCell className="font-medium">{String(i.guru)}</TableCell>
                   <TableCell className="capitalize">{String(i.jenis)}</TableCell>
-                  <TableCell>{String(i.tanggal_mulai)} - {String(i.tanggal_selesai)}</TableCell>
-                  <TableCell>{String(i.alasan) || '-'}</TableCell>
+                  <TableCell className="text-sm">{String(i.tanggal_mulai)} - {String(i.tanggal_selesai)}</TableCell>
+                  <TableCell className="max-w-xs truncate">{String(i.alasan) || '-'}</TableCell>
                   <TableCell>
-                    <Badge className={statusColor[String(i.status)] || 'bg-gray-100 text-gray-800'}>
+                    <Badge variant={String(i.status) === 'disetujui' ? 'success' : String(i.status) === 'ditolak' ? 'danger' : 'warning'}>
                       {String(i.status)}
                     </Badge>
                   </TableCell>
                   <TableCell>
                     {String(i.status) === 'pending' && (
-                      <div className="flex gap-2">
-                        <Button variant="link" size="icon-sm" className="text-green-600" aria-label="Setujui izin" onClick={() => updateStatus(i.id, 'disetujui')}><CheckCircle2 className="h-4 w-4" /></Button>
-                        <Button variant="link" size="icon-sm" className="text-destructive" aria-label="Tolak izin" onClick={() => updateStatus(i.id, 'ditolak')}><XCircle className="h-4 w-4" /></Button>
+                      <div className="flex gap-1">
+                        <Button variant="ghost" size="icon-sm" className="text-success" aria-label="Setujui izin" onClick={() => updateStatus(i.id, 'disetujui')}><CheckCircle2 className="h-4 w-4" /></Button>
+                        <Button variant="ghost" size="icon-sm" className="text-destructive" aria-label="Tolak izin" onClick={() => updateStatus(i.id, 'ditolak')}><XCircle className="h-4 w-4" /></Button>
                       </div>
+                    )}
+                    {String(i.bukti_url) && (
+                      <a href={String(i.bukti_url)} target="_blank" rel="noreferrer"
+                         className="ml-2 text-xs underline text-primary">Bukti</a>
                     )}
                   </TableCell>
                 </TableRow>

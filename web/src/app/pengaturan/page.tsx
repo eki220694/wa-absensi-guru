@@ -4,6 +4,10 @@ import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
+import { toast } from 'sonner';
+
+export const dynamic = 'force-dynamic';
+
 
 export default function PengaturanPage() {
   const [config, setConfig] = useState<Record<string, string>>({});
@@ -24,8 +28,8 @@ export default function PengaturanPage() {
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ key, value }),
     });
-    if (res.ok) { setConfig({ ...config, [key]: value }); setEdit(null); }
-    else alert((await res.json()).error);
+    if (res.ok) { setConfig({ ...config, [key]: value }); setEdit(null); toast.success('Tersimpan'); }
+    else { const err = await res.json(); toast.error(err.error || 'Gagal menyimpan'); }
   };
 
   const labelMap: Record<string, string> = {
@@ -39,9 +43,12 @@ export default function PengaturanPage() {
   return (
     <div className="p-4 lg:p-8 space-y-6 stagger-in">
       <div className="flex items-center gap-3">
-        <h1 className="text-2xl font-bold tracking-tight">Pengaturan</h1>
+        <h1 className="text-h1 font-bold tracking-tight">Pengaturan</h1>
       </div>
-      <Card className="max-w-xl shadow-md card-hover">
+      <Card className="max-w-xl e-2">
+        <CardHeader>
+          <CardTitle>Konfigurasi Sekolah</CardTitle>
+        </CardHeader>
         <CardContent className="p-0">
           {Object.entries(config).map(([key, val]) => (
             <div key={key} className="border-t first:border-t-0 p-4 flex items-center justify-between">
@@ -54,11 +61,11 @@ export default function PengaturanPage() {
                     <Button size="sm" variant="outline" onClick={() => setEdit(null)}>Batal</Button>
                   </div>
                 ) : (
-                  <p className="text-sm text-muted-foreground mt-0.5">{val}</p>
+                  <p className="text-sm text-muted-foreground mt-0.5 font-mono">{val}</p>
                 )}
               </div>
               {edit !== key && (
-                <Button variant="link" size="sm" className="whitespace-nowrap ml-4" onClick={() => { setEdit(key); setValue(val); }}>
+                <Button variant="ghost" size="sm" className="whitespace-nowrap ml-4" onClick={() => { setEdit(key); setValue(val); }}>
                   Ubah
                 </Button>
               )}

@@ -10,6 +10,9 @@ import {
 } from '@/components/ui/table';
 import Link from 'next/link';
 
+export const dynamic = 'force-dynamic';
+
+
 export default async function GuruDetailPage({ params }: { params: { id: string } }) {
   const session = await getServerSession(authOptions);
   if (!session) redirect('/login');
@@ -69,8 +72,8 @@ export default async function GuruDetailPage({ params }: { params: { id: string 
       </Card>
 
       <h2 className="text-xl font-bold">Riwayat Absen (50 terakhir)</h2>
-      <div className="rounded-lg border overflow-x-auto shadow-md card-hover">
-        <Table>
+      <div className="rounded-xl border overflow-hidden e-2">
+        <Table density="compact">
           <TableHeader>
             <TableRow>
               <TableHead>Tanggal</TableHead>
@@ -82,16 +85,16 @@ export default async function GuruDetailPage({ params }: { params: { id: string 
           </TableHeader>
           <TableBody>
             {rekap.length === 0 && (
-              <TableRow><TableCell colSpan={5} className="h-24 text-center text-muted-foreground">Belum ada riwayat absen</TableCell></TableRow>
+              <TableRow><TableCell colSpan={5} className="h-32 text-center text-muted-foreground">Belum ada riwayat absen</TableCell></TableRow>
             )}
             {rekap.map((a: Record<string, unknown>) => (
               <TableRow key={`${String(a.tanggal)}-${String(a.jam_ke)}`}>
                 <TableCell>{String(a.tanggal)}</TableCell>
-                <TableCell>{String(a.jam_ke)}</TableCell>
+                <TableCell><span className="font-mono">{String(a.jam_ke)}</span></TableCell>
                 <TableCell>{String(a.kelas)}</TableCell>
                 <TableCell>{String(a.mapel)}</TableCell>
                 <TableCell>
-                  <Badge className={statusColor[String(a.status)] || 'bg-gray-100 text-gray-800'}>
+                  <Badge variant={String(a.status) === 'hadir' ? 'success' : String(a.status) === 'terlambat' ? 'warning' : 'danger'}>
                     {String(a.status)}
                   </Badge>
                 </TableCell>

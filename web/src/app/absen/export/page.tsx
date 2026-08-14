@@ -5,21 +5,24 @@ import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card';
 import { Alert, AlertTitle, AlertDescription } from '@/components/ui/alert';
+import { Download, FileSpreadsheet, FileText } from 'lucide-react';
+import { toast } from 'sonner';
+
+export const dynamic = 'force-dynamic';
+
 
 export default function ExportPage() {
   const now = new Date();
   const [bulan, setBulan] = useState(String(now.getMonth() + 1));
   const [tahun, setTahun] = useState(String(now.getFullYear()));
   const [downloading, setDownloading] = useState<'excel' | 'pdf' | null>(null);
-  const [msg, setMsg] = useState<string | null>(null);
 
   const download = async (type: 'excel' | 'pdf') => {
     if (!bulan || !tahun) {
-      alert('Isi bulan dan tahun terlebih dahulu');
+      toast.error('Isi bulan dan tahun terlebih dahulu');
       return;
     }
     setDownloading(type);
-    setMsg(null);
     try {
       const res = await fetch(`/api/export/${type}?bulan=${bulan}&tahun=${tahun}`, {
         credentials: 'include',
@@ -41,8 +44,9 @@ export default function ExportPage() {
       a.click();
       a.remove();
       setTimeout(() => URL.revokeObjectURL(url), 1000);
+      toast.success(`Berhasil mengunduh ${ext.toUpperCase()}`);
     } catch (err: any) {
-      setMsg(err?.message || 'Export gagal');
+      toast.error(err?.message || 'Export gagal');
     } finally {
       setDownloading(null);
     }
@@ -51,9 +55,9 @@ export default function ExportPage() {
   return (
     <div className="p-4 lg:p-8 space-y-6 stagger-in">
       <div className="flex items-center gap-3">
-        <h1 className="text-2xl font-bold tracking-tight">Export Rekap Bulanan</h1>
+        <h1 className="text-h1 font-bold tracking-tight">Export Rekap Bulanan</h1>
       </div>
-      <Card className="max-w-md">
+      <Card className="max-w-md e-2">
         <CardHeader>
           <CardTitle>Unduh Rekap Absensi</CardTitle>
           <CardDescription>Pilih bulan dan tahun untuk mengekspor data absensi guru</CardDescription>
@@ -82,27 +86,23 @@ export default function ExportPage() {
           <div className="flex gap-4">
             <Button
               variant="default"
-              className="flex-1 bg-green-600 hover:bg-green-700"
+              className="flex-1 bg-success hover:bg-success/90 gap-2"
               disabled={downloading !== null}
               onClick={() => download('excel')}
             >
+              <FileSpreadsheet className="h-4 w-4" />
               {downloading === 'excel' ? 'Mengunduh...' : 'Download Excel'}
             </Button>
             <Button
               variant="default"
-              className="flex-1 bg-red-600 hover:bg-red-700"
+              className="flex-1 bg-danger hover:bg-danger/90 gap-2"
               disabled={downloading !== null}
               onClick={() => download('pdf')}
             >
+              <FileText className="h-4 w-4" />
               {downloading === 'pdf' ? 'Mengunduh...' : 'Download PDF'}
             </Button>
           </div>
-          {msg && (
-            <Alert variant="destructive">
-              <AlertTitle>Perhatian</AlertTitle>
-              <AlertDescription>{msg}</AlertDescription>
-            </Alert>
-          )}
         </CardContent>
       </Card>
     </div>
