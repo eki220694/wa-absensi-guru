@@ -32,19 +32,10 @@ export default function LoginPage() {
 
   return (
     <div className="min-h-screen relative flex items-center justify-center bg-background px-4">
-      {/* Subtle background pattern */}
-      <div className="absolute inset-0 opacity-[0.03]" aria-hidden="true">
-        <svg className="w-full h-full" viewBox="0 0 100 100" preserveAspectRatio="none">
-          <defs>
-            <pattern id="grid" width="20" height="20" patternUnits="userSpaceOnUse">
-              <path d="M 20 0 L 0 0 0 20" fill="none" stroke="currentColor" strokeWidth="0.5"/>
-            </pattern>
-          </defs>
-          <rect width="100" height="100" fill="url(#grid)"/>
-        </svg>
-      </div>
+      {/* Background image */}
+      <div className="absolute inset-0 -z-10 bg-[url('/login-bg.jpg')] bg-center bg-no-repeat bg-cover opacity-[0.6]" aria-hidden="true" />
 
-      {/* Brand accent */}
+      {/* Abstract accent shape */}
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[380px] h-[420px] rounded-2xl bg-primary/5 blur-3xl" aria-hidden="true" />
 
       <Card className="relative z-10 w-full max-w-sm overflow-hidden e-3 animate-scale-in">
