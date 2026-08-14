@@ -33,7 +33,7 @@ export default function LoginPage() {
   return (
     <div className="min-h-screen relative flex items-center justify-center bg-background px-4">
       {/* Background image */}
-      <div className="absolute inset-0 -z-10 bg-[url('/login-bg.jpg')] bg-center bg-no-repeat bg-cover opacity-[0.6]" aria-hidden="true" />
+      <div className="absolute inset-0 -z-10 bg-[url('/login-bg.png')] bg-center bg-no-repeat bg-cover opacity-[0.6]" aria-hidden="true" />
 
       {/* Abstract accent shape */}
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[380px] h-[420px] rounded-2xl bg-primary/5 blur-3xl" aria-hidden="true" />
