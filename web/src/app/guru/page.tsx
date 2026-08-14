@@ -46,7 +46,7 @@ export default function GuruPage() {
 
   const save = async () => {
     const body = { nip, nama, no_wa: noHp, jabatan, password_hash: pass || undefined };
-    const url = edit ? `/api/guru/${edit.id}` : '/api/guru';
+    const url = edit ? `/api/guru/{edit.id}` : '/api/guru';
     const method = edit ? 'PATCH' : 'POST';
     const res = await fetch(url, { method, headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(body) });
     if (res.ok) { setModal(false); reload(); toast.success(edit ? 'Guru diperbarui' : 'Guru ditambahkan'); }
@@ -55,7 +55,7 @@ export default function GuruPage() {
 
   const hapus = async (id: number) => {
     if (!confirm('Hapus guru ini?')) return;
-    await fetch(`/api/guru/${id}`, { method: 'DELETE' });
+    await fetch(`/api/guru/{id}`, { method: 'DELETE' });
     reload();
     toast.success('Guru dihapus');
   };
@@ -70,14 +70,14 @@ export default function GuruPage() {
     setImportResult(data);
     reload();
     e.target.value = '';
-    toast.success(`Import selesai: ${data.inserted} ditambah, ${data.updated} diperbarui`);
+    toast.success(`Import selesai: {data.inserted} ditambah, {data.updated} diperbarui`);
   };
 
   const jabatanBadge = (j: string) => {
     const v: Record<string, 'default' | 'success' | 'warning' | 'info'> = {
       admin: 'default', wali_kelas: 'success', guru: 'info'
     };
-    return <Badge variant={v[j] || 'default'} className="capitalize">${j.replace('_', ' ')}</Badge>;
+    return <Badge variant={v[j] || 'default'} className="capitalize">{j.replace('_', ' ')}</Badge>;
   };
 
   return (
@@ -100,13 +100,13 @@ export default function GuruPage() {
 
       {importResult && (
         <div className="p-4 rounded-lg bg-surface-2 text-sm">
-          <p className="font-medium">��� Import selesai — Tambah: ${importResult.inserted} | Update: ${importResult.updated}</p>
+          <p className="font-medium">��� Import selesai — Tambah: {importResult.inserted} | Update: {importResult.updated}</p>
           {importResult.errors.length > 0 && (
             <details className="mt-2">
-              <summary className="cursor-pointer text-destructive font-medium">��� ${importResult.errors.length} error(s)</summary>
+              <summary className="cursor-pointer text-destructive font-medium">��� {importResult.errors.length} error(s)</summary>
               <ul className="mt-1 text-destructive text-xs">
                 {importResult.errors.map((err: any, idx: number) => (
-                  <li key={idx}>Row ${err.row}: ${err.error}${err.nip ? ` (NIP: ${err.nip})` : ''}</li>
+                  <li key={idx}>Row {err.row}: {err.error}{err.nip ? ` (NIP: {err.nip})` : ''}</li>
                 ))}
               </ul>
             </details>
@@ -134,10 +134,10 @@ export default function GuruPage() {
             ) : (
               guru.map((g) => (
                 <TableRow key={g.id}>
-                  <TableCell className="font-mono text-sm">${g.nip}</TableCell>
-                  <TableCell className="font-medium">${g.nama}</TableCell>
-                  <TableCell>${g.no_wa || '-'}</TableCell>
-                  <TableCell>${jabatanBadge(g.jabatan)}</TableCell>
+                  <TableCell className="font-mono text-sm">{g.nip}</TableCell>
+                  <TableCell className="font-medium">{g.nama}</TableCell>
+                  <TableCell>{g.no_wa || '-'}</TableCell>
+                  <TableCell>{jabatanBadge(g.jabatan)}</TableCell>
                   <TableCell className="flex gap-1">
                     <Button variant="ghost" size="icon-sm" aria-label="Edit guru" onClick={() => openEdit(g)}><Pencil className="h-4 w-4" /></Button>
                     <Button variant="ghost" size="icon-sm" className="text-destructive" aria-label="Hapus guru" onClick={() => hapus(g.id)}><Trash2 className="h-4 w-4" /></Button>
@@ -152,9 +152,9 @@ export default function GuruPage() {
       <Dialog open={modal} onOpenChange={setModal}>
         <DialogContent className="sm:max-w-md">
           <DialogHeader>
-            <DialogTitle>${edit ? 'Edit Guru' : 'Tambah Guru'}</DialogTitle>
+            <DialogTitle>{edit ? 'Edit Guru' : 'Tambah Guru'}</DialogTitle>
             <DialogDescription>
-              ${edit ? 'Ubah data guru. Kosongkan password jika tidak diganti.' : 'Tambahkan guru baru ke sistem.'}
+              {edit ? 'Ubah data guru. Kosongkan password jika tidak diganti.' : 'Tambahkan guru baru ke sistem.'}
             </DialogDescription>
           </DialogHeader>
           <div className="space-y-3">
@@ -182,14 +182,14 @@ export default function GuruPage() {
               </Select>
             </div>
             <div className="space-y-1">
-              <Label>${edit ? 'Password baru' : 'Password'}</Label>
+              <Label>{edit ? 'Password baru' : 'Password'}</Label>
               <Input type="password" value={pass} onChange={e => setPass(e.target.value)}
                 placeholder={edit ? 'Biarkan kosong jika tidak diganti' : 'Password login'} />
             </div>
           </div>
           <DialogFooter>
             <Button variant="outline" onClick={() => setModal(false)}>Batal</Button>
-            <Button onClick={save}>${edit ? 'Update' : 'Simpan'}</Button>
+            <Button onClick={save}>{edit ? 'Update' : 'Simpan'}</Button>
           </DialogFooter>
         </DialogContent>
       </Dialog>
