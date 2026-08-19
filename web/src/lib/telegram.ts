@@ -322,9 +322,18 @@ function setup() {
 }
 
 async function simpanIzin(chatId: string, s: Session, bukti: string | null) {
-  await sql`INSERT INTO izin (guru_id,jenis,tanggal_mulai,tanggal_selesai,alasan,bukti_url,status) VALUES (${s.guruId},${s.izinJenis},${s.izinTglMulai},${s.izinTglSelesai},${s.izinAlasan},${bukti},'pending')`;
-  await dropSession(chatId);
-  await getBot().api.sendMessage(chatId, `✅ *Izin terkirim*\n📋 ${s.izinJenis}\n📅 ${tglId(s.izinTglMulai)}–${tglId(s.izinTglSelesai)}\n💬 ${s.izinAlasan}\n⏳ Menunggu admin.`, { parse_mode: 'Markdown' });
+  try {
+    await sql`INSERT INTO izin (guru_id,jenis,tanggal_mulai,tanggal_selesai,alasan,bukti_path,status) VALUES (${s.guruId},${s.izinJenis},${s.izinTglMulai},${s.izinTglSelesai},${s.izinAlasan},${bukti},'pending')`;
+    await dropSession(chatId);
+    await getBot().api.sendMessage(chatId, `✅ *Izin terkirim*\n📋 ${s.izinJenis}\n📅 ${tglId(s.izinTglMulai)}–${tglId(s.izinTglSelesai)}\n💬 ${s.izinAlasan}\n⏳ Menunggu admin.`, { parse_mode: 'Markdown' });
+  } catch (e) {
+    await dropSession(chatId);
+    const msg = e instanceof Error ? e.message : String(e);
+    console.error('simpanIzin error:', msg);
+    try {
+      await getBot().api.sendMessage(chatId, `❌ Gagal menyimpan izin: ${msg}\nCoba lagi atau hubungi admin.`);
+    } catch { /* ignore — token/session issue */ }
+  }
 }
 
 export { getBot, setup };

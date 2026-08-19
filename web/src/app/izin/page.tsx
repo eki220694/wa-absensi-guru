@@ -19,7 +19,7 @@ interface IzinRow {
   tanggal_selesai: string;
   alasan: string | null;
   status: string;
-  bukti_url: string | null;
+  bukti_path: string | null;
 }
 
 export default function IzinPage() {
@@ -111,8 +111,8 @@ export default function IzinPage() {
                         <Button variant="ghost" size="icon-sm" className="text-destructive" aria-label="Tolak izin" onClick={() => updateStatus(i.id, 'ditolak')}><XCircle className="h-4 w-4" /></Button>
                       </div>
                     )}
-                    {String(i.bukti_url) && (
-                      <a href={String(i.bukti_url)} target="_blank" rel="noreferrer"
+                    {String(i.bukti_path) && (
+                      <a href={String(i.bukti_path)} target="_blank" rel="noreferrer"
                          className="ml-2 text-xs underline text-primary">Bukti</a>
                     )}
                   </TableCell>

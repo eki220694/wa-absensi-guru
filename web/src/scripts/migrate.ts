@@ -52,7 +52,7 @@ const statements = [
     jam_ke_awal SMALLINT,
     jam_ke_akhir SMALLINT,
     alasan TEXT,
-    bukti_url TEXT,
+    bukti_path TEXT,
     status TEXT DEFAULT 'pending' CHECK(status IN ('pending','disetujui','ditolak')),
     approved_by INT REFERENCES guru(id),
     approved_at TIMESTAMPTZ,
