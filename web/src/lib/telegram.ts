@@ -323,6 +323,31 @@ function setup() {
 
 async function simpanIzin(chatId: string, s: Session, bukti: string | null) {
   try {
+    // ── Validasi: 1 jenis izin per rentang tanggal, tidak boleh overlap ──
+    // Cek apakah sudah ada izin aktif (pending/disetujui) yang beririsan
+    // dengan rentang baru. Berlaku untuk jenis apapun (sama maupun beda).
+    const overlap = await sql`
+      SELECT id, jenis, status, tanggal_mulai, tanggal_selesai
+      FROM izin
+      WHERE guru_id = \${s.guruId}
+        AND status IN ('pending', 'disetujui', 'ditolak')
+        AND tanggal_mulai <= \${s.izinTglSelesai}
+        AND tanggal_selesai >= \${s.izinTglMulai}
+    `;
+    if (overlap.length) {
+      const o = overlap[0] as any;
+      const fmt = (d: string) => new Date(d).toLocaleDateString('id-ID', { day: 'numeric', month: 'long', year: 'numeric' });
+      await dropSession(chatId);
+      await getBot().api.sendMessage(
+        chatId,
+        `⚠️ *Tidak bisa mengajukan izin*
+Sudah ada izin *\${o.jenis}* (\${o.status}) pada \${fmt(o.tanggal_mulai)} – \${fmt(o.tanggal_selesai)} yang irisan dengan rentang ini.
+
+Batalkan izin tersebut dulu atau hubungi admin.`,
+        { parse_mode: 'Markdown' }
+      );
+      return;
+    }
     await sql`INSERT INTO izin (guru_id,jenis,tanggal_mulai,tanggal_selesai,alasan,bukti_path,status) VALUES (${s.guruId},${s.izinJenis},${s.izinTglMulai},${s.izinTglSelesai},${s.izinAlasan},${bukti},'pending')`;
     await dropSession(chatId);
     await getBot().api.sendMessage(chatId, `✅ *Izin terkirim*\n📋 ${s.izinJenis}\n📅 ${tglId(s.izinTglMulai)}–${tglId(s.izinTglSelesai)}\n💬 ${s.izinAlasan}\n⏳ Menunggu admin.`, { parse_mode: 'Markdown' });
