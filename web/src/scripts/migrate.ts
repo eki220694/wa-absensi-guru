@@ -32,7 +32,7 @@ const statements = [
     jadwal_id INT REFERENCES jadwal(id),
     tanggal DATE NOT NULL,
     jam_ke SMALLINT NOT NULL,
-    status TEXT NOT NULL DEFAULT 'hadir' CHECK(status IN ('hadir','terlambat','tidak_hadir')),
+    status TEXT NOT NULL DEFAULT 'hadir' CHECK(status IN ('hadir','terlambat','tidak_hadir','izin')),
     di_luar_radius BOOLEAN DEFAULT FALSE,
     jarak_meter REAL,
     latitude REAL,
