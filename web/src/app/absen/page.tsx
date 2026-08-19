@@ -1,5 +1,6 @@
 'use client';
 import { useState, useEffect } from 'react';
+import { useSearchParams } from 'next/navigation';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
@@ -19,15 +20,12 @@ interface AbsenRow {
 }
 interface GuruItem { id: number; nama: string; }
 
-export default function AbsenPage({
-  searchParams,
-}: {
-  searchParams: { tanggal?: string; guru_id?: string };
-}) {
+export default function AbsenPage() {
+  const searchParams = useSearchParams();
   const [rows, setRows] = useState<AbsenRow[]>([]);
   const [guruList, setGuruList] = useState<GuruItem[]>([]);
-  const [tanggal, setTanggal] = useState(searchParams.tanggal || new Date().toISOString().slice(0, 10));
-  const [guruId, setGuruId] = useState(searchParams.guru_id || '');
+  const [tanggal, setTanggal] = useState(searchParams.get('tanggal') || new Date().toISOString().slice(0, 10));
+  const [guruId, setGuruId] = useState(searchParams.get('guru_id') || '');
   const [loading, setLoading] = useState(true);
   const [lastUpdated, setLastUpdated] = useState<string | null>(null);
 

@@ -5,8 +5,9 @@ import { sql } from '@/lib/db';
 
 export async function PATCH(
   req: Request,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
+  const { id } = await params;
   const session = await getServerSession(authOptions);
   if (!session) return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
 
@@ -24,7 +25,7 @@ export async function PATCH(
     SET status = ${status},
         approved_by = ${adminId},
         approved_at = NOW()
-    WHERE id = ${params.id}
+    WHERE id = ${id}
   `;
 
   return NextResponse.json({ ok: true });

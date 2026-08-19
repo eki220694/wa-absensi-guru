@@ -13,11 +13,12 @@ import Link from 'next/link';
 export const dynamic = 'force-dynamic';
 
 
-export default async function GuruDetailPage({ params }: { params: { id: string } }) {
+export default async function GuruDetailPage({ params }: { params: Promise<{ id: string }> }) {
+  const { id } = await params;
   const session = await getServerSession(authOptions);
   if (!session) redirect('/login');
 
-  const [guru] = await sql`SELECT * FROM guru WHERE id = ${params.id}`;
+  const [guru] = await sql`SELECT * FROM guru WHERE id = ${id}`;
   if (!guru) {
     return (
       <div className="p-8">
@@ -32,7 +33,7 @@ export default async function GuruDetailPage({ params }: { params: { id: string 
     SELECT a.tanggal, a.jam_ke, a.status, j.kelas, j.mapel
     FROM absen a
     JOIN jadwal j ON a.jadwal_id = j.id
-    WHERE a.guru_id = ${params.id}
+    WHERE a.guru_id = ${id}
     ORDER BY a.tanggal DESC, a.jam_ke DESC
     LIMIT 50
   `;
