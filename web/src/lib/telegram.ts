@@ -329,10 +329,10 @@ async function simpanIzin(chatId: string, s: Session, bukti: string | null) {
     const overlap = await sql`
       SELECT id, jenis, status, tanggal_mulai, tanggal_selesai
       FROM izin
-      WHERE guru_id = \${s.guruId}
+      WHERE guru_id = ${s.guruId}
         AND status IN ('pending', 'disetujui', 'ditolak')
-        AND tanggal_mulai <= \${s.izinTglSelesai}
-        AND tanggal_selesai >= \${s.izinTglMulai}
+        AND tanggal_mulai <= ${s.izinTglSelesai}
+        AND tanggal_selesai >= ${s.izinTglMulai}
     `;
     if (overlap.length) {
       const o = overlap[0] as any;
@@ -341,7 +341,7 @@ async function simpanIzin(chatId: string, s: Session, bukti: string | null) {
       await getBot().api.sendMessage(
         chatId,
         `⚠️ *Tidak bisa mengajukan izin*
-Sudah ada izin *\${o.jenis}* (\${o.status}) pada \${fmt(o.tanggal_mulai)} – \${fmt(o.tanggal_selesai)} yang irisan dengan rentang ini.
+Sudah ada izin *${o.jenis}* (${o.status}) pada ${fmt(o.tanggal_mulai)} – ${fmt(o.tanggal_selesai)} yang irisan dengan rentang ini.
 
 Batalkan izin tersebut dulu atau hubungi admin.`,
         { parse_mode: 'Markdown' }
