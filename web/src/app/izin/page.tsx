@@ -105,12 +105,20 @@ export default function IzinPage() {
                     </Badge>
                   </TableCell>
                   <TableCell>
-                    {String(i.status) === 'pending' && (
-                      <div className="flex gap-1">
+                    <div className="flex gap-1 items-center">
+                      {String(i.status) === 'pending' && (
+                        <>
+                          <Button variant="ghost" size="icon-sm" className="text-success" aria-label="Setujui izin" onClick={() => updateStatus(i.id, 'disetujui')}><CheckCircle2 className="h-4 w-4" /></Button>
+                          <Button variant="ghost" size="icon-sm" className="text-destructive" aria-label="Tolak izin" onClick={() => updateStatus(i.id, 'ditolak')}><XCircle className="h-4 w-4" /></Button>
+                        </>
+                      )}
+                      {String(i.status) === 'disetujui' && (
+                        <Button variant="ghost" size="icon-sm" className="text-destructive" aria-label="Batalkan izin" onClick={() => updateStatus(i.id, 'ditolak')}><XCircle className="h-4 w-4" /></Button>
+                      )}
+                      {String(i.status) === 'ditolak' && (
                         <Button variant="ghost" size="icon-sm" className="text-success" aria-label="Setujui izin" onClick={() => updateStatus(i.id, 'disetujui')}><CheckCircle2 className="h-4 w-4" /></Button>
-                        <Button variant="ghost" size="icon-sm" className="text-destructive" aria-label="Tolak izin" onClick={() => updateStatus(i.id, 'ditolak')}><XCircle className="h-4 w-4" /></Button>
-                      </div>
-                    )}
+                      )}
+                    </div>
                     {String(i.bukti_path) && (
                       <a href={String(i.bukti_path)} target="_blank" rel="noreferrer"
                          className="ml-2 text-xs underline text-primary">Bukti</a>

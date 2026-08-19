@@ -39,16 +39,14 @@ export async function PATCH(
     WHERE id = ${id}
   `;
 
-  // Only auto-fill absen izin when status changed to 'disetujui' (approve)
+    // Auto-fill absen izin when status becomes 'disetujui'
   if (status === 'disetujui' && izin.status !== 'disetujui') {
     const from = new Date(izin.tanggal_mulai);
     const to = new Date(izin.tanggal_selesai);
-    const hariMap: Record<number, number> = { 0: 7, 1: 1, 2: 2, 3: 3, 4: 4, 5: 5, 6: 6 }; // Sun=7, Mon..Sat=1..6 (ISO)
+    const hariMap: Record<number, number> = { 0: 7, 1: 1, 2: 2, 3: 3, 4: 4, 5: 5, 6: 6 };
     for (let d = new Date(from); d <= to; d = new Date(d.getTime() + 86400000)) {
       const iso = d.toISOString().slice(0, 10);
       const hari = hariMap[d.getUTCDay()];
-      // Insert absen izin for every jadwal the guru teaches on those dates.
-      // ON CONFLICT DO NOTHING: does not overwrite a real 'hadir'/'terlambat' absen (guru tetap hadir walaupun izin).
       await sql`
         INSERT INTO absen (guru_id, jadwal_id, tanggal, jam_ke, status, keterangan)
         SELECT ${izin.guru_id}, j.id, ${iso}::date, j.jam_ke, 'izin', ${izin.jenis}
@@ -59,7 +57,18 @@ export async function PATCH(
     }
   }
 
-  // Send Telegram notification to guru
+  // Clean up auto-filled absen 'izin' rows when status reverted to 'ditolak'
+  if (status === 'ditolak' && izin.status === 'disetujui') {
+    await sql`
+      DELETE FROM absen
+      WHERE guru_id = ${izin.guru_id}
+        AND status = 'izin'
+        AND keterangan = ${izin.jenis}
+        AND tanggal BETWEEN ${izin.tanggal_mulai}::date AND ${izin.tanggal_selesai}::date
+    `;
+  }
+
+// Send Telegram notification to guru
   if (izin.telegram_id) {
     try {
       const statusLabel = status === 'disetujui' ? '✅ DISETUJUI' : '❌ DITOLAK';
