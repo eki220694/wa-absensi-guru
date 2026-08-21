@@ -1,0 +1,17 @@
+name: Cleanup Bot Session
+
+on:
+  schedule:
+    # Every day 03:00 WITA (19:00 UTC previous day), keep 24h-old sessions
+    - cron: '0 19 * * *'
+  workflow_dispatch: # manual trigger
+
+jobs:
+  cleanup:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Cleanup bot_session
+        run: |
+          curl -s -X GET \
+            "https://wa-absensi-guru-web-hm2g-seven.vercel.app/api/cron/cleanup?hours=24" \
+            -H "Authorization: Bearer ${{ secrets.CRON_SECRET }}"
